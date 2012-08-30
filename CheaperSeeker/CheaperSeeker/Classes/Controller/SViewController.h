@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "SConfiger.h"
+#import "Util.h"
+#import "SUtil.h"
 
 @interface SViewController : UIViewController
 
