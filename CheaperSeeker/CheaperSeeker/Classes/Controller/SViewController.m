@@ -9,6 +9,7 @@
 #import "SViewController.h"
 
 @implementation SViewController
+@synthesize splitNavigationController, splitViewController;
 
 #pragma mark init
 - (id)init {
@@ -30,6 +31,14 @@
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
+}
+
+#pragma mark SplitController Protocol
+- (UINavigationController<SSplitControllerProtocol> *)splitNavigationController {
+    return [SSplitContentUtil splitNavigationControllerWithSplitViewController:self];
+}
+- (UIViewController<SSplitControllerProtocol> *)splitViewController {
+    return self;
 }
 
 @end

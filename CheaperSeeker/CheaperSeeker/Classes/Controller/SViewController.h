@@ -10,8 +10,9 @@
 #import "SConfiger.h"
 #import "Util.h"
 #import "SUtil.h"
+#import "SSplitContentDelegate.h"
 
-@interface SViewController : UIViewController
+@interface SViewController : UIViewController<SSplitControllerProtocol>
 
 - (void)initSubobjects;
 

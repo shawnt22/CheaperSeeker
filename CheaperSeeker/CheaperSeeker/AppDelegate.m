@@ -7,13 +7,42 @@
 //
 
 #import "AppDelegate.h"
+#import "SNavigationController.h"
 
+@interface AppDelegate()
+- (void)launchControllers;
+@end
 @implementation AppDelegate
+@synthesize homeViewController, storesViewController, categoriesViewController, aboutViewController, splitRootViewController;
 
-- (void)dealloc
-{
+- (void)dealloc {
+    self.homeViewController = nil;
+    self.categoriesViewController = nil;
+    self.storesViewController = nil;
+    self.aboutViewController = nil;
+    self.splitRootViewController = nil;
+    
     [_window release];
     [super dealloc];
+}
+
++ (AppDelegate *)shareAppDelegate {
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
++ (SHomeViewController *)shareHomeViewController {
+    return [AppDelegate shareAppDelegate].homeViewController;
+}
++ (SStoresViewController *)shareStoresViewController {
+    return [AppDelegate shareAppDelegate].storesViewController;
+}
++ (SCategoriesViewController *)shareCategoriesViewController {
+    return [AppDelegate shareAppDelegate].categoriesViewController;
+}
++ (SAboutViewController *)shareAboutViewController {
+    return [AppDelegate shareAppDelegate].aboutViewController;
+}
++ (SSplitRootViewController *)shareSplitRootViewController {
+    return [AppDelegate shareAppDelegate].splitRootViewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,34 +51,57 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [self launchControllers];
+    
     return YES;
 }
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (void)launchControllers {
+    SHomeViewController *_home = [[SHomeViewController alloc] init];
+    SNavigationController *_nhome = [[SNavigationController alloc] initWithRootViewController:_home];
+    [_home release];
+    self.homeViewController = _home;
+    [_home release];
+    
+    SStoresViewController *_store = [[SStoresViewController alloc] init];
+    SNavigationController *_nstore = [[SNavigationController alloc] initWithRootViewController:_store];
+    [_store release];
+    self.storesViewController = _store;
+    [_store release];
+    
+    SCategoriesViewController *_categories = [[SCategoriesViewController alloc] init];
+    SNavigationController *_ncategories = [[SNavigationController alloc] initWithRootViewController:_categories];
+    [_categories release];
+    self.categoriesViewController = _categories;
+    [_categories release];
+    
+    SAboutViewController *_about = [[SAboutViewController alloc] init];
+    SNavigationController *_nabout = [[SNavigationController alloc] initWithRootViewController:_about];
+    [_about release];
+    self.aboutViewController = _about;
+    [_about release];
+    
+    SSplitRootViewController *_split = [[SSplitRootViewController alloc] init];
+    _split.splitContentViewControllers = [NSArray arrayWithObjects:_nhome, _nstore, _ncategories, _nabout, nil];
+    self.splitRootViewController = _split;
+    [_split release];
+    [self.window addSubview:self.splitRootViewController.view];
+    
+    [_nhome release];
+    [_nstore release];
+    [_ncategories release];
+    [_nabout release];
+    
+    [self.splitRootViewController splitContentViewController:self.homeViewController Animated:NO];
+    [self.splitRootViewController coverContentViewController:self.homeViewController Animated:YES];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
+- (void)applicationWillResignActive:(UIApplication *)application {}
+- (void)applicationDidEnterBackground:(UIApplication *)application {}
+- (void)applicationWillEnterForeground:(UIApplication *)application {}
+- (void)applicationDidBecomeActive:(UIApplication *)application {}
+- (void)applicationWillTerminate:(UIApplication *)application {}
 
 @end

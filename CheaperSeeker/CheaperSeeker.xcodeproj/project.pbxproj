@@ -54,18 +54,20 @@
 		9C64185915EF16E80072638F /* SDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64185815EF16E80072638F /* SDataLoader.m */; };
 		9C64186115EF16F90072638F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C64185F15EF16F90072638F /* libxml2.dylib */; };
 		9C64186215EF16F90072638F /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C64186015EF16F90072638F /* libz.1.2.5.dylib */; };
-		9C64186915EF3B3E0072638F /* SHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64186815EF3B3E0072638F /* SHomeViewController.m */; };
-		9C64187015EF3B700072638F /* SSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64186F15EF3B700072638F /* SSearchResultViewController.m */; };
-		9C64187315EF3D610072638F /* SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64187215EF3D610072638F /* SWebViewController.m */; };
 		9C64187715EF3F460072638F /* TSPullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64187615EF3F460072638F /* TSPullTableView.m */; };
-		9C64187A15EF40410072638F /* SAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64187915EF40410072638F /* SAboutViewController.m */; };
 		9C64187F15EF42230072638F /* SCouponsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64187E15EF42230072638F /* SCouponsTableView.m */; };
 		9C64188215EF423C0072638F /* SCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64188115EF423C0072638F /* SCouponCell.m */; };
 		9C64188515EF428B0072638F /* TCustomBGCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64188415EF428B0072638F /* TCustomBGCell.m */; };
-		9C64188A15EF44880072638F /* SSplitContentDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64188715EF44870072638F /* SSplitContentDelegate.m */; };
-		9C64188B15EF44880072638F /* SSplitRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64188915EF44880072638F /* SSplitRootViewController.m */; };
-		9C64189015EF45300072638F /* SStoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64188F15EF45300072638F /* SStoresViewController.m */; };
-		9C64189315EF45460072638F /* SCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64189215EF45460072638F /* SCategoriesViewController.m */; };
+		9C6418A115EF5FD80072638F /* SCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418A015EF5FD80072638F /* SCategoriesViewController.m */; };
+		9C6418A415EF5FF00072638F /* SStoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418A315EF5FF00072638F /* SStoresViewController.m */; };
+		9C6418A715EF60010072638F /* SHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418A615EF60010072638F /* SHomeViewController.m */; };
+		9C6418AA15EF60120072638F /* SSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418A915EF60120072638F /* SSearchResultViewController.m */; };
+		9C6418AD15EF60200072638F /* SAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418AC15EF60200072638F /* SAboutViewController.m */; };
+		9C6418B615EF60390072638F /* SNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418AF15EF60390072638F /* SNavigationController.m */; };
+		9C6418B715EF60390072638F /* SSplitContentDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B115EF60390072638F /* SSplitContentDelegate.m */; };
+		9C6418B815EF60390072638F /* SSplitRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B315EF60390072638F /* SSplitRootViewController.m */; };
+		9C6418B915EF60390072638F /* SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B515EF60390072638F /* SWebViewController.m */; };
+		9C6418BC15EF60580072638F /* SListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418BB15EF60580072638F /* SListDataStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,30 +163,34 @@
 		9C64185815EF16E80072638F /* SDataLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SDataLoader.m; path = Classes/Network/SDataLoader.m; sourceTree = "<group>"; };
 		9C64185F15EF16F90072638F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		9C64186015EF16F90072638F /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		9C64186715EF3B3E0072638F /* SHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHomeViewController.h; sourceTree = "<group>"; };
-		9C64186815EF3B3E0072638F /* SHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHomeViewController.m; sourceTree = "<group>"; };
-		9C64186E15EF3B700072638F /* SSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSearchResultViewController.h; sourceTree = "<group>"; };
-		9C64186F15EF3B700072638F /* SSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSearchResultViewController.m; sourceTree = "<group>"; };
-		9C64187115EF3D610072638F /* SWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWebViewController.h; sourceTree = "<group>"; };
-		9C64187215EF3D610072638F /* SWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWebViewController.m; sourceTree = "<group>"; };
 		9C64187515EF3F460072638F /* TSPullTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPullTableView.h; sourceTree = "<group>"; };
 		9C64187615EF3F460072638F /* TSPullTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPullTableView.m; sourceTree = "<group>"; };
-		9C64187815EF40410072638F /* SAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAboutViewController.h; sourceTree = "<group>"; };
-		9C64187915EF40410072638F /* SAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAboutViewController.m; sourceTree = "<group>"; };
 		9C64187D15EF42230072638F /* SCouponsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCouponsTableView.h; sourceTree = "<group>"; };
 		9C64187E15EF42230072638F /* SCouponsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCouponsTableView.m; sourceTree = "<group>"; };
 		9C64188015EF423C0072638F /* SCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCouponCell.h; sourceTree = "<group>"; };
 		9C64188115EF423C0072638F /* SCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCouponCell.m; sourceTree = "<group>"; };
 		9C64188315EF428B0072638F /* TCustomBGCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCustomBGCell.h; sourceTree = "<group>"; };
 		9C64188415EF428B0072638F /* TCustomBGCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCustomBGCell.m; sourceTree = "<group>"; };
-		9C64188615EF44870072638F /* SSplitContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSplitContentDelegate.h; sourceTree = "<group>"; };
-		9C64188715EF44870072638F /* SSplitContentDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSplitContentDelegate.m; sourceTree = "<group>"; };
-		9C64188815EF44870072638F /* SSplitRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSplitRootViewController.h; sourceTree = "<group>"; };
-		9C64188915EF44880072638F /* SSplitRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSplitRootViewController.m; sourceTree = "<group>"; };
-		9C64188E15EF45300072638F /* SStoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SStoresViewController.h; sourceTree = "<group>"; };
-		9C64188F15EF45300072638F /* SStoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SStoresViewController.m; sourceTree = "<group>"; };
-		9C64189115EF45460072638F /* SCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoriesViewController.h; sourceTree = "<group>"; };
-		9C64189215EF45460072638F /* SCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCategoriesViewController.m; sourceTree = "<group>"; };
+		9C64189F15EF5FD80072638F /* SCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCategoriesViewController.h; path = Classes/Controller/SCategoriesViewController.h; sourceTree = "<group>"; };
+		9C6418A015EF5FD80072638F /* SCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCategoriesViewController.m; path = Classes/Controller/SCategoriesViewController.m; sourceTree = "<group>"; };
+		9C6418A215EF5FF00072638F /* SStoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SStoresViewController.h; path = Classes/Controller/SStoresViewController.h; sourceTree = "<group>"; };
+		9C6418A315EF5FF00072638F /* SStoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SStoresViewController.m; path = Classes/Controller/SStoresViewController.m; sourceTree = "<group>"; };
+		9C6418A515EF60010072638F /* SHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHomeViewController.h; path = Classes/Controller/SHomeViewController.h; sourceTree = "<group>"; };
+		9C6418A615EF60010072638F /* SHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHomeViewController.m; path = Classes/Controller/SHomeViewController.m; sourceTree = "<group>"; };
+		9C6418A815EF60120072638F /* SSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSearchResultViewController.h; path = Classes/Controller/SSearchResultViewController.h; sourceTree = "<group>"; };
+		9C6418A915EF60120072638F /* SSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSearchResultViewController.m; path = Classes/Controller/SSearchResultViewController.m; sourceTree = "<group>"; };
+		9C6418AB15EF60200072638F /* SAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAboutViewController.h; path = Classes/Controller/SAboutViewController.h; sourceTree = "<group>"; };
+		9C6418AC15EF60200072638F /* SAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SAboutViewController.m; path = Classes/Controller/SAboutViewController.m; sourceTree = "<group>"; };
+		9C6418AE15EF60390072638F /* SNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNavigationController.h; path = Classes/Controller/SNavigationController.h; sourceTree = "<group>"; };
+		9C6418AF15EF60390072638F /* SNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNavigationController.m; path = Classes/Controller/SNavigationController.m; sourceTree = "<group>"; };
+		9C6418B015EF60390072638F /* SSplitContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSplitContentDelegate.h; path = Classes/Controller/SSplitContentDelegate.h; sourceTree = "<group>"; };
+		9C6418B115EF60390072638F /* SSplitContentDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSplitContentDelegate.m; path = Classes/Controller/SSplitContentDelegate.m; sourceTree = "<group>"; };
+		9C6418B215EF60390072638F /* SSplitRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSplitRootViewController.h; path = Classes/Controller/SSplitRootViewController.h; sourceTree = "<group>"; };
+		9C6418B315EF60390072638F /* SSplitRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSplitRootViewController.m; path = Classes/Controller/SSplitRootViewController.m; sourceTree = "<group>"; };
+		9C6418B415EF60390072638F /* SWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWebViewController.h; path = Classes/Controller/SWebViewController.h; sourceTree = "<group>"; };
+		9C6418B515EF60390072638F /* SWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWebViewController.m; path = Classes/Controller/SWebViewController.m; sourceTree = "<group>"; };
+		9C6418BA15EF60580072638F /* SListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SListDataStore.h; path = Classes/Network/SListDataStore.h; sourceTree = "<group>"; };
+		9C6418BB15EF60580072638F /* SListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SListDataStore.m; path = Classes/Network/SListDataStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +492,8 @@
 		9C64185115EF16E80072638F /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				9C6418BA15EF60580072638F /* SListDataStore.h */,
+				9C6418BB15EF60580072638F /* SListDataStore.m */,
 				9C64185215EF16E80072638F /* SURLProxy.h */,
 				9C64185315EF16E80072638F /* SURLProxy.m */,
 				9C64185515EF16E80072638F /* SDefine.h */,
@@ -497,14 +505,16 @@
 		9C64186A15EF3B420072638F /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				9C64188615EF44870072638F /* SSplitContentDelegate.h */,
-				9C64188715EF44870072638F /* SSplitContentDelegate.m */,
-				9C64188815EF44870072638F /* SSplitRootViewController.h */,
-				9C64188915EF44880072638F /* SSplitRootViewController.m */,
+				9C6418AE15EF60390072638F /* SNavigationController.h */,
+				9C6418AF15EF60390072638F /* SNavigationController.m */,
+				9C6418B015EF60390072638F /* SSplitContentDelegate.h */,
+				9C6418B115EF60390072638F /* SSplitContentDelegate.m */,
+				9C6418B215EF60390072638F /* SSplitRootViewController.h */,
+				9C6418B315EF60390072638F /* SSplitRootViewController.m */,
+				9C6418B415EF60390072638F /* SWebViewController.h */,
+				9C6418B515EF60390072638F /* SWebViewController.m */,
 				9C64183F15EF16E80072638F /* SViewController.h */,
 				9C64184015EF16E80072638F /* SViewController.m */,
-				9C64187115EF3D610072638F /* SWebViewController.h */,
-				9C64187215EF3D610072638F /* SWebViewController.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -512,8 +522,8 @@
 		9C64186B15EF3B4A0072638F /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				9C64187815EF40410072638F /* SAboutViewController.h */,
-				9C64187915EF40410072638F /* SAboutViewController.m */,
+				9C6418AB15EF60200072638F /* SAboutViewController.h */,
+				9C6418AC15EF60200072638F /* SAboutViewController.m */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -521,8 +531,8 @@
 		9C64186C15EF3B510072638F /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				9C64186E15EF3B700072638F /* SSearchResultViewController.h */,
-				9C64186F15EF3B700072638F /* SSearchResultViewController.m */,
+				9C6418A815EF60120072638F /* SSearchResultViewController.h */,
+				9C6418A915EF60120072638F /* SSearchResultViewController.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -530,8 +540,8 @@
 		9C64186D15EF3B570072638F /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				9C64186715EF3B3E0072638F /* SHomeViewController.h */,
-				9C64186815EF3B3E0072638F /* SHomeViewController.m */,
+				9C6418A515EF60010072638F /* SHomeViewController.h */,
+				9C6418A615EF60010072638F /* SHomeViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -571,8 +581,8 @@
 		9C64188C15EF44FA0072638F /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				9C64188E15EF45300072638F /* SStoresViewController.h */,
-				9C64188F15EF45300072638F /* SStoresViewController.m */,
+				9C6418A215EF5FF00072638F /* SStoresViewController.h */,
+				9C6418A315EF5FF00072638F /* SStoresViewController.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -580,8 +590,8 @@
 		9C64188D15EF45030072638F /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				9C64189115EF45460072638F /* SCategoriesViewController.h */,
-				9C64189215EF45460072638F /* SCategoriesViewController.m */,
+				9C64189F15EF5FD80072638F /* SCategoriesViewController.h */,
+				9C6418A015EF5FD80072638F /* SCategoriesViewController.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -685,18 +695,20 @@
 				9C64185015EF16E80072638F /* SURLRequest.m in Sources */,
 				9C64185415EF16E80072638F /* SURLProxy.m in Sources */,
 				9C64185915EF16E80072638F /* SDataLoader.m in Sources */,
-				9C64186915EF3B3E0072638F /* SHomeViewController.m in Sources */,
-				9C64187015EF3B700072638F /* SSearchResultViewController.m in Sources */,
-				9C64187315EF3D610072638F /* SWebViewController.m in Sources */,
 				9C64187715EF3F460072638F /* TSPullTableView.m in Sources */,
-				9C64187A15EF40410072638F /* SAboutViewController.m in Sources */,
 				9C64187F15EF42230072638F /* SCouponsTableView.m in Sources */,
 				9C64188215EF423C0072638F /* SCouponCell.m in Sources */,
 				9C64188515EF428B0072638F /* TCustomBGCell.m in Sources */,
-				9C64188A15EF44880072638F /* SSplitContentDelegate.m in Sources */,
-				9C64188B15EF44880072638F /* SSplitRootViewController.m in Sources */,
-				9C64189015EF45300072638F /* SStoresViewController.m in Sources */,
-				9C64189315EF45460072638F /* SCategoriesViewController.m in Sources */,
+				9C6418A115EF5FD80072638F /* SCategoriesViewController.m in Sources */,
+				9C6418A415EF5FF00072638F /* SStoresViewController.m in Sources */,
+				9C6418A715EF60010072638F /* SHomeViewController.m in Sources */,
+				9C6418AA15EF60120072638F /* SSearchResultViewController.m in Sources */,
+				9C6418AD15EF60200072638F /* SAboutViewController.m in Sources */,
+				9C6418B615EF60390072638F /* SNavigationController.m in Sources */,
+				9C6418B715EF60390072638F /* SSplitContentDelegate.m in Sources */,
+				9C6418B815EF60390072638F /* SSplitRootViewController.m in Sources */,
+				9C6418B915EF60390072638F /* SWebViewController.m in Sources */,
+				9C6418BC15EF60580072638F /* SListDataStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +889,7 @@
 				9C64186415EF17070072638F /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
