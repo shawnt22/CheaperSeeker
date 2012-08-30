@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#define k_base_url  @"http://"
+
+typedef enum {
+    SURLRequestInvalid,
+}SURLRequestTag;
+
 @interface SURLProxy : NSObject
 
 @end
