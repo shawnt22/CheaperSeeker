@@ -11,4 +11,7 @@
 
 @implementation SUtil
 
++ (NSString *)currentDocumentCacheStoragePath {}
++ (NSString *)currentImageCacheStoragePath {}
+
 @end

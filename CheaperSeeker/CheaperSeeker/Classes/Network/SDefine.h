@@ -7,6 +7,16 @@
 //
 
 
+
+
+#pragma mark - User
+//  user
+#define k_user_id                               @"id"
+#define k_user_name                             @"name"
+#define k_user_icon                             @"icon"
+
+
+
 #pragma mark - Coupon
 //  coupon
 #define k_coupon_id                             @"id"
@@ -37,3 +47,6 @@
 #define k_merchant_site_url                     @"home_page_url"
 #define k_merchant_banner_image                 @"banner"
 #define k_merchant_snap_image                   @"snap_short"
+
+
+

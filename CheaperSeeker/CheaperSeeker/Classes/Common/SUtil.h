@@ -10,4 +10,7 @@
 
 @interface SUtil : NSObject
 
++ (NSString *)currentDocumentCacheStoragePath;
++ (NSString *)currentImageCacheStoragePath;
+
 @end

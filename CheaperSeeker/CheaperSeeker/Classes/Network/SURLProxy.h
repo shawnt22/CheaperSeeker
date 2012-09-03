@@ -12,6 +12,10 @@
 
 typedef enum {
     SURLRequestInvalid,
+    
+    SURLRequestItemsRefresh,
+    SURLRequestItemsLoadmore,
+    
 }SURLRequestTag;
 
 @interface SURLProxy : NSObject

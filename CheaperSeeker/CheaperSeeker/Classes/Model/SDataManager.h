@@ -10,5 +10,12 @@
 #import "SConfiger.h"
 
 @interface SDataManager : NSObject
+@property (nonatomic, assign) id currentUser;
+
++ (SDataManager *)shareDataManager;
+
+- (void)prepareBeforeLogin;
+- (void)prepareAfterLogin;
+- (BOOL)isLogin;
 
 @end

@@ -10,8 +10,11 @@
 #import "ASIFormDataRequest.h"
 #import "ASIDownloadCache.h"
 
-@interface SURLRequest : ASIFormDataRequest {
-}
-@property (nonatomic, retain) id responseResult;
+@interface SURLRequest : ASIFormDataRequest 
 
+@end
+
+@interface ASIDownloadCache (SDownloadCache)
++ (ASIDownloadCache *)shareDocumentDownloadCache;
++ (ASIDownloadCache *)shareImageDownloadCache;
 @end

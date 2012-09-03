@@ -8,6 +8,32 @@
 
 #import "SDataManager.h"
 
+static SDataManager *_dataManager = nil;
 @implementation SDataManager
+@synthesize currentUser;
+
+#pragma mark init & dealloc
+- (id)init {
+    self = [super init];
+    if (self) {
+    }
+    return self;
+}
+- (void)dealloc {
+    [super dealloc];
+}
++ (SDataManager *)shareDataManager {
+    if (!_dataManager) {
+        _dataManager = [[SDataManager alloc] init];
+    }
+    return _dataManager;
+}
+
+#pragma mark login manager
+- (void)prepareBeforeLogin {}
+- (void)prepareAfterLogin {}
+- (BOOL)isLogin {
+    return self.currentUser ? YES : NO;
+}
 
 @end

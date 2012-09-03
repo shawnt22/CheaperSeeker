@@ -8,6 +8,7 @@
 #pragma mark - Import
 #import "SUtil.h"
 #import "Util.h"
+#import "SDefine.h"
 
 #pragma mark - Error
 typedef enum {

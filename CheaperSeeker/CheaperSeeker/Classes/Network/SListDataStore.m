@@ -126,11 +126,11 @@
 - (BOOL)canLoadMore {
     return _canLoadMore;
 }
-- (void)refreshItemsWithCachePolicy:(TTURLRequestCachePolicy)cachePolicy URL:(NSString *)url {
+- (void)refreshItemsWithCachePolicy:(ASICachePolicy)cachePolicy URL:(NSString *)url {
     [self cancelRequest:self.listRequest];
     
     self.cursorID = kListDataStoreRefreshCursor;
-    SURLRequest *_request = [[SURLRequest alloc] initWithRequestDelegate:self];
+    SURLRequest *_request = [[SURLRequest alloc] initWithURL:nil];
     _request.tag = SURLRequestItemsRefresh;
     [_request prepareRequestWith:url CachePolicy:cachePolicy];
     self.listRequest = _request;
