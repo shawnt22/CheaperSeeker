@@ -22,16 +22,19 @@
 @synthesize storeStyle;
 
 #pragma mark init & dealloc
-- (void)initSubobjects {
-    [super initSubobjects];
-    self.storeDelegate = nil;
-    self.items = [NSMutableArray array];
-    _canLoadMore = YES;
-    self.storeStyle = PListDataStoreStyleCursor;
-    self.cursorID = kListDataStoreRefreshCursor;
-    self.pageIndex = kListDataStoreRefreshPage;
-    self.limitCount = kListDataStoreLimitCount;
-    self.listRequest = nil;
+- (id)initWithDelegate:(id<SDataLoaderDelegate>)adelegate {
+    self = [super initWithDelegate:adelegate];
+    if (self) {
+        self.storeDelegate = nil;
+        self.items = [NSMutableArray array];
+        _canLoadMore = YES;
+        self.storeStyle = PListDataStoreStyleCursor;
+        self.cursorID = kListDataStoreRefreshCursor;
+        self.pageIndex = kListDataStoreRefreshPage;
+        self.limitCount = kListDataStoreLimitCount;
+        self.listRequest = nil;
+    }
+    return self;
 }
 - (void)dealloc {
     self.listRequest = nil;
@@ -46,38 +49,43 @@
     [super cancelAllRequests];
     [self cancelRequest:self.listRequest];
 }
-- (void)strequestFinished:(SURLRequest *)request {
-    switch (request.tag) {
-        case SURLRequestItemsRefresh:{
-            NSArray *_items = [request.responseData objectForKey:kListDataStoreResponseItems];
-            NSInteger _count = [[request.responseData objectForKey:kListDataStoreResponseCount] integerValue];
-            if ([_items count] > 0) {
-                [self notifyRequest:request submitResponse:_items];
-                self.items = [NSMutableArray arrayWithArray:_items];
-                if (self.storeStyle == PListDataStoreStyleCursor) {
-                    self.cursorID = [request.responseData objectForKey:kListDataStoreResponseCursor];
+- (void)requestFinished:(ASIHTTPRequest *)asirequest {
+    SURLRequest *request = [self prepareRequest:(SURLRequest *)asirequest];
+    if (!request.error) {
+        switch (request.tag) {
+            case SURLRequestItemsRefresh:{
+                NSArray *_items = [request.formatedResponse objectForKey:kListDataStoreResponseItems];
+                NSInteger _count = [[request.formatedResponse objectForKey:kListDataStoreResponseCount] integerValue];
+                if ([_items count] > 0) {
+                    [self notifyDataloader:self submitResponse:_items Request:request];
+                    self.items = [NSMutableArray arrayWithArray:_items];
+                    if (self.storeStyle == PListDataStoreStyleCursor) {
+                        self.cursorID = [request.formatedResponse objectForKey:kListDataStoreResponseCursor];
+                    }
                 }
+                _canLoadMore = _count > [_items count] ? YES : NO;
             }
-            _canLoadMore = _count > [_items count] ? YES : NO;
-        }
-            break;
-        case SURLRequestItemsLoadmore:{
-            NSArray *_items = [request.responseData objectForKey:kListDataStoreResponseItems];
-            NSInteger _count = [[request.responseData objectForKey:kListDataStoreResponseCount] integerValue];
-            if ([_items count] > 0) {
-                [self notifyRequest:request submitResponse:_items];
-                [self.items addObjectsFromArray:_items];
-                if (self.storeStyle == PListDataStoreStyleCursor) {
-                    self.cursorID = [request.responseData objectForKey:kListDataStoreResponseCursor];
+                break;
+            case SURLRequestItemsLoadmore:{
+                NSArray *_items = [request.formatedResponse objectForKey:kListDataStoreResponseItems];
+                NSInteger _count = [[request.formatedResponse objectForKey:kListDataStoreResponseCount] integerValue];
+                if ([_items count] > 0) {
+                    [self notifyDataloader:self submitResponse:_items Request:request];
+                    [self.items addObjectsFromArray:_items];
+                    if (self.storeStyle == PListDataStoreStyleCursor) {
+                        self.cursorID = [request.formatedResponse objectForKey:kListDataStoreResponseCursor];
+                    }
                 }
+                _canLoadMore = _count > [_items count] ? YES : NO;
             }
-            _canLoadMore = _count > [_items count] ? YES : NO;
+                break;
+            default:
+                break;
         }
-            break;
-        default:
-            break;
+        [self notifyDataloader:self didFinishRequest:request];
+    } else {
+        [self notifyDataloader:self didFailRequest:request Error:request.error];
     }
-    [super notifyRequestFinished:request];
 }
 
 #pragma mark items manager
@@ -130,9 +138,10 @@
     [self cancelRequest:self.listRequest];
     
     self.cursorID = kListDataStoreRefreshCursor;
-    SURLRequest *_request = [[SURLRequest alloc] initWithURL:nil];
+    SURLRequest *_request = [[SURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    _request.delegate = self;
     _request.tag = SURLRequestItemsRefresh;
-    [_request prepareRequestWith:url CachePolicy:cachePolicy];
+    _request.cachePolicy = cachePolicy;
     self.listRequest = _request;
     [_request release];
     
@@ -141,9 +150,10 @@
 - (void)loadMoreItemsWithURL:(NSString *)url {
     [self cancelRequest:self.listRequest];
     
-    SURLRequest *_request = [[SURLRequest alloc] initWithRequestDelegate:self];
+    SURLRequest *_request = [[SURLRequest alloc] initWithURL:nil];
+    _request.delegate = self;
     _request.tag = SURLRequestItemsLoadmore;
-    [_request prepareRequestWith:url CachePolicy:TTURLRequestCachePolicyNetwork];
+    _request.cachePolicy = ASIDoNotReadFromCacheCachePolicy;
     self.listRequest = _request;
     [_request release];
     

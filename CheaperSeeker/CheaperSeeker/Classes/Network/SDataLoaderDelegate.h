@@ -12,6 +12,7 @@
 @optional
 - (void)dataloader:(SDataLoader *)dataloader didStartRequest:(SURLRequest *)request;
 - (void)dataloader:(SDataLoader *)dataloader didFinishRequest:(SURLRequest *)request;
+- (void)dataloader:(SDataLoader *)dataloader submitResponse:(id)response Request:(SURLRequest *)request;
 - (void)dataloader:(SDataLoader *)dataloader didFailRequest:(SURLRequest *)request Error:(NSError *)error;
 - (void)dataloader:(SDataLoader *)dataloader didCancelRequest:(SURLRequest *)request;
 

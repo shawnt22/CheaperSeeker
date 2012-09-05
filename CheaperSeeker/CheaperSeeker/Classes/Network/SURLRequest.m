@@ -7,8 +7,15 @@
 //
 
 #import "SURLRequest.h"
+#import "JSONKit.h"
 
 @implementation SURLRequest
+@synthesize formatedResponse;
+
+- (void)dealloc {
+    self.formatedResponse = nil;
+    [super dealloc];
+}
 
 @end
 

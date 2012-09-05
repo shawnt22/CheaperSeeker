@@ -54,8 +54,17 @@
         [self.delegate dataloader:dataloader didFailRequest:request Error:error];
     }
 }
+- (void)notifyDataloader:(SDataLoader *)dataloader submitResponse:(id)response Request:(SURLRequest *)request {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dataloader:submitResponse:Request:)]) {
+        [self.delegate dataloader:dataloader submitResponse:response Request:request];
+    }
+}
 
 #pragma mark Request manager
+- (SURLRequest *)prepareRequest:(SURLRequest *)request {
+    request.formatedResponse = [request.responseString objectFromJSONString];
+    return request;
+}
 - (void)cancelAllRequests {}
 - (void)cancelRequest:(SURLRequest *)request {
     [request clearDelegatesAndCancel];
@@ -67,7 +76,12 @@
     [self notifyDataloader:self didStartRequest:(SURLRequest *)request];
 }
 - (void)requestFinished:(ASIHTTPRequest *)request {
-#warning need logic
+    SURLRequest *srequest = [self prepareRequest:(SURLRequest *)request];
+    if (!srequest.error) {
+        [self notifyDataloader:self didFinishRequest:srequest];
+    } else {
+        [self notifyDataloader:self didFailRequest:srequest Error:srequest.error];
+    }
 }
 - (void)requestFailed:(ASIHTTPRequest *)request {
     NSError *error = request.error;
