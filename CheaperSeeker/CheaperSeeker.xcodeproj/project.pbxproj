@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */; };
+		9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */; };
 		9C6417BF15EF16E60072638F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417BE15EF16E60072638F /* UIKit.framework */; };
 		9C6417C115EF16E60072638F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417C015EF16E60072638F /* Foundation.framework */; };
 		9C6417C315EF16E60072638F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417C215EF16E60072638F /* CoreGraphics.framework */; };
@@ -74,6 +75,8 @@
 /* Begin PBXFileReference section */
 		9C4E2A0C15F7563A0088D7F8 /* SImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageLoader.h; path = Classes/Network/SImageLoader.h; sourceTree = "<group>"; };
 		9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageLoader.m; path = Classes/Network/SImageLoader.m; sourceTree = "<group>"; };
+		9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageStore.h; path = Classes/Network/SImageStore.h; sourceTree = "<group>"; };
+		9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageStore.m; path = Classes/Network/SImageStore.m; sourceTree = "<group>"; };
 		9C6417BA15EF16E60072638F /* CheaperSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheaperSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C6417BE15EF16E60072638F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C6417C015EF16E60072638F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -503,6 +506,8 @@
 				9C64185315EF16E80072638F /* SURLProxy.m */,
 				9C64185515EF16E80072638F /* SDefine.h */,
 				9C64185615EF16E80072638F /* SDataLoaderDelegate.h */,
+				9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */,
+				9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -715,6 +720,7 @@
 				9C6418B915EF60390072638F /* SWebViewController.m in Sources */,
 				9C6418BC15EF60580072638F /* SListDataStore.m in Sources */,
 				9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */,
+				9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
