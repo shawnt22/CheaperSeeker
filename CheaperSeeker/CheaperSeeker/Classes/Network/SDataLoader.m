@@ -70,6 +70,7 @@
     [request clearDelegatesAndCancel];
 }
 - (void)startRequest:(SURLRequest *)request {
+    request.downloadCache = [ASIDownloadCache shareDocumentDownloadCache];
     [request startAsynchronous];
 }
 - (void)requestStarted:(ASIHTTPRequest *)request {

@@ -20,6 +20,7 @@
 @end
 
 
+#import "SUtil.h"
 static ASIDownloadCache *_imgDownloadCache = nil;
 static ASIDownloadCache *_docDownloadCache = nil;
 @implementation ASIDownloadCache(SDownloadCache)
@@ -28,13 +29,13 @@ static ASIDownloadCache *_docDownloadCache = nil;
     if (!_docDownloadCache) {
         _docDownloadCache = [[ASIDownloadCache alloc] init];
     }
-    _docDownloadCache.storagePath = nil;
+    _docDownloadCache.storagePath = [SUtil currentDocumentCacheStoragePath];
     return _docDownloadCache;
 }
 + (ASIDownloadCache *)shareImageDownloadCache {
     if (!_imgDownloadCache) {
         _imgDownloadCache = [[ASIDownloadCache alloc] init];
-        _imgDownloadCache.storagePath = nil;
+        _imgDownloadCache.storagePath = [SUtil currentImageCacheStoragePath];
     }
     return _imgDownloadCache;
 }

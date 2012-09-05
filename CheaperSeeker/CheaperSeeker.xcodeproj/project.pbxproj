@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */; };
 		9C6417BF15EF16E60072638F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417BE15EF16E60072638F /* UIKit.framework */; };
 		9C6417C115EF16E60072638F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417C015EF16E60072638F /* Foundation.framework */; };
 		9C6417C315EF16E60072638F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417C215EF16E60072638F /* CoreGraphics.framework */; };
@@ -71,6 +72,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C4E2A0C15F7563A0088D7F8 /* SImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageLoader.h; path = Classes/Network/SImageLoader.h; sourceTree = "<group>"; };
+		9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageLoader.m; path = Classes/Network/SImageLoader.m; sourceTree = "<group>"; };
 		9C6417BA15EF16E60072638F /* CheaperSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheaperSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C6417BE15EF16E60072638F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C6417C015EF16E60072638F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -485,6 +488,8 @@
 				9C64184F15EF16E80072638F /* SURLRequest.m */,
 				9C64185715EF16E80072638F /* SDataLoader.h */,
 				9C64185815EF16E80072638F /* SDataLoader.m */,
+				9C4E2A0C15F7563A0088D7F8 /* SImageLoader.h */,
+				9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -709,6 +714,7 @@
 				9C6418B815EF60390072638F /* SSplitRootViewController.m in Sources */,
 				9C6418B915EF60390072638F /* SWebViewController.m in Sources */,
 				9C6418BC15EF60580072638F /* SListDataStore.m in Sources */,
+				9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
