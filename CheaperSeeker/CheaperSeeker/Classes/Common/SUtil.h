@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SSplitContentDelegate.h"
 
 @interface SUtil : NSObject
 
 + (NSString *)currentDocumentCacheStoragePath;
 + (NSString *)currentImageCacheStoragePath;
+
++ (void)setNavigationBarSplitButtonItemWith:(UIViewController *)viewController;
++ (void)splitActionWith:(UIViewController<SSplitControllerProtocol> *)viewController;
 
 @end

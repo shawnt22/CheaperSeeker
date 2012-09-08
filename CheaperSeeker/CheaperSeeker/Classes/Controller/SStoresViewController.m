@@ -30,9 +30,15 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"Store";
+    [SUtil setNavigationBarSplitButtonItemWith:self];
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
+}
+
+#pragma mark Actions
+- (void)splitAction:(id)sender {
+    [SUtil splitActionWith:self];
 }
 
 @end

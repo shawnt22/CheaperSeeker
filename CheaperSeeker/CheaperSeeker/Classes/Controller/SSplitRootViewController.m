@@ -10,7 +10,6 @@
 
 @interface SSplitRootViewController()
 @property (nonatomic, assign) UITableView *menuTableView;
-@property (nonatomic, assign) SSplitContentBoard *contentBoard;
 
 - (void)finishedSplitContentAnimation;
 - (void)finishedCoverContentAnimation;
@@ -165,7 +164,7 @@
         //return;
     }
     
-    self.currentContentViewController.view.userInteractionEnabled = NO;
+    self.currentContentViewController.splitViewController.view.userInteractionEnabled = NO;
     
     CGRect _f = self.contentBoard.frame;
     _f.origin.x = kSplitContentOriginXSplit;
@@ -186,7 +185,7 @@
         //return;
     }
     
-    self.currentContentViewController.view.userInteractionEnabled = NO;
+    self.currentContentViewController.splitViewController.view.userInteractionEnabled = NO;
     
     CGRect _f = self.contentBoard.frame;
     _f.origin.x = kSplitContentOriginXCover;

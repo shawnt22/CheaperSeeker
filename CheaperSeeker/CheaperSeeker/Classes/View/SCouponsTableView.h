@@ -11,7 +11,11 @@
 #import "SUtil.h"
 #import "Sconfiger.h"
 #import "TSPullTableView.h"
+#import "CSListDataStore.h"
+#import "SImageStore.h"
 
-@interface SCouponsTableView : TSPullTableView
+@interface SCouponsTableView : TSPullTableView <TSPullTableViewDelegate, UITableViewDataSource, SDataLoaderDelegate>
+@property (nonatomic, retain)PImageStore *imageStore;
+@property (nonatomic, retain) PListDataStore<PListRefreshLoadmoreProtocol> *dataStore;
 
 @end

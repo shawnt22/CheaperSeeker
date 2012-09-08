@@ -7,6 +7,7 @@
 //
 
 #import "SViewController.h"
+#import "SCouponsTableView.h"
 
 @interface SHomeViewController : SViewController
 
