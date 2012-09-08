@@ -8,6 +8,46 @@
 
 #import "SURLProxy.h"
 
+@interface SURLProxy()
++ (NSString *)prepareURL:(NSString *)url;
+@end
 @implementation SURLProxy
+
++ (NSString *)prepareURL:(NSString *)url {
+    return [NSString stringWithFormat:@"%@%@", k_base_url, url];
+}
+
++ (NSString *)getHomeCouponsWithCursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
++ (NSString *)searchCouponsWithKey:(NSString *)key Cursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
+
++ (NSString *)getCategoriesWithCursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
+
++ (NSString *)getMerchantsWithCursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
++ (NSString *)getCouponWithCouponID:(NSString *)cid {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
++ (NSString *)getMerchantWithMerchantID:(NSString *)mid {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
 
 @end

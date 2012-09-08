@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60DBD8FD15FB1ABC0065ABC9 /* CSListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD8FC15FB1ABC0065ABC9 /* CSListDataStore.m */; };
 		9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */; };
 		9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */; };
 		9C6417BF15EF16E60072638F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417BE15EF16E60072638F /* UIKit.framework */; };
@@ -73,6 +74,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60DBD8FB15FB1ABC0065ABC9 /* CSListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSListDataStore.h; path = Classes/Network/CSListDataStore.h; sourceTree = "<group>"; };
+		60DBD8FC15FB1ABC0065ABC9 /* CSListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSListDataStore.m; path = Classes/Network/CSListDataStore.m; sourceTree = "<group>"; };
 		9C4E2A0C15F7563A0088D7F8 /* SImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageLoader.h; path = Classes/Network/SImageLoader.h; sourceTree = "<group>"; };
 		9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageLoader.m; path = Classes/Network/SImageLoader.m; sourceTree = "<group>"; };
 		9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageStore.h; path = Classes/Network/SImageStore.h; sourceTree = "<group>"; };
@@ -508,6 +511,8 @@
 				9C64185615EF16E80072638F /* SDataLoaderDelegate.h */,
 				9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */,
 				9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */,
+				60DBD8FB15FB1ABC0065ABC9 /* CSListDataStore.h */,
+				60DBD8FC15FB1ABC0065ABC9 /* CSListDataStore.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -721,6 +726,7 @@
 				9C6418BC15EF60580072638F /* SListDataStore.m in Sources */,
 				9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */,
 				9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */,
+				60DBD8FD15FB1ABC0065ABC9 /* CSListDataStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

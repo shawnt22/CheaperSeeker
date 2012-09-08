@@ -20,4 +20,13 @@ typedef enum {
 
 @interface SURLProxy : NSObject
 
++ (NSString *)getHomeCouponsWithCursor:(NSString *)cursor Count:(NSInteger)count;
++ (NSString *)searchCouponsWithKey:(NSString *)key Cursor:(NSString *)cursor Count:(NSInteger)count;
+
++ (NSString *)getCategoriesWithCursor:(NSString *)cursor Count:(NSInteger)count;
+
++ (NSString *)getMerchantsWithCursor:(NSString *)cursor Count:(NSInteger)count;
++ (NSString *)getCouponWithCouponID:(NSString *)cid;
++ (NSString *)getMerchantWithMerchantID:(NSString *)mid;
+
 @end
