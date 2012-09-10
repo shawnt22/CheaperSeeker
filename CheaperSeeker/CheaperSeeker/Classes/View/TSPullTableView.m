@@ -141,7 +141,7 @@
         [self.pullHeaderView addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
         [self.pullFooterView addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
         
-        [self registerSwipeGesture];
+        //[self registerSwipeGesture];
         
         [self setPullToLoadmoreEnable:NO];
     }

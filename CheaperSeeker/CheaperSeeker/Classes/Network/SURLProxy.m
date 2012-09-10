@@ -18,7 +18,7 @@
 }
 
 + (NSString *)getHomeCouponsWithCursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = nil;
+    NSString *url = [NSString stringWithFormat:@"coupon/getHomeCoupons/%@", @"20"];
     url = [SURLProxy prepareURL:url];
     return url;
 }

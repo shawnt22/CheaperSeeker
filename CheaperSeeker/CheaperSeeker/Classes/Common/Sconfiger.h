@@ -15,4 +15,7 @@ typedef enum {
     SErrorInvalide = 0,         //  无效的
 }SErrorCode;
 
+#pragma mark - Layout
+#define kMarginLeft 10.0
+
 #pragma mark - Notification

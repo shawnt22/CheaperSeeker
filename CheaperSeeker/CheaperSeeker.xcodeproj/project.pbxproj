@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		60DBD8FD15FB1ABC0065ABC9 /* CSListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD8FC15FB1ABC0065ABC9 /* CSListDataStore.m */; };
+		60DBD90415FB38880065ABC9 /* SMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90315FB38880065ABC9 /* SMenuCell.m */; };
+		60DBD90715FB43850065ABC9 /* SLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90615FB43850065ABC9 /* SLayout.m */; };
+		60DBD90A15FB43990065ABC9 /* SStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90915FB43990065ABC9 /* SStyle.m */; };
 		9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */; };
 		9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */; };
 		9C6417BF15EF16E60072638F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417BE15EF16E60072638F /* UIKit.framework */; };
@@ -76,6 +79,12 @@
 /* Begin PBXFileReference section */
 		60DBD8FB15FB1ABC0065ABC9 /* CSListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSListDataStore.h; path = Classes/Network/CSListDataStore.h; sourceTree = "<group>"; };
 		60DBD8FC15FB1ABC0065ABC9 /* CSListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSListDataStore.m; path = Classes/Network/CSListDataStore.m; sourceTree = "<group>"; };
+		60DBD90215FB38880065ABC9 /* SMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMenuCell.h; sourceTree = "<group>"; };
+		60DBD90315FB38880065ABC9 /* SMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMenuCell.m; sourceTree = "<group>"; };
+		60DBD90515FB43850065ABC9 /* SLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLayout.h; path = Classes/Model/SLayout.h; sourceTree = "<group>"; };
+		60DBD90615FB43850065ABC9 /* SLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLayout.m; path = Classes/Model/SLayout.m; sourceTree = "<group>"; };
+		60DBD90815FB43990065ABC9 /* SStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SStyle.h; path = Classes/Model/SStyle.h; sourceTree = "<group>"; };
+		60DBD90915FB43990065ABC9 /* SStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SStyle.m; path = Classes/Model/SStyle.m; sourceTree = "<group>"; };
 		9C4E2A0C15F7563A0088D7F8 /* SImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageLoader.h; path = Classes/Network/SImageLoader.h; sourceTree = "<group>"; };
 		9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageLoader.m; path = Classes/Network/SImageLoader.m; sourceTree = "<group>"; };
 		9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageStore.h; path = Classes/Network/SImageStore.h; sourceTree = "<group>"; };
@@ -474,6 +483,10 @@
 				9C64184715EF16E80072638F /* SHistory.m */,
 				9C64184915EF16E80072638F /* SSetting.h */,
 				9C64184A15EF16E80072638F /* SSetting.m */,
+				60DBD90515FB43850065ABC9 /* SLayout.h */,
+				60DBD90615FB43850065ABC9 /* SLayout.m */,
+				60DBD90815FB43990065ABC9 /* SStyle.h */,
+				60DBD90915FB43990065ABC9 /* SStyle.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -589,6 +602,8 @@
 			children = (
 				9C64188015EF423C0072638F /* SCouponCell.h */,
 				9C64188115EF423C0072638F /* SCouponCell.m */,
+				60DBD90215FB38880065ABC9 /* SMenuCell.h */,
+				60DBD90315FB38880065ABC9 /* SMenuCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -727,6 +742,9 @@
 				9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */,
 				9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */,
 				60DBD8FD15FB1ABC0065ABC9 /* CSListDataStore.m in Sources */,
+				60DBD90415FB38880065ABC9 /* SMenuCell.m in Sources */,
+				60DBD90715FB43850065ABC9 /* SLayout.m in Sources */,
+				60DBD90A15FB43990065ABC9 /* SStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

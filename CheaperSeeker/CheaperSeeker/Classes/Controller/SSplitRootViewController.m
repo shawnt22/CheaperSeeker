@@ -7,6 +7,7 @@
 //
 
 #import "SSplitRootViewController.h"
+#import "SMenuCell.h"
 
 @interface SSplitRootViewController()
 @property (nonatomic, assign) UITableView *menuTableView;
@@ -109,25 +110,22 @@
 
 #pragma mark menu delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44.0;
+    return [SMenuCell cellHeight];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.splitContentViewControllers count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *_identifier = @"cell";
-    UITableViewCell *_cell = [tableView dequeueReusableCellWithIdentifier:_identifier];
+    SMenuCell *_cell = (SMenuCell *)[tableView dequeueReusableCellWithIdentifier:_identifier];
     if (!_cell) {
-        _cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
+        _cell = [[[SMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
         _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    UIViewController *_controller = [self.splitContentViewControllers objectAtIndex:indexPath.row];
-    _cell.textLabel.text = _controller.title;
+    [_cell refreshMenuItem:indexPath.row];
     return _cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     UIViewController<SSplitControllerProtocol> *_controller = [self.splitContentViewControllers objectAtIndex:indexPath.row];
     [self coverContentViewController:_controller Animated:YES];
 }
