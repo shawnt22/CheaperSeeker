@@ -145,6 +145,14 @@
     }
     [observers addObject:observer];
 }
+- (void)removeObserver:(id<PImageStoreDelegate>)observer {
+    NSArray *_keys = [self.imageStore allKeys];
+    for (NSString *_akey in _keys) {
+        NSDictionary *_imgInfo = [self.imageStore objectForKey:_akey];
+        NSMutableSet *_obsvrs = [_imgInfo objectForKey:kImageStoreObservers];
+        [_obsvrs removeObject:observer];
+    }
+}
 - (void)removeObserver:(id<PImageStoreDelegate>)observer forImageURL:(NSString *)url {
     NSMutableDictionary *imgInfo = [self.imageStore objectForKey:url];
     if (imgInfo) {

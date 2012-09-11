@@ -27,5 +27,6 @@
 
 - (UIImage *)resumeImageWithURL:(NSString *)url Observer:(id<PImageStoreDelegate>)observer;
 - (void)receiveMemoryWarning;
+- (void)removeObserver:(id<PImageStoreDelegate>)observer;
 
 @end
