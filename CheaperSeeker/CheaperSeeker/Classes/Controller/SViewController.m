@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         [self initSubobjects];
+        self.wantsFullScreenLayout = YES;
     }
     return self;
 }

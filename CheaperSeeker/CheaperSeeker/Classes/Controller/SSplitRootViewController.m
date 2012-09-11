@@ -35,6 +35,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.wantsFullScreenLayout = YES;
         self.splitContentViewControllers = nil;
         self.currentContentViewController = nil;
     }
@@ -60,14 +61,22 @@
 #pragma mark controller delegate
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     
-    UITableView *_menu = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSplitContentOriginXSplit, self.view.bounds.size.height) style:UITableViewStylePlain];
+    UITableView *_menu = [[UITableView alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, kSplitContentOriginXSplit, self.view.bounds.size.height) style:UITableViewStylePlain];
+    _menu.backgroundColor = [UIColor clearColor];
+    _menu.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _menu.scrollsToTop = NO;
     _menu.delegate = self;
     _menu.dataSource = self;
     [self.view addSubview:_menu];
     self.menuTableView = _menu;
     [_menu release];
+    
+    UIView *_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _menu.bounds.size.width, 1)];
+    _line.backgroundColor = kSiderCellBGLineColor;
+    _menu.tableHeaderView = _line;
+    [_line release];
     
     SSplitContentBoard *_cb = [[SSplitContentBoard alloc] defaultSplitContentBoard];
     _cb.splitDelegate = self;
@@ -126,6 +135,7 @@
     return _cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UIViewController<SSplitControllerProtocol> *_controller = [self.splitContentViewControllers objectAtIndex:indexPath.row];
     [self coverContentViewController:_controller Animated:YES];
 }
@@ -268,13 +278,14 @@
     return self;
 }
 - (SSplitContentBoard *)defaultSplitContentBoard {
-    CGRect _f = CGRectMake(0, 0, 320, 460);
+    CGRect _f = CGRectMake(0, 20, 320, 460);
     self = [self initWithFrame:_f];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        UIImageView *_shadow = [[UIImageView alloc] initWithFrame:CGRectMake(-5, 0, 5, self.bounds.size.height)];
+        UIImageView *_shadow = [[UIImageView alloc] initWithFrame:CGRectMake(-22, 0, 22, self.bounds.size.height)];
         _shadow.tag = -1;
-        _shadow.backgroundColor = [UIColor grayColor];
+        _shadow.backgroundColor = [UIColor clearColor];
+        _shadow.image = [UIImage imageNamed:@"bg_split_shadow.png"];
         [self addSubview:_shadow];
         [_shadow release];
     }

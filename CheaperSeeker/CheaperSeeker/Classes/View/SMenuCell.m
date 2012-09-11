@@ -22,19 +22,48 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIImageView *_in = [[UIImageView alloc] initWithFrame:CGRectMake(kMarginLeft, ceilf(([SMenuCell cellHeight]-40)/2), 40, 40)];
+//        TCustomCellBGView *_bg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
+//        _bg.lineColor = kCustomCellBGLineColor;
+//        _bg.fillColor = [UIColor viewFlipsideBackgroundColor];
+//        _bg.innerShadowColor = kCustomCellBGInnerShadowColor;
+//        _bg.innerShadowWidth = 1.0;
+//        self.backgroundView = _bg;
+//        [_bg release];
+//        TCustomCellBGView *_sbg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
+//        _sbg.lineColor = kCustomCellBGLineColor;
+//        _sbg.fillColor = kCustomCellSelectedBGFillColor;
+//        self.selectedBackgroundView = _sbg;
+//        [_sbg release];
+        
+        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
+        
+        UIView *_sbg = [[UIView alloc] initWithFrame:CGRectZero];
+        _sbg.backgroundColor = SRGBACOLOR(0, 0, 0, 0.3);
+        self.selectedBackgroundView = _sbg;
+        [_sbg release];
+        
+        UIImageView *_in = [[UIImageView alloc] initWithFrame:CGRectMake(kMarginLeft, 6, 32, 32)];
         _in.backgroundColor = [UIColor blueColor];
         [self.contentView addSubview:_in];
         self.icon = _in;
         [_in release];
         
-        UILabel *_desc = [[UILabel alloc] initWithFrame:CGRectMake(_in.frame.size.width+_in.frame.origin.x+5, 0, 100, [SMenuCell cellHeight])];
-        _desc.backgroundColor = [UIColor yellowColor];
-        _desc.font = [UIFont systemFontOfSize:16];
-        _desc.textColor = [UIColor whiteColor];
+        UILabel *_desc = [[UILabel alloc] initWithFrame:CGRectMake(_in.frame.size.width+_in.frame.origin.x+10, 0, 100, [SMenuCell cellHeight])];
+        _desc.backgroundColor = [UIColor clearColor];
+        _desc.font = [UIFont systemFontOfSize:15];
+        _desc.textColor = kTextColor;
+        _desc.shadowColor = kTextShadowColor;
+        _desc.shadowOffset = kTextShadowOffset;
         [self.contentView addSubview:_desc];
         self.description = _desc;
         [_desc release];
+        
+        UIView *_line1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 1)];
+        _line1.backgroundColor = kSiderCellBGLineColor;
+        _line1.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        [self addSubview:_line1];
+        [_line1 release];
     }
     return self;
 }
@@ -42,7 +71,7 @@
     [super dealloc];
 }
 + (CGFloat)cellHeight {
-    return 44.0;
+    return 45.0;
 }
 - (NSString *)currentDescription {
     NSString *result = nil;

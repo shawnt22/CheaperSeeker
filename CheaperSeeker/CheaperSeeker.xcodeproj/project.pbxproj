@@ -74,6 +74,7 @@
 		9C6418B815EF60390072638F /* SSplitRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B315EF60390072638F /* SSplitRootViewController.m */; };
 		9C6418B915EF60390072638F /* SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B515EF60390072638F /* SWebViewController.m */; };
 		9C6418BC15EF60580072638F /* SListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418BB15EF60580072638F /* SListDataStore.m */; };
+		9CE6DFA315FEE4F300DD4462 /* bg_split_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +210,7 @@
 		9C6418B515EF60390072638F /* SWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWebViewController.m; path = Classes/Controller/SWebViewController.m; sourceTree = "<group>"; };
 		9C6418BA15EF60580072638F /* SListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SListDataStore.h; path = Classes/Network/SListDataStore.h; sourceTree = "<group>"; };
 		9C6418BB15EF60580072638F /* SListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SListDataStore.m; path = Classes/Network/SListDataStore.m; sourceTree = "<group>"; };
+		9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_split_shadow.png; path = Resource/bg_split_shadow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +426,7 @@
 		9C64182F15EF16E70072638F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */,
 				9C64183015EF16E70072638F /* Image */,
 			);
 			name = Image;
@@ -680,6 +683,7 @@
 				9C6417D115EF16E60072638F /* InfoPlist.strings in Resources */,
 				9C64183115EF16E70072638F /* Image in Resources */,
 				9C64183415EF16E70072638F /* Document in Resources */,
+				9CE6DFA315FEE4F300DD4462 /* bg_split_shadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
