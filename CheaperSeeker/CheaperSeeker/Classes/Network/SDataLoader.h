@@ -29,6 +29,9 @@
 - (void)notifyDataloader:(SDataLoader *)dataloader didFinishRequest:(SURLRequest *)request;
 - (void)notifyDataloader:(SDataLoader *)dataloader didFailRequest:(SURLRequest *)request Error:(NSError *)error;
 - (void)notifyDataloader:(SDataLoader *)dataloader submitResponse:(id)response Request:(SURLRequest *)request;
-- (SURLRequest *)prepareRequest:(SURLRequest *)request;
 
+@end
+
+@interface SDataLoader(Prepare)
+- (SURLRequest *)prepareRequest:(SURLRequest *)request;
 @end

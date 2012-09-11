@@ -43,4 +43,24 @@
     }
 }
 
+
++ (NSError *)errorWithCode:(NSInteger)code {
+    return [SUtil errorWithCode:code Message:nil];
+}
++ (NSError *)errorWithCode:(NSInteger)code Message:(NSString *)message {
+    NSError *error = nil;
+    if ([Util isEmptyString:message]) {
+        switch (code) {
+            case SErrorResponseParserFail:
+                message = @"Parse Response Fail";
+                break;
+            default:
+                message = @"Something Wrong";
+                break;
+        }
+    }
+    error = [NSError errorWithDomain:kErrorDomain code:code userInfo:[NSDictionary dictionaryWithObjectsAndKeys:message, NSLocalizedDescriptionKey, nil]];
+    return error;
+}
+
 @end

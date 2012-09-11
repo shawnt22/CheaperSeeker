@@ -7,7 +7,6 @@
 //
 
 #import "SDataLoader.h"
-#import "JSONKit.h"
 
 @interface SDataLoader()
 
@@ -61,10 +60,6 @@
 }
 
 #pragma mark Request manager
-- (SURLRequest *)prepareRequest:(SURLRequest *)request {
-    request.formatedResponse = [request.responseString objectFromJSONString];
-    return request;
-}
 - (void)cancelAllRequests {}
 - (void)cancelRequest:(SURLRequest *)request {
     [request clearDelegatesAndCancel];
@@ -95,6 +90,30 @@
 - (BOOL)parseRequest:(SURLRequest *)request Response:(id)response {
     BOOL result = YES;
     return result;
+}
+
+@end
+
+
+#import "SUtil.h"
+#import "JSONKit.h"
+@implementation SDataLoader(Prepare)
+
+- (SURLRequest *)prepareRequest:(SURLRequest *)request {
+    id _fmdResponse = [request.responseString objectFromJSONString];
+    NSString *_state = [_fmdResponse objectForKey:@"status"];
+    if (_state) {
+        if ([_state isEqualToString:@"success"]) {
+            request.formatedResponse = [_fmdResponse objectForKey:@"value"];
+        } else if ([_state isEqualToString:@"fail"]) {
+            request.error = [SUtil errorWithCode:SErrorResponseParserFail];
+        } else {
+            request.error = [SUtil errorWithCode:SErrorResponseParserFail];
+        }
+    } else {
+        request.error = [SUtil errorWithCode:SErrorResponseParserFail];
+    }
+    return request;
 }
 
 @end

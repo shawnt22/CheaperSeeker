@@ -17,4 +17,7 @@
 + (void)setNavigationBarSplitButtonItemWith:(UIViewController *)viewController;
 + (void)splitActionWith:(UIViewController<SSplitControllerProtocol> *)viewController;
 
++ (NSError *)errorWithCode:(NSInteger)code;
++ (NSError *)errorWithCode:(NSInteger)code Message:(NSString *)message;
+
 @end

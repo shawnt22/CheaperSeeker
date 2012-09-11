@@ -25,15 +25,15 @@
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
     if (self) {
+        self.pullDelegate = self;
+        self.dataSource = self;
+        
         PImageStore *_imgStore = [[PImageStore alloc] init];
         self.imageStore = _imgStore;
         [_imgStore release];
         
         self.couponLayouts = [NSMutableArray array];
         self.couponStyle = [[[SCouponStyle alloc] init] autorelease];
-        
-        self.pullDelegate = self;
-        self.dataSource = self;
     }
     return self;
 }
@@ -67,6 +67,7 @@
     return 0.0;
 }
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [SCouponCell cellHeight];
     SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
     return _layout ? _layout.height : [SCouponCell cellHeight];
 }
@@ -80,9 +81,9 @@
         _cell = [[[SCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
         _cell.imageStore = self.imageStore;
     }
-    id _coupon = [self.couponsDataStore.items objectAtIndex:indexPath.row];
-    SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
-    [_cell refreshWithCoupon:_coupon Layout:_layout Style:self.couponStyle];
+//    id _coupon = [self.couponsDataStore.items objectAtIndex:indexPath.row];
+//    SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
+//    [_cell refreshWithCoupon:_coupon Layout:_layout Style:self.couponStyle];
     return _cell;
 }
 

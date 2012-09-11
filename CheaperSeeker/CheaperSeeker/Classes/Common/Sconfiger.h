@@ -11,8 +11,10 @@
 #import "SDefine.h"
 
 #pragma mark - Error
+#define kErrorDomain    @"SErrorDomain"
 typedef enum {
     SErrorInvalide = 0,         //  无效的
+    SErrorResponseParserFail,   //  response 数据解析失败
 }SErrorCode;
 
 #pragma mark - Layout
