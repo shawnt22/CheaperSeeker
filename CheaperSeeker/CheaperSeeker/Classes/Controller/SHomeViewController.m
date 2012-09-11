@@ -31,14 +31,16 @@
 }
 - (void)createTableView {
     SCouponsTableView *_ts = [[SCouponsTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _ts.backgroundColor = [UIColor greenColor];
+    _ts.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_ts];
     self.couponsTableView = _ts;
     [_ts release];
     
     CSHomeDataStore *_ds = [[CSHomeDataStore alloc] initWithDelegate:_ts];
-    self.couponsTableView.dataStore = _ds;
+    self.couponsTableView.couponsDataStore = _ds;
     [_ds release];
+    
+    [self.couponsTableView startPullToRefreshWithAnimated:YES];
 }
 
 #pragma mark ViewController Delegate

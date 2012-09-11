@@ -29,6 +29,7 @@
 #pragma mark ViewController Delegate
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 - (void)viewDidUnload {
     [super viewDidUnload];

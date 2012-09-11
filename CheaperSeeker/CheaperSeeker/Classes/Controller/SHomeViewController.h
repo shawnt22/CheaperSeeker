@@ -9,6 +9,6 @@
 #import "SViewController.h"
 #import "SCouponsTableView.h"
 
-@interface SHomeViewController : SViewController
+@interface SHomeViewController : SViewController 
 
 @end

@@ -22,19 +22,6 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        TCustomCellBGView *_bg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
-//        _bg.lineColor = kCustomCellBGLineColor;
-//        _bg.fillColor = [UIColor viewFlipsideBackgroundColor];
-//        _bg.innerShadowColor = kCustomCellBGInnerShadowColor;
-//        _bg.innerShadowWidth = 1.0;
-//        self.backgroundView = _bg;
-//        [_bg release];
-//        TCustomCellBGView *_sbg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
-//        _sbg.lineColor = kCustomCellBGLineColor;
-//        _sbg.fillColor = kCustomCellSelectedBGFillColor;
-//        self.selectedBackgroundView = _sbg;
-//        [_sbg release];
-        
         self.backgroundColor = [UIColor clearColor];
         self.contentView.backgroundColor = [UIColor clearColor];
         

@@ -214,7 +214,7 @@
 }
 - (void)finishedCoverContentAnimation {
     self.contentBoard.status = SSplitContentViewStatusCover;
-    self.currentContentViewController.view.userInteractionEnabled = YES;
+    self.currentContentViewController.splitViewController.view.userInteractionEnabled = YES;
 }
 - (void)regulateContentBoardWithGesture:(UIGestureRecognizer *)gesture Animated:(BOOL)animated {
     if ([gesture isKindOfClass:[UIPanGestureRecognizer class]]) {

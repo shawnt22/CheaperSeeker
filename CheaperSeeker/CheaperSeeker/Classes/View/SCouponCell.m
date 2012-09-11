@@ -19,7 +19,18 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        TCustomCellBGView *_bg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
+        _bg.lineColor = kCustomCellBGLineColor;
+        _bg.fillColor = [UIColor viewFlipsideBackgroundColor];
+        _bg.innerShadowColor = kCustomCellBGInnerShadowColor;
+        _bg.innerShadowWidth = 1.0;
+        self.backgroundView = _bg;
+        [_bg release];
+        TCustomCellBGView *_sbg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
+        _sbg.lineColor = kCustomCellBGLineColor;
+        _sbg.fillColor = kCustomCellSelectedBGFillColor;
+        self.selectedBackgroundView = _sbg;
+        [_sbg release];
     }
     return self;
 }
@@ -28,7 +39,7 @@
     [super dealloc];
 }
 + (CGFloat)cellHeight {
-    return 45.0;
+    return 44.0;
 }
 - (NSString *)couponURLPath {
     return [self.coupon objectForKey:k_coupon_image];
