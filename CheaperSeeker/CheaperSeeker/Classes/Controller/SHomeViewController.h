@@ -9,6 +9,6 @@
 #import "SViewController.h"
 #import "SCouponsTableView.h"
 
-@interface SHomeViewController : SViewController <SCouponsTableViewDelegate>
+@interface SHomeViewController : SViewController <SCouponsTableViewDelegate, UISearchBarDelegate>
 
 @end

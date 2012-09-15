@@ -7,7 +7,11 @@
 //
 
 #import "SViewController.h"
+#import "SCouponsTableView.h"
 
-@interface SSearchResultViewController : SViewController
+@interface SSearchCouponsViewController : SViewController <SCouponsTableViewDelegate>
+@property (nonatomic, retain) NSString *keyword;
+
+- (id)initWithKeyword:(NSString *)keyword;
 
 @end

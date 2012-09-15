@@ -25,4 +25,6 @@
 + (BOOL)isCouponExpire:(id)coupon;
 + (NSString *)couponExpireDescription:(id)expire;
 
++ (void)showCouponTargetLinkWithCoupon:(id)coupon ViewController:(UIViewController *)viewController;
+
 @end

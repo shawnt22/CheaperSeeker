@@ -9,18 +9,24 @@
 #import "SHomeViewController.h"
 #import "CSListDataStore.h"
 #import "SWebViewController.h"
+#import "SSearchResultViewController.h"
 
 @interface SHomeViewController()
 @property (nonatomic, assign) SCouponsTableView *couponsTableView;
+@property (nonatomic, retain) UIControl *searchCover;
+@property (nonatomic, assign) UISearchBar *theSearchBar;
 - (void)createTableView;
+- (void)cancelSearchAction:(id)sender;
 @end
 @implementation SHomeViewController
 @synthesize couponsTableView;
+@synthesize searchCover, theSearchBar;
 
 #pragma mark init
 - (id)init {
     self = [super init];
     if (self) {
+        self.searchCover = nil;
     }
     return self;
 }
@@ -28,6 +34,7 @@
     [super initSubobjects];
 }
 - (void)dealloc {
+    self.searchCover = nil;
     [super dealloc];
 }
 - (void)createTableView {
@@ -54,21 +61,62 @@
     [SUtil setNavigationBarSplitButtonItemWith:self];
     
     [self createTableView];
+    
+    UISearchBar *_sbar = [[UISearchBar alloc] initWithFrame:self.navigationController.navigationBar.bounds];
+    _sbar.delegate = self;
+    _sbar.placeholder = @"search coupons";
+    self.navigationItem.titleView = _sbar;
+    self.theSearchBar = _sbar;
+    [_sbar release];
+    
+    UIControl *_scover = [[UIControl alloc] initWithFrame:self.view.bounds];
+    _scover.backgroundColor = SRGBACOLOR(0, 0, 0, 0.5);
+    [_scover addTarget:self action:@selector(cancelSearchAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.searchCover = _scover;
+    [_scover release];
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
+    if (self.searchCover.superview) {
+        [self.searchCover removeFromSuperview];
+    }
+}
+
+#pragma mark search delegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+    if (!self.searchCover.superview) {
+        [self.view addSubview:self.searchCover];
+    }
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+    if (self.searchCover.superview) {
+        [self.searchCover removeFromSuperview];
+    }
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    SSearchCouponsViewController *_search = [[SSearchCouponsViewController alloc] initWithKeyword:searchBar.text];
+    [self.navigationController pushViewController:_search animated:YES];
+    [_search release];
+    [self cancelSearchAction:searchBar];
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self cancelSearchAction:searchBar];
 }
 
 #pragma mark CouponsTableView Delegate
 - (void)couponsTableView:(SCouponsTableView *)couponsTableView didSelectCoupon:(id)coupon atIndexPath:(NSIndexPath *)indexPath {
-    SWebViewController *_web = [[SWebViewController alloc] initWithURLPath:[coupon objectForKey:k_coupon_target_link]];
-    [self.navigationController pushViewController:_web animated:YES];
-    [_web release];
+    [SUtil showCouponTargetLinkWithCoupon:coupon ViewController:self];
 }
 
 #pragma mark Actions
 - (void)splitAction:(id)sender {
     [SUtil splitActionWith:self];
+}
+- (void)cancelSearchAction:(id)sender {
+    [self.theSearchBar resignFirstResponder];
+    self.theSearchBar.text = nil;
 }
 
 @end

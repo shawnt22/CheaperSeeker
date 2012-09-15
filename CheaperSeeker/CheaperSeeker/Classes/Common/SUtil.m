@@ -10,6 +10,7 @@
 #import "SConfiger.h"
 #import "AppDelegate.h"
 #import "SSplitContentDelegate.h"
+#import "SWebViewController.h"
 
 @implementation SUtil
 
@@ -78,6 +79,12 @@
 }
 + (NSString *)couponExpireDescription:(id)expire {
     return nil;
+}
+
++ (void)showCouponTargetLinkWithCoupon:(id)coupon ViewController:(UIViewController *)viewController {
+    SWebViewController *_web = [[SWebViewController alloc] initWithURLPath:[coupon objectForKey:k_coupon_target_link]];
+    [viewController.navigationController pushViewController:_web animated:YES];
+    [_web release];
 }
 
 @end
