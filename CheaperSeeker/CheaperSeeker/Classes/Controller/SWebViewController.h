@@ -8,6 +8,9 @@
 
 #import "SViewController.h"
 
-@interface SWebViewController : SViewController
+@interface SWebViewController : SViewController <UIWebViewDelegate, UIActionSheetDelegate>
+@property (nonatomic, retain) NSString *urlPath;
+@property (nonatomic, assign) UIWebView *webView;
+- (id)initWithURLPath:(NSString *)urlPath;
 
 @end

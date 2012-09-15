@@ -13,7 +13,14 @@
 #import "TSPullTableView.h"
 #import "CSListDataStore.h"
 
+@class SCouponsTableView;
+@protocol SCouponsTableViewDelegate <NSObject>
+@optional
+- (void)couponsTableView:(SCouponsTableView *)couponsTableView didSelectCoupon:(id)coupon atIndexPath:(NSIndexPath *)indexPath;
+@end
+
 @interface SCouponsTableView : TSPullTableView <TSPullTableViewDelegate, TSViewGestureDelegate, UITableViewDataSource, SDataLoaderDelegate>
 @property (nonatomic, retain) PListDataStore<PListRefreshLoadmoreProtocol> *couponsDataStore;
+@property (nonatomic, assign) id<SCouponsTableViewDelegate> couponsTableViewDelegate;
 
 @end

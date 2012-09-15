@@ -27,6 +27,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIImageView *_imgv = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _imgv.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:_imgv];
         self.couponCover = _imgv;
         [_imgv release];
@@ -74,7 +75,6 @@
     self.couponExpire.frame = layout.expire;
 }
 - (void)reContent {
-    self.couponCover.image = [Util imageWithName:@""];
     [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:self.couponURLPath] delegate:self];
     self.couponTitle.text = [self.coupon objectForKey:k_coupon_title];
     self.couponContent.text = [self.coupon objectForKey:k_coupon_excerpt_description];

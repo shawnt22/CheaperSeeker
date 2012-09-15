@@ -19,6 +19,7 @@
 @implementation SCouponsTableView
 @synthesize couponsDataStore;
 @synthesize couponStyle, couponLayouts;
+@synthesize couponsTableViewDelegate;
 
 #pragma mark init & dealloc
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -26,6 +27,7 @@
     if (self) {
         self.dataSource = self;
         self.pullDelegate = self;
+        self.couponsTableViewDelegate = nil;
         
         self.couponLayouts = [NSMutableArray array];
         self.couponStyle = [[[SCouponStyle alloc] init] autorelease];
@@ -52,7 +54,9 @@
 }
 - (void)tableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if (self.couponsTableViewDelegate && [self.couponsTableViewDelegate respondsToSelector:@selector(couponsTableView:didSelectCoupon:atIndexPath:)]) {
+        [self.couponsTableViewDelegate couponsTableView:self didSelectCoupon:[self.couponsDataStore.items objectAtIndex:indexPath.row] atIndexPath:indexPath];
+    }
 }
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
