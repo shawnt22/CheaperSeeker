@@ -81,11 +81,11 @@
     self.aboutViewController = _about;
     [_about release];
     
-    SSplitRootViewController *_split = [[SSplitRootViewController alloc] init];
+    SSplitRootViewController *_split = [[SSplitRootViewController alloc] initWithFrame:self.window.bounds];
     _split.splitContentViewControllers = [NSArray arrayWithObjects:_nhome, _nstore, _ncategories, _nabout, nil];
     self.splitRootViewController = _split;
     [_split release];
-    [self.window addSubview:self.splitRootViewController.view];
+    [self.window addSubview:self.splitRootViewController];
     
     [_nhome release];
     [_nstore release];

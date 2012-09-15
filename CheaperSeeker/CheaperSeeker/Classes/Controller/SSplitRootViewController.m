@@ -32,12 +32,33 @@
 #define kMoveContentAnimationDuration   0.3
 
 #pragma mark init & dealloc
-- (id)init {
-    self = [super init];
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
-        self.wantsFullScreenLayout = YES;
         self.splitContentViewControllers = nil;
         self.currentContentViewController = nil;
+        self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+        
+        UITableView *_menu = [[UITableView alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, kSplitContentOriginXSplit, self.bounds.size.height) style:UITableViewStylePlain];
+        _menu.backgroundColor = [UIColor clearColor];
+        _menu.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _menu.scrollsToTop = NO;
+        _menu.delegate = self;
+        _menu.dataSource = self;
+        [self addSubview:_menu];
+        self.menuTableView = _menu;
+        [_menu release];
+        
+        UIView *_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _menu.bounds.size.width, 1)];
+        _line.backgroundColor = kSiderCellBGLineColor;
+        _menu.tableHeaderView = _line;
+        [_line release];
+        
+        SSplitContentBoard *_cb = [[SSplitContentBoard alloc] defaultSplitContentBoard];
+        _cb.splitDelegate = self;
+        [self addSubview:_cb];
+        self.contentBoard = _cb;
+        [_cb release];
     }
     return self;
 }
@@ -56,33 +77,6 @@
         content.view.frame = _f;
     }
     [self.menuTableView reloadData];
-}
-
-#pragma mark controller delegate
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-    
-    UITableView *_menu = [[UITableView alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, kSplitContentOriginXSplit, self.view.bounds.size.height) style:UITableViewStylePlain];
-    _menu.backgroundColor = [UIColor clearColor];
-    _menu.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _menu.scrollsToTop = NO;
-    _menu.delegate = self;
-    _menu.dataSource = self;
-    [self.view addSubview:_menu];
-    self.menuTableView = _menu;
-    [_menu release];
-    
-    UIView *_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _menu.bounds.size.width, 1)];
-    _line.backgroundColor = kSiderCellBGLineColor;
-    _menu.tableHeaderView = _line;
-    [_line release];
-    
-    SSplitContentBoard *_cb = [[SSplitContentBoard alloc] defaultSplitContentBoard];
-    _cb.splitDelegate = self;
-    [self.view addSubview:_cb];
-    self.contentBoard = _cb;
-    [_cb release];
 }
 
 #pragma mark split delegate
@@ -218,7 +212,7 @@
 }
 - (void)regulateContentBoardWithGesture:(UIGestureRecognizer *)gesture Animated:(BOOL)animated {
     if ([gesture isKindOfClass:[UIPanGestureRecognizer class]]) {
-        CGFloat _velocityX = [(UIPanGestureRecognizer *)gesture velocityInView:self.view].x;
+        CGFloat _velocityX = [(UIPanGestureRecognizer *)gesture velocityInView:self].x;
         //  优先处理swipe手势
         if (_velocityX > 1000.0) {
             //  swipe gesture : from left to right  ->
@@ -231,8 +225,8 @@
             return;
         }
         //  处理pan手势
-        CGFloat _x = [(UIPanGestureRecognizer *)gesture translationInView:self.view].x;
-        if (_x > self.view.bounds.size.width/2) {
+        CGFloat _x = [(UIPanGestureRecognizer *)gesture translationInView:self].x;
+        if (_x > self.bounds.size.width/2) {
             [self splitContentBoardWithAnimated:animated];
         } else {
             [self coverContentBoardWithAnimated:animated];
