@@ -301,16 +301,20 @@
 }
 
 #pragma mark gesture manager
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (self.splitDelegate && [self.splitDelegate respondsToSelector:@selector(splitContentView:shouldGesture:)]) {
+        return [self.splitDelegate splitContentView:self shouldGesture:gestureRecognizer];
+    }
+    return YES;
+}
 - (void)addGestures {
     UIPanGestureRecognizer *_pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(responseGesture:)];
+    _pan.delegate = self;
     [self addGestureRecognizer:_pan];
     [_pan release];
 }
 - (void)responseGesture:(UIGestureRecognizer *)gesture {
     if (self.splitDelegate) {
-        if ([self.splitDelegate respondsToSelector:@selector(splitContentView:shouldGesture:)] && ![self.splitDelegate splitContentView:self shouldGesture:gesture]) {
-            return;
-        }
         switch (gesture.state) {
             case UIGestureRecognizerStatePossible:
                 break;
