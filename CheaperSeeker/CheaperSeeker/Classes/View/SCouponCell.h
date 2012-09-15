@@ -12,13 +12,12 @@
 #import "SUtil.h"
 #import "Sconfiger.h"
 #import "SDefine.h"
-#import "SImageStore.h"
 #import "SLayout.h"
 #import "SStyle.h"
+#import "SDWebImageManager.h"
 
-@interface SCouponCell : UITableViewCell<PImageStoreDelegate>
+@interface SCouponCell : UITableViewCell<SDWebImageManagerDelegate>
 @property (nonatomic, retain) id coupon;
-@property (nonatomic, assign) PImageStore *imageStore;
 + (CGFloat)cellHeight;
 - (void)refreshWithCoupon:(id)coupon Layout:(SCouponLayout *)layout Style:(SCouponStyle *)style;
 

@@ -15,8 +15,6 @@
 - (void)tableViewPullToLoadmore:(TSPullTableView *)tableView;
 - (void)tableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (UIView *)tableView:(TSPullTableView *)tableView viewForHeaderInSection:(NSInteger)section;
-- (CGFloat)tableView:(TSPullTableView *)tableView heightForHeaderInSection:(NSInteger)section;
 @end
 
 @protocol TSPullTableViewProtocol <NSObject>

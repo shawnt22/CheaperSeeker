@@ -63,4 +63,21 @@
     return error;
 }
 
++ (CGFloat)cellWidth {
+    return 320.0;
+}
+
++ (BOOL)isCouponExpire:(id)coupon {
+    BOOL result = NO;
+    NSDate *_expire = [NSDate dateWithTimeIntervalSince1970:[[coupon objectForKey:k_coupon_expire_to] doubleValue]];
+    NSDate *_now = [NSDate date];
+    if ([_expire compare:_now] == NSOrderedAscending) {
+        result = YES;
+    }
+    return result;
+}
++ (NSString *)couponExpireDescription:(id)expire {
+    return nil;
+}
+
 @end

@@ -9,28 +9,45 @@
 #import "SCouponCell.h"
 
 @interface SCouponCell()
-@property (nonatomic, assign)UIImageView *couponCover;
 @property (nonatomic, readonly) NSString *couponURLPath;
+@property (nonatomic, assign) UIImageView *couponCover;
+@property (nonatomic, assign) UILabel *couponTitle;
+@property (nonatomic, assign) UILabel *couponContent;
+@property (nonatomic, assign) UILabel *couponExpire;
+- (void)reStyleWith:(SCouponStyle *)style;
+- (void)reLayoutWith:(SCouponLayout *)layout;
+- (void)reContent;
 @end
 @implementation SCouponCell
 @synthesize coupon;
 @synthesize couponURLPath;
+@synthesize couponCover, couponContent, couponExpire, couponTitle;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        TCustomCellBGView *_bg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
-        _bg.lineColor = kCustomCellBGLineColor;
-        _bg.fillColor = [UIColor viewFlipsideBackgroundColor];
-        _bg.innerShadowColor = kCustomCellBGInnerShadowColor;
-        _bg.innerShadowWidth = 1.0;
-        self.backgroundView = _bg;
-        [_bg release];
-        TCustomCellBGView *_sbg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
-        _sbg.lineColor = kCustomCellBGLineColor;
-        _sbg.fillColor = kCustomCellSelectedBGFillColor;
-        self.selectedBackgroundView = _sbg;
-        [_sbg release];
+        UIImageView *_imgv = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_imgv];
+        self.couponCover = _imgv;
+        [_imgv release];
+        
+        UILabel *_ttl = [[UILabel alloc] initWithFrame:CGRectZero];
+        _ttl.numberOfLines = 20;
+        [self.contentView addSubview:_ttl];
+        self.couponTitle = _ttl;
+        [_ttl release];
+        
+        UILabel *_cnt = [[UILabel alloc] initWithFrame:CGRectZero];
+        _cnt.numberOfLines = 20;
+        [self.contentView addSubview:_cnt];
+        self.couponContent = _cnt;
+        [_cnt release];
+        
+        UILabel *_exp = [[UILabel alloc] initWithFrame:CGRectZero];
+        _exp.numberOfLines = 20;
+        [self.contentView addSubview:_exp];
+        self.couponExpire = _exp;
+        [_exp release];
     }
     return self;
 }
@@ -46,13 +63,36 @@
 }
 - (void)refreshWithCoupon:(id)cpn Layout:(SCouponLayout *)layout Style:(SCouponStyle *)style {
     self.coupon = cpn;
-    
-    UIImage *_cvr = [self.imageStore resumeImageWithURL:self.couponURLPath Observer:self];
-    self.couponCover.image = _cvr ? _cvr : [Util imageWithName:@""];
+    [self reStyleWith:style];
+    [self reLayoutWith:layout];
+    [self reContent];
 }
-- (void)imageStore:(PImageStore *)imageStore didFinishLoadImage:(UIImage *)image forURL:(NSString *)url {
-    if ([self.couponURLPath isEqualToString:url]) {
-        self.couponCover.image = image ? image : [Util imageWithName:@""];
+- (void)reLayoutWith:(SCouponLayout *)layout {
+    self.couponCover.frame = layout.icon;
+    self.couponTitle.frame = layout.title;
+    self.couponContent.frame = layout.content;
+    self.couponExpire.frame = layout.expire;
+}
+- (void)reContent {
+    self.couponCover.image = [Util imageWithName:@""];
+    [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:self.couponURLPath] delegate:self];
+    self.couponTitle.text = [self.coupon objectForKey:k_coupon_title];
+    self.couponContent.text = [self.coupon objectForKey:k_coupon_excerpt_description];
+    self.couponExpire.text = [SUtil couponExpireDescription:[self.coupon objectForKey:k_coupon_expire_to]];
+}
+- (void)reStyleWith:(SCouponStyle *)style {
+    self.couponTitle.font = style.titleFont;
+    self.couponTitle.textColor = style.titleColor;
+    self.couponContent.font = style.contentFont;
+    self.couponContent.textColor = style.contentColor;
+    self.couponExpire.font = style.expireFont;
+    self.couponExpire.textColor = style.expireColor;
+}
+
+#pragma mark SDWebImageManager delegate
+- (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image forURL:(NSURL *)url userInfo:(NSDictionary *)info {
+    if ([[url absoluteString] isEqualToString:self.couponURLPath]) {
+        self.couponCover.image = image;
     }
 }
 

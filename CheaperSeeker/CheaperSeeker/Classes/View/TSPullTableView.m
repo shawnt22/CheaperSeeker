@@ -26,8 +26,6 @@
 - (void)notifyTableViewPullToLoadmore:(TSPullTableView *)tableView;
 - (void)notifyTableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 - (CGFloat)notifyTableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (UIView *)notifyTableView:(TSPullTableView *)tableView viewForHeaderInSection:(NSInteger)section;
-- (CGFloat)notifyTableView:(TSPullTableView *)tableView heightForHeaderInSection:(NSInteger)section;
 @end
 @implementation TSPullTableView(Notify)
 - (void)notifyTableViewPullToRefresh:(TSPullTableView *)tableView {
@@ -52,19 +50,6 @@
     return 44.0;
 }
 
-- (UIView *)notifyTableView:(TSPullTableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.pullDelegate && [self.pullDelegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
-        return [self.pullDelegate tableView:tableView viewForHeaderInSection:section];
-    }
-    return nil;
-}
-
-- (CGFloat)notifyTableView:(TSPullTableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.pullDelegate && [self.pullDelegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
-        return [self.pullDelegate tableView:tableView heightForHeaderInSection:section];
-    }
-    return 0;
-}
 @end
 
 #pragma mark - TableView SwipeGesture
@@ -355,12 +340,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self notifyTableView:self heightForRowAtIndexPath:indexPath];
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [self notifyTableView:self viewForHeaderInSection:section];
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [self notifyTableView:self heightForHeaderInSection:section];
-}
+
 @end
 
 

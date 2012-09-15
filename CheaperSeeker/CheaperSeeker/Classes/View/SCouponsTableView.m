@@ -17,20 +17,15 @@
 @end
 
 @implementation SCouponsTableView
-@synthesize dataSource;
-@synthesize imageStore;
+@synthesize couponsDataStore;
 @synthesize couponStyle, couponLayouts;
 
 #pragma mark init & dealloc
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        self.pullDelegate = self;
         self.dataSource = self;
-        
-        PImageStore *_imgStore = [[PImageStore alloc] init];
-        self.imageStore = _imgStore;
-        [_imgStore release];
+        self.pullDelegate = self;
         
         self.couponLayouts = [NSMutableArray array];
         self.couponStyle = [[[SCouponStyle alloc] init] autorelease];
@@ -42,7 +37,6 @@
     self.couponsDataStore.delegate = nil;
     self.couponsDataStore = nil;
     
-    self.imageStore = nil;
     self.couponStyle = nil;
     self.couponLayouts = nil;
     
@@ -60,14 +54,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
-- (UIView *)tableView:(TSPullTableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return nil;
-}
-- (CGFloat)tableView:(TSPullTableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.0;
-}
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [SCouponCell cellHeight];
     SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
     return _layout ? _layout.height : [SCouponCell cellHeight];
 }
@@ -79,11 +66,10 @@
     SCouponCell *_cell = (SCouponCell *)[tableView dequeueReusableCellWithIdentifier:_identifier];
     if (!_cell) {
         _cell = [[[SCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
-        _cell.imageStore = self.imageStore;
     }
-//    id _coupon = [self.couponsDataStore.items objectAtIndex:indexPath.row];
-//    SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
-//    [_cell refreshWithCoupon:_coupon Layout:_layout Style:self.couponStyle];
+    id _coupon = [self.couponsDataStore.items objectAtIndex:indexPath.row];
+    SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
+    [_cell refreshWithCoupon:_coupon Layout:_layout Style:self.couponStyle];
     return _cell;
 }
 
@@ -103,9 +89,22 @@
 }
 - (void)dataloader:(SDataLoader *)dataloader submitResponse:(id)response Request:(SURLRequest *)request {
     if (request.tag == SURLRequestItemsRefresh) {
+        self.couponLayouts = [NSMutableArray array];
+        for (id _coupon in response) {
+            SCouponLayout *_layout = [[SCouponLayout alloc] init];
+            [_layout layoutWithCoupon:_coupon Style:self.couponStyle];
+            [self.couponLayouts addObject:_layout];
+            [_layout release];
+        }
         return;
     }
     if (request.tag == SURLRequestItemsLoadmore) {
+        for (id _coupon in response) {
+            SCouponLayout *_layout = [[SCouponLayout alloc] init];
+            [_layout layoutWithCoupon:_coupon Style:self.couponStyle];
+            [self.couponLayouts addObject:_layout];
+            [_layout release];
+        }
         return;
     }
 }

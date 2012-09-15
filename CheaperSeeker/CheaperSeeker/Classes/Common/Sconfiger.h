@@ -19,6 +19,7 @@ typedef enum {
 
 #pragma mark - Layout
 #define kMarginLeft 10.0
+#define kMarginTop 5.0
 
 #define kCustomCellBGLineColor          SRGBCOLOR(211, 211, 211)
 #define kCustomCellBGFillColor          SRGBCOLOR(239, 239, 239)

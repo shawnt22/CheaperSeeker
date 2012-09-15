@@ -20,4 +20,9 @@
 + (NSError *)errorWithCode:(NSInteger)code;
 + (NSError *)errorWithCode:(NSInteger)code Message:(NSString *)message;
 
++ (CGFloat)cellWidth;
+
++ (BOOL)isCouponExpire:(id)coupon;
++ (NSString *)couponExpireDescription:(id)expire;
+
 @end

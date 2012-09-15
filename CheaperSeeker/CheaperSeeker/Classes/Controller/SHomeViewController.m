@@ -30,8 +30,8 @@
     [super dealloc];
 }
 - (void)createTableView {
-    SCouponsTableView *_ts = [[SCouponsTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _ts.backgroundColor = [UIColor clearColor];
+    SCouponsTableView *_ts = [[SCouponsTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStylePlain];
+    _ts.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:_ts];
     self.couponsTableView = _ts;
     [_ts release];
