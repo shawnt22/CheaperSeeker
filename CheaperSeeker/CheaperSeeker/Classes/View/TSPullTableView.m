@@ -363,13 +363,13 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:(37/255.0) green:(37/255.0) blue:(37/255.0) alpha:1.0];
+        self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
         
         UILabel *_content = [[UILabel alloc] initWithFrame:CGRectMake(ceilf((frame.size.width-150)/2), frame.size.height-20-20, 150, 20)];
         _content.backgroundColor = [UIColor clearColor];
         _content.textAlignment = UITextAlignmentCenter;
         _content.font = [UIFont systemFontOfSize:14];
-        _content.textColor = [UIColor colorWithRed:(133/255.0) green:(133/255.0) blue:(133/255.0) alpha:1];
+        _content.textColor = [UIColor whiteColor];
         //_content.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:_content];
         [_content release];
@@ -452,7 +452,7 @@
         _content.backgroundColor = [UIColor clearColor];
         _content.textAlignment = UITextAlignmentCenter;
         _content.font = [UIFont systemFontOfSize:14];
-        _content.textColor = [UIColor colorWithRed:(133/255.0) green:(133/255.0) blue:(133/255.0) alpha:1];
+        _content.textColor = [UIColor whiteColor];
         //_content.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:_content];
         [_content release];
@@ -501,7 +501,7 @@
     if (full) {
         [self setPullToLoadmoreEnable:NO];
         UILabel *_fullFooter = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-        _fullFooter.backgroundColor = [UIColor clearColor];
+        _fullFooter.backgroundColor = self.backgroundColor;
         _fullFooter.font = [UIFont systemFontOfSize:14];
         _fullFooter.textColor = [UIColor colorWithRed:(133/255.0) green:(133/255.0) blue:(133/255.0) alpha:1];
         _fullFooter.textAlignment = UITextAlignmentCenter;
