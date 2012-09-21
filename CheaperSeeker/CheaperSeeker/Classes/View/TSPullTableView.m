@@ -8,6 +8,8 @@
 
 #import "TSPullTableView.h"
 
+#import "Sconfiger.h"
+
 @interface TSPullTableView()
 @property (nonatomic, assign) TSPullTableHeaderView *pullHeaderView;
 @property (nonatomic, assign) TSPullTableFooterView *pullFooterView;
@@ -363,7 +365,7 @@
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:(37/255.0) green:(37/255.0) blue:(37/255.0) alpha:1.0];
         
-        UILabel *_content = [[UILabel alloc] initWithFrame:CGRectMake(ceilf((frame.size.width-100)/2), frame.size.height-20-20, 100, 20)];
+        UILabel *_content = [[UILabel alloc] initWithFrame:CGRectMake(ceilf((frame.size.width-150)/2), frame.size.height-20-20, 150, 20)];
         _content.backgroundColor = [UIColor clearColor];
         _content.textAlignment = UITextAlignmentCenter;
         _content.font = [UIFont systemFontOfSize:14];
@@ -397,18 +399,18 @@
     self.arrowImage.hidden = YES;
     switch (status) {
         case PullTableFloatViewLoading: {
-            self.content.text = @"加载中...";
+            self.content.text = kPullTableLoading;
             [self.indicator startAnimating];
         }
             break;
         case PullTableFloatViewPullToLoad: {
-            self.content.text = @"下拉刷新";
+            self.content.text = kPullTablePullDown2Refresh;
             self.arrowImage.hidden = NO;
             [self flipArrowImageWithAnimated:YES Flip:NO];
         }
             break;
         case PullTableFloatViewReleaseToLoad: {
-            self.content.text = @"松开即可刷新";
+            self.content.text = kPullTableRelease2Refresh;
             self.arrowImage.hidden = NO;
             [self flipArrowImageWithAnimated:YES Flip:YES];
         }
@@ -470,16 +472,16 @@
     [self.indicator stopAnimating];
     switch (status) {
         case PullTableFloatViewLoading: {
-            self.content.text = @"加载中...";
+            self.content.text = kPullTableLoading;
             [self.indicator startAnimating];
         }
             break;
         case PullTableFloatViewPullToLoad: {
-            self.content.text = @"上拉加载更多";
+            self.content.text = kPullTablePullUp2Loadmore;
         }
             break;
         case PullTableFloatViewReleaseToLoad: {
-            self.content.text = @"松开即可加载更多";
+            self.content.text = kPullTableRelease2Loadmore;
         }
             break;
         default:
@@ -503,7 +505,7 @@
         _fullFooter.font = [UIFont systemFontOfSize:14];
         _fullFooter.textColor = [UIColor colorWithRed:(133/255.0) green:(133/255.0) blue:(133/255.0) alpha:1];
         _fullFooter.textAlignment = UITextAlignmentCenter;
-        _fullFooter.text = @"没有更多数据";
+        _fullFooter.text = kPullTableNoMoreData;
         self.tableFooterView = _fullFooter;
         [_fullFooter release];
     } else {

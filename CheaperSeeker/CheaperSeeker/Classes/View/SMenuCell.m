@@ -64,16 +64,16 @@
     NSString *result = nil;
     switch (self.currentMenuItem) {
         case MenuAbout:
-            result = @"About";
+            result = kViewControllerAboutTitle;
             break;
         case MenuCategory:
-            result = @"Category";
+            result = kViewControllerCategoryTitle;
             break;
         case MenuHome:
-            result = @"Home";
+            result = kViewControllerHomeTitle;
             break;
         case MenuStore:
-            result = @"Store";
+            result = kViewControllerStoreTitle;
             break;
         default:
             break;

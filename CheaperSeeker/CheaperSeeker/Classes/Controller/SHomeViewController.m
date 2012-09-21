@@ -57,14 +57,15 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"Home";
+    self.title = kViewControllerHomeTitle;
     [SUtil setNavigationBarSplitButtonItemWith:self];
     
     [self createTableView];
     
     UISearchBar *_sbar = [[UISearchBar alloc] initWithFrame:self.navigationController.navigationBar.bounds];
+    _sbar.tintColor = self.navigationController.navigationBar.tintColor;
     _sbar.delegate = self;
-    _sbar.placeholder = @"search coupons";
+    _sbar.placeholder = kHomeSearchBarPlaceHolder;
     self.navigationItem.titleView = _sbar;
     self.theSearchBar = _sbar;
     [_sbar release];

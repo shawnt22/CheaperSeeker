@@ -40,3 +40,19 @@ typedef enum {
 #define kTextShadowOffset               CGSizeMake(0.0, -1.0)
 
 #pragma mark - Notification
+
+
+#pragma mark - Global
+#define kPullTablePullDown2Refresh      @"Pull down to refresh ..."
+#define kPullTableRelease2Refresh       @"Release to refresh ..."
+#define kPullTablePullUp2Loadmore       @"Pull up to load more ..."
+#define kPullTableRelease2Loadmore      @"Release to load more ..."
+#define kPullTableLoading               @"Loading ..."
+#define kPullTableNoMoreData            @"No more data"
+
+#define kViewControllerHomeTitle        @"Home"
+#define kViewControllerStoreTitle       @"Store"
+#define kViewControllerCategoryTitle    @"Category"
+#define kViewControllerAboutTitle       @"About"
+#define kHomeSearchBarPlaceHolder       @"search coupons"
+#define kNavigationBarSplitItemTitle    @"Split"

@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"Store";
+    self.title = kViewControllerStoreTitle;
     [SUtil setNavigationBarSplitButtonItemWith:self];
 }
 - (void)viewDidUnload {

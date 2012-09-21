@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"About";
+    self.title = kViewControllerAboutTitle;
     [SUtil setNavigationBarSplitButtonItemWith:self];
 }
 - (void)viewDidUnload {

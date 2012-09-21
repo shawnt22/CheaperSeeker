@@ -22,14 +22,9 @@
 }
 
 + (void)setNavigationBarSplitButtonItemWith:(UIViewController *)viewController {
-    UIButton *split = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-    [split setBackgroundColor:[UIColor blueColor]];
-    [split setTitle:@"split" forState:UIControlStateNormal];
-    [split addTarget:viewController action:@selector(splitAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *splitItem = [[UIBarButtonItem alloc] initWithCustomView:split];
-    [split release];
-    viewController.navigationItem.leftBarButtonItem = splitItem;
-    [splitItem release];
+    UIBarButtonItem *_splitItem = [[UIBarButtonItem alloc] initWithTitle:kNavigationBarSplitItemTitle style:UIBarButtonItemStylePlain target:viewController action:@selector(splitAction:)];
+    viewController.navigationItem.leftBarButtonItem = _splitItem;
+    [_splitItem release];
 }
 + (void)splitActionWith:(UIViewController<SSplitControllerProtocol> *)viewController {
     switch ([AppDelegate shareSplitRootViewController].contentBoard.status) {
