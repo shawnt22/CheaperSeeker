@@ -47,6 +47,7 @@
     
     UIWebView *_web = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.actionBar.bounds.size.height)];
     _web.backgroundColor = self.view.backgroundColor;
+    _web.scalesPageToFit = YES;
     _web.delegate = self;
     [self.view addSubview:_web];
     [self.view sendSubviewToBack:_web];

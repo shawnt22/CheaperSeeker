@@ -28,6 +28,7 @@
     if (self) {
         UIImageView *_imgv = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imgv.backgroundColor = [UIColor whiteColor];
+        _imgv.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:_imgv];
         self.couponCover = _imgv;
         [_imgv release];
@@ -53,6 +54,7 @@
     return self;
 }
 - (void)dealloc {
+    [[SDWebImageManager sharedManager] cancelForDelegate:self];
     self.coupon = nil;
     [super dealloc];
 }
@@ -60,7 +62,12 @@
     return 44.0;
 }
 - (NSString *)couponURLPath {
-    return [self.coupon objectForKey:k_coupon_image];
+    NSString *resutl = nil;
+    resutl = [self.coupon objectForKey:k_coupon_image];
+    if ([Util isEmptyString:resutl]) {
+        resutl = [[self.coupon objectForKey:k_coupon_merchant] objectForKey:k_merchant_banner_image];
+    }
+    return resutl;
 }
 - (void)refreshWithCoupon:(id)cpn Layout:(SCouponLayout *)layout Style:(SCouponStyle *)style {
     self.coupon = cpn;
@@ -75,6 +82,7 @@
     self.couponExpire.frame = layout.expire;
 }
 - (void)reContent {
+    self.couponCover.image = nil;
     [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:self.couponURLPath] delegate:self];
     self.couponTitle.text = [self.coupon objectForKey:k_coupon_title];
     self.couponContent.text = [self.coupon objectForKey:k_coupon_excerpt_description];
