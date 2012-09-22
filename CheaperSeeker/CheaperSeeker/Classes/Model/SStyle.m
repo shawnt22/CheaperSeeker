@@ -52,3 +52,25 @@
 }
 
 @end
+
+
+@implementation SMerchantStyle
+@synthesize titleColor, titleFont;
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.titleFont = [UIFont systemFontOfSize:16];
+        self.titleColor = [UIColor blackColor];
+    }
+    return self;
+}
+- (void)dealloc {
+    self.titleColor = nil;
+    self.titleFont = nil;
+    [super dealloc];
+}
+
+@end
+
+

@@ -23,4 +23,8 @@
 
 @end
 
+@interface SMerchantStyle : SStyle
+@property (nonatomic, retain) UIFont *titleFont;
+@property (nonatomic, retain) UIColor *titleColor;
+@end
 

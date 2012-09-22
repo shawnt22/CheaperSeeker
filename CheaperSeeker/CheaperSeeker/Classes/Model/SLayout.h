@@ -21,3 +21,12 @@
 @property (nonatomic, assign) CGRect expire;
 - (void)layoutWithCoupon:(id)coupon Style:(SCouponStyle *)style;
 @end
+
+
+#define MerchantLayoutBannerHeight  74.0
+@interface SMerchantLayout : SLayout
+@property (nonatomic, assign) CGRect banner;
+@property (nonatomic, assign) CGRect title;
+- (void)layoutWithMerchant:(id)merchant Style:(SMerchantStyle *)style;
+
+@end

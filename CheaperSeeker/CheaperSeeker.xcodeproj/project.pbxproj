@@ -23,6 +23,7 @@
 		60DBD90415FB38880065ABC9 /* SMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90315FB38880065ABC9 /* SMenuCell.m */; };
 		60DBD90715FB43850065ABC9 /* SLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90615FB43850065ABC9 /* SLayout.m */; };
 		60DBD90A15FB43990065ABC9 /* SStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90915FB43990065ABC9 /* SStyle.m */; };
+		9C360DFB160D9B2200572B68 /* SMerchantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C360DFA160D9B2200572B68 /* SMerchantCell.m */; };
 		9C49AAD316033B8C00CFC4B7 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C49AABD16033B8C00CFC4B7 /* SDImageCache.m */; };
 		9C49AAD416033B8C00CFC4B7 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C49AAC116033B8C00CFC4B7 /* MKAnnotationView+WebCache.m */; };
 		9C49AAD516033B8C00CFC4B7 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C49AAC316033B8C00CFC4B7 /* UIButton+WebCache.m */; };
@@ -120,6 +121,8 @@
 		60DBD90615FB43850065ABC9 /* SLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLayout.m; path = Classes/Model/SLayout.m; sourceTree = "<group>"; };
 		60DBD90815FB43990065ABC9 /* SStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SStyle.h; path = Classes/Model/SStyle.h; sourceTree = "<group>"; };
 		60DBD90915FB43990065ABC9 /* SStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SStyle.m; path = Classes/Model/SStyle.m; sourceTree = "<group>"; };
+		9C360DF9160D9B2200572B68 /* SMerchantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMerchantCell.h; sourceTree = "<group>"; };
+		9C360DFA160D9B2200572B68 /* SMerchantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMerchantCell.m; sourceTree = "<group>"; };
 		9C49AABC16033B8C00CFC4B7 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
 		9C49AABD16033B8C00CFC4B7 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
 		9C49AABE16033B8C00CFC4B7 /* SDImageCacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCacheDelegate.h; sourceTree = "<group>"; };
@@ -748,6 +751,8 @@
 				9C64188115EF423C0072638F /* SCouponCell.m */,
 				60DBD90215FB38880065ABC9 /* SMenuCell.h */,
 				60DBD90315FB38880065ABC9 /* SMenuCell.m */,
+				9C360DF9160D9B2200572B68 /* SMerchantCell.h */,
+				9C360DFA160D9B2200572B68 /* SMerchantCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -910,6 +915,7 @@
 				9C49AAD816033B8C00CFC4B7 /* SDWebImageDecoder.m in Sources */,
 				9C49AAD916033B8C00CFC4B7 /* SDWebImageManager.m in Sources */,
 				9C49AADA16033B8C00CFC4B7 /* SDWebImagePrefetcher.m in Sources */,
+				9C360DFB160D9B2200572B68 /* SMerchantCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -64,3 +64,19 @@
 }
 
 @end
+
+
+@implementation SMerchantLayout
+@synthesize banner, title;
+
+- (void)layoutWithMerchant:(id)merchant Style:(SMerchantStyle *)style {
+    //  banner
+    self.banner = CGRectMake(0, 0, [SUtil cellWidth], MerchantLayoutBannerHeight);
+    self.height = self.banner.origin.y + self.banner.size.height;
+    //  title
+    self.title = CGRectMake(self.banner.origin.x, (self.banner.size.height-24.0), self.banner.size.width, 24.0);
+}
+
+@end
+
+

@@ -35,7 +35,7 @@
 }
 
 + (NSString *)getMerchantsWithCursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = nil;
+    NSString *url = @"";
     url = [SURLProxy prepareURL:url];
     return url;
 }
