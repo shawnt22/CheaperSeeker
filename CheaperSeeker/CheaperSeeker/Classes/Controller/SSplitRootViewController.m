@@ -54,7 +54,7 @@
         _menu.tableHeaderView = _line;
         [_line release];
         
-        SSplitContentBoard *_cb = [[SSplitContentBoard alloc] defaultSplitContentBoard];
+        SSplitContentBoard *_cb = [[SSplitContentBoard alloc] initWithFrame:CGRectMake(0, 20, self.bounds.size.width, self.bounds.size.height)];
         _cb.splitDelegate = self;
         [self addSubview:_cb];
         self.contentBoard = _cb;
@@ -268,13 +268,7 @@
         self.status = SSplitContentViewStatusCover;
         self.originalPoint = self.currentPoint = CGPointZero;
         [self addGestures];
-    }
-    return self;
-}
-- (SSplitContentBoard *)defaultSplitContentBoard {
-    CGRect _f = CGRectMake(0, 20, 320, 460);
-    self = [self initWithFrame:_f];
-    if (self) {
+        
         self.backgroundColor = [UIColor clearColor];
         UIImageView *_shadow = [[UIImageView alloc] initWithFrame:CGRectMake(-22, 0, 22, self.bounds.size.height)];
         _shadow.tag = -1;

@@ -29,7 +29,6 @@
 #pragma mark - Split Content Board
 @interface SSplitContentBoard : UIView <SSplitContentViewProtocol, UIGestureRecognizerDelegate>
 @property (nonatomic, assign) SSplitRootViewController *splitRootViewController;
-- (SSplitContentBoard *)defaultSplitContentBoard;
 - (void)addSplitContentView:(UIView *)content;
 
 @end
