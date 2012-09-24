@@ -36,10 +36,6 @@
 //  prints the current method's name.
 #define SDPRINTMETHODNAME() SDPRINT(@"%s", __PRETTY_FUNCTION__)
 
-// Safe releases
-#define TT_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
-#define TT_INVALIDATE_TIMER(__TIMER) { [__TIMER invalidate]; __TIMER = nil; }
-
 
 /** 设备类型 **/
 
@@ -50,17 +46,18 @@ typedef enum
     UIDevice1GiPod,
 	UIDevice2GiPod,
 	UIDevice3GiPod,
+    UIDevice4GiPod,
     
     UIDevice1GiPad,
+	UIDevice2GiPad,
+    UIDeviceNewiPad,
     
 	UIDevice1GiPhone,
 	UIDevice3GiPhone,
 	UIDevice3GSiPhone,
-	UIDevice4iPhone,
-	UIDevice5iPhone,
-    
-    UIDevice4GiPod,
-	UIDevice2GiPad,
+	UIDevice4GiPhone,
+	UIDevice4GSiPhone,
+    UIDevice5GiPhone,
     
 } UIDevicePlatform;
 
@@ -104,6 +101,7 @@ typedef enum
 + (UIImage *)imageWithName:(NSString *)imgname;
 + (UIImage *)scaleImageWithName:(NSString*)imgname;
 + (UIImage *)imageWithName:(NSString *)imgname ofType:(NSString *)imgtype;
++ (UIImage *)imageAdjustedWithName:(NSString *)imgname ofType:(NSString *)imgtype;
 + (CGGradientRef)newGradientWithColors:(UIColor**)colors locations:(CGFloat*)locations count:(int)count;
 
 //  rotate manager

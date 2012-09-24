@@ -126,7 +126,7 @@
 + (NSString*)formatRefreshTime:(NSDate *)date {
     NSTimeInterval elapsed = abs([date timeIntervalSinceNow]);
 	if (elapsed < S_MINUTE) {
-		return [NSString stringWithString:@"刚刚"];
+		return @"刚刚";
 	}
 	if (elapsed < S_HOUR) {
 		int mins = (int)floor(elapsed/S_MINUTE);
@@ -187,7 +187,7 @@
     if (second < S_MINUTE) 
     {
         secondString = [NSString stringWithFormat:@"%02d", second];
-        miniteString = [NSString stringWithString:@"00"];
+        miniteString = @"00";
 	}
 	else if (second < S_HOUR) 
     {
@@ -202,7 +202,7 @@
     return rtn;
 }
 + (NSString *)formatVideoRecordTimeWith:(NSTimeInterval)interval {
-    NSString *result = [NSString stringWithString:@"00:00:00"];
+    NSString *result = @"00:00:00";
     
     if (interval < 0) return result;
     
@@ -283,6 +283,15 @@
 	return [Util imageWithName:imgname ofType:@"png"];
 }
 + (UIImage *)imageWithName:(NSString *)imgname ofType:(NSString *)imgtype {
+	return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imgname ofType:imgtype]];
+}
++ (UIImage *)imageAdjustedWithName:(NSString *)imgname ofType:(NSString *)imgtype {
+    UIDevicePlatform _platform = [Util platformType];
+    if (_platform == UIDevice4GiPhone || _platform == UIDevice4GSiPhone) {
+        imgname = [NSString stringWithFormat:@"%@@2x", imgname];
+    } else if (_platform == UIDevice5GiPhone) {
+        imgname = [NSString stringWithFormat:@"%@-568h@2x", imgname];
+    }
 	return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imgname ofType:imgtype]];
 }
 + (UIImage *)scaleImageWithName:(NSString*)imgname {
@@ -435,20 +444,21 @@
 }
 + (UIDevicePlatform)platformType {
 	NSString *platform = [Util platform];
-    if ([platform hasPrefix:@"iPhone3"])			return UIDevice4iPhone;
-	if ([platform hasPrefix:@"iPhone4"])			return UIDevice5iPhone;
-    if ([platform hasPrefix:@"iPhone2"])	        return UIDevice3GSiPhone;
-    if ([platform isEqualToString:@"iPhone1,2"])	return UIDevice3GiPhone;
+	if ([platform hasPrefix:@"iPhone4"])			return UIDevice4GSiPhone;
+    if ([platform hasPrefix:@"iPhone3"])			return UIDevice4GiPhone;
+    if ([platform isEqualToString:@"iPhone5,2"])	return UIDevice5GiPhone;
     
-    if ([platform isEqualToString:@"iPad1,1"])      return UIDevice1GiPad;
 	if ([platform isEqualToString:@"iPad2,1"])      return UIDevice2GiPad;
-    if ([platform hasPrefix:@"iPad2"])              return UIDevice2GiPad;
+    if ([platform isEqualToString:@"iPad2,2"])      return UIDeviceNewiPad;
+    if ([platform isEqualToString:@"iPad1,1"])      return UIDevice1GiPad;
 	
     if ([platform isEqualToString:@"iPod3,1"])      return UIDevice3GiPod;
 	if ([platform isEqualToString:@"iPod4,1"])      return UIDevice4GiPod;
     if ([platform isEqualToString:@"iPod1,1"])      return UIDevice1GiPod;
 	if ([platform isEqualToString:@"iPod2,1"])      return UIDevice2GiPod;
 	if ([platform isEqualToString:@"iPhone1,1"])	return UIDevice1GiPhone;
+    if ([platform hasPrefix:@"iPhone2"])	        return UIDevice3GSiPhone;
+    if ([platform isEqualToString:@"iPhone1,2"])	return UIDevice3GiPhone;
 	return UIDeviceUnknown;
 }
 + (BOOL)isCurrentVersionLowerThanRequiredVersion:(NSString *)sysVersion {
