@@ -49,4 +49,13 @@
 #define k_merchant_snap_image                   @"snap_short"
 
 
+#pragma mark - Category
+//  category
+#define k_category_id                           @"id"
+#define k_category_title                        @"title"
+
+
+
+
+
 

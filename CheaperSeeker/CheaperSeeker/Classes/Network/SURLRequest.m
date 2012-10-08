@@ -16,6 +16,15 @@
     self.formatedResponse = nil;
     [super dealloc];
 }
+- (NSString *)responseString {
+#ifdef LOCAL_REQUEST
+    if (LOCAL_REQUEST && delegate && [delegate conformsToProtocol:@protocol(SURLRequestLocalResponseDelegate)] && [delegate respondsToSelector:@selector(localResponseString:)]) {
+        id<SURLRequestLocalResponseDelegate> lrdelegate = (id<SURLRequestLocalResponseDelegate>)delegate;
+        return [lrdelegate localResponseString:self];
+    }
+#endif
+    return [super responseString];
+}
 
 @end
 

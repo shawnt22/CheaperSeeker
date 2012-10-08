@@ -50,4 +50,15 @@
     return url;
 }
 
++ (NSString *)getMerchantCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
++ (NSString *)getCategoryCouponsWithCategoryID:(NSString *)cid Cursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
+
 @end

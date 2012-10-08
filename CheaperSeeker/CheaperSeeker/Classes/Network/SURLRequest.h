@@ -19,3 +19,8 @@
 + (ASIDownloadCache *)shareDocumentDownloadCache;
 + (ASIDownloadCache *)shareImageDownloadCache;
 @end
+
+@protocol SURLRequestLocalResponseDelegate <NSObject>
+@optional
+- (NSString *)localResponseString:(SURLRequest *)request;
+@end

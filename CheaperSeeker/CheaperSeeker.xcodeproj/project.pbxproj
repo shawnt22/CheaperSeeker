@@ -23,6 +23,7 @@
 		60DBD90415FB38880065ABC9 /* SMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90315FB38880065ABC9 /* SMenuCell.m */; };
 		60DBD90715FB43850065ABC9 /* SLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90615FB43850065ABC9 /* SLayout.m */; };
 		60DBD90A15FB43990065ABC9 /* SStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DBD90915FB43990065ABC9 /* SStyle.m */; };
+		9C2B621A1622BB930038B2E7 /* CSLocalRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B62191622BB930038B2E7 /* CSLocalRequest.m */; };
 		9C360DFB160D9B2200572B68 /* SMerchantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C360DFA160D9B2200572B68 /* SMerchantCell.m */; };
 		9C49AAD316033B8C00CFC4B7 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C49AABD16033B8C00CFC4B7 /* SDImageCache.m */; };
 		9C49AAD416033B8C00CFC4B7 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C49AAC116033B8C00CFC4B7 /* MKAnnotationView+WebCache.m */; };
@@ -121,6 +122,8 @@
 		60DBD90615FB43850065ABC9 /* SLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLayout.m; path = Classes/Model/SLayout.m; sourceTree = "<group>"; };
 		60DBD90815FB43990065ABC9 /* SStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SStyle.h; path = Classes/Model/SStyle.h; sourceTree = "<group>"; };
 		60DBD90915FB43990065ABC9 /* SStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SStyle.m; path = Classes/Model/SStyle.m; sourceTree = "<group>"; };
+		9C2B62181622BB930038B2E7 /* CSLocalRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSLocalRequest.h; path = Classes/Network/CSLocalRequest.h; sourceTree = "<group>"; };
+		9C2B62191622BB930038B2E7 /* CSLocalRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSLocalRequest.m; path = Classes/Network/CSLocalRequest.m; sourceTree = "<group>"; };
 		9C360DF9160D9B2200572B68 /* SMerchantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMerchantCell.h; sourceTree = "<group>"; };
 		9C360DFA160D9B2200572B68 /* SMerchantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMerchantCell.m; sourceTree = "<group>"; };
 		9C49AABC16033B8C00CFC4B7 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
@@ -656,6 +659,7 @@
 				9C64185815EF16E80072638F /* SDataLoader.m */,
 				9C4E2A0C15F7563A0088D7F8 /* SImageLoader.h */,
 				9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */,
+				9C64185615EF16E80072638F /* SDataLoaderDelegate.h */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -668,11 +672,12 @@
 				9C6418BB15EF60580072638F /* SListDataStore.m */,
 				9C64185215EF16E80072638F /* SURLProxy.h */,
 				9C64185315EF16E80072638F /* SURLProxy.m */,
-				9C64185615EF16E80072638F /* SDataLoaderDelegate.h */,
 				9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */,
 				9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */,
 				60DBD8FB15FB1ABC0065ABC9 /* CSListDataStore.h */,
 				60DBD8FC15FB1ABC0065ABC9 /* CSListDataStore.m */,
+				9C2B62181622BB930038B2E7 /* CSLocalRequest.h */,
+				9C2B62191622BB930038B2E7 /* CSLocalRequest.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -916,6 +921,7 @@
 				9C49AAD916033B8C00CFC4B7 /* SDWebImageManager.m in Sources */,
 				9C49AADA16033B8C00CFC4B7 /* SDWebImagePrefetcher.m in Sources */,
 				9C360DFB160D9B2200572B68 /* SMerchantCell.m in Sources */,
+				9C2B621A1622BB930038B2E7 /* CSLocalRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,6 +954,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"LOCAL_REQUEST=1",
 				);
 				"GCC_PREPROCESSOR_DEFINITIONS - 2" = "DEBUG TARGET_IPHONE_DEBUG";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;

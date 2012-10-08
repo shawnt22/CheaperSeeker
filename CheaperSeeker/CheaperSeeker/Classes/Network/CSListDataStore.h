@@ -35,3 +35,13 @@
 @interface CSCategoryCouponsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
 @property (nonatomic, retain) id category;
 @end
+
+
+
+
+
+
+
+
+
+

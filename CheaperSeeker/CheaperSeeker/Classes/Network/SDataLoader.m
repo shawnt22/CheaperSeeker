@@ -66,6 +66,12 @@
 }
 - (void)startRequest:(SURLRequest *)request {
     request.downloadCache = [ASIDownloadCache shareDocumentDownloadCache];
+#ifdef LOCAL_REQUEST
+    if (LOCAL_REQUEST) {
+        [self requestFinished:request];
+        return;
+    }
+#endif
     [request startAsynchronous];
 }
 - (void)requestStarted:(ASIHTTPRequest *)request {

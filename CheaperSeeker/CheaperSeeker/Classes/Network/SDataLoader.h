@@ -13,7 +13,7 @@
 #import "SDataLoaderDelegate.h"
 #import "SURLRequest.h"
 
-@interface SDataLoader : NSObject<ASIHTTPRequestDelegate> {
+@interface SDataLoader : NSObject<ASIHTTPRequestDelegate, SURLRequestLocalResponseDelegate> {
 @private
     
 }
