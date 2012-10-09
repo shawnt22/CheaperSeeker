@@ -101,6 +101,7 @@
 		9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */; };
 		9CE3F1DB162415DE003D2C03 /* SCategoryCouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1DA162415DE003D2C03 /* SCategoryCouponsViewController.m */; };
 		9CE3F1DE162418B1003D2C03 /* SStoreCouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1DD162418B1003D2C03 /* SStoreCouponsViewController.m */; };
+		9CE3F1E116241EA2003D2C03 /* SAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1E016241EA2003D2C03 /* SAboutCell.m */; };
 		9CE6DFA315FEE4F300DD4462 /* bg_split_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */; };
 /* End PBXBuildFile section */
 
@@ -281,6 +282,8 @@
 		9CE3F1DA162415DE003D2C03 /* SCategoryCouponsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCategoryCouponsViewController.m; path = Classes/Controller/SCategoryCouponsViewController.m; sourceTree = "<group>"; };
 		9CE3F1DC162418B1003D2C03 /* SStoreCouponsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SStoreCouponsViewController.h; path = Classes/Controller/SStoreCouponsViewController.h; sourceTree = "<group>"; };
 		9CE3F1DD162418B1003D2C03 /* SStoreCouponsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SStoreCouponsViewController.m; path = Classes/Controller/SStoreCouponsViewController.m; sourceTree = "<group>"; };
+		9CE3F1DF16241EA2003D2C03 /* SAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAboutCell.h; sourceTree = "<group>"; };
+		9CE3F1E016241EA2003D2C03 /* SAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAboutCell.m; sourceTree = "<group>"; };
 		9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_split_shadow.png; path = Resource/bg_split_shadow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -769,6 +772,8 @@
 				9C360DFA160D9B2200572B68 /* SMerchantCell.m */,
 				9CE3F1D516240D3A003D2C03 /* SCategoryCell.h */,
 				9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */,
+				9CE3F1DF16241EA2003D2C03 /* SAboutCell.h */,
+				9CE3F1E016241EA2003D2C03 /* SAboutCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -940,6 +945,7 @@
 				9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */,
 				9CE3F1DB162415DE003D2C03 /* SCategoryCouponsViewController.m in Sources */,
 				9CE3F1DE162418B1003D2C03 /* SStoreCouponsViewController.m in Sources */,
+				9CE3F1E116241EA2003D2C03 /* SAboutCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

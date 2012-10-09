@@ -27,4 +27,9 @@
 
 + (void)showCouponTargetLinkWithCoupon:(id)coupon ViewController:(UIViewController *)viewController;
 
++ (NSString *)bundleVersion;
++ (BOOL)isCurrentVersionLowerThanVersion:(NSString *)version;
+
++ (void)openAppStore;
+
 @end

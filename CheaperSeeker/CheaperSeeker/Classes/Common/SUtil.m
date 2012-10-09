@@ -82,4 +82,19 @@
     [_web release];
 }
 
++ (NSString *)bundleVersion {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
++ (BOOL)isCurrentVersionLowerThanVersion:(NSString *)version {
+    BOOL result = NO;
+    if ([version floatValue] > [[SUtil bundleVersion] floatValue]) {
+        result = YES;
+    }
+    return result;
+}
+
++ (void)openAppStore {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@""]];
+}
+
 @end

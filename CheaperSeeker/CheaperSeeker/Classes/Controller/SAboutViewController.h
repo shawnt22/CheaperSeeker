@@ -8,6 +8,6 @@
 
 #import "SViewController.h"
 
-@interface SAboutViewController : SViewController
+@interface SAboutViewController : SViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
