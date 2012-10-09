@@ -10,6 +10,7 @@
 #import "SStyle.h"
 #import "SLayout.h"
 #import "SMerchantCell.h"
+#import "SStoreCouponsViewController.h"
 
 @interface SStoresViewController()
 @property (nonatomic, assign) TSPullTableView *storesTableView;
@@ -76,6 +77,9 @@
 - (void)tableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    SStoreCouponsViewController *_scvctr = [[SStoreCouponsViewController alloc] initWithStore:[self.storesDataStore.items objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:_scvctr animated:YES];
+    [_scvctr release];
 }
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     SMerchantLayout *_layout = [self.merchantLayouts objectAtIndex:indexPath.row];

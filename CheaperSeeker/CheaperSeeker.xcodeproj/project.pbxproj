@@ -99,6 +99,8 @@
 		9C6418B915EF60390072638F /* SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B515EF60390072638F /* SWebViewController.m */; };
 		9C6418BC15EF60580072638F /* SListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418BB15EF60580072638F /* SListDataStore.m */; };
 		9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */; };
+		9CE3F1DB162415DE003D2C03 /* SCategoryCouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1DA162415DE003D2C03 /* SCategoryCouponsViewController.m */; };
+		9CE3F1DE162418B1003D2C03 /* SStoreCouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1DD162418B1003D2C03 /* SStoreCouponsViewController.m */; };
 		9CE6DFA315FEE4F300DD4462 /* bg_split_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */; };
 /* End PBXBuildFile section */
 
@@ -275,6 +277,10 @@
 		9C6418BB15EF60580072638F /* SListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SListDataStore.m; path = Classes/Network/SListDataStore.m; sourceTree = "<group>"; };
 		9CE3F1D516240D3A003D2C03 /* SCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoryCell.h; sourceTree = "<group>"; };
 		9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCategoryCell.m; sourceTree = "<group>"; };
+		9CE3F1D9162415DE003D2C03 /* SCategoryCouponsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCategoryCouponsViewController.h; path = Classes/Controller/SCategoryCouponsViewController.h; sourceTree = "<group>"; };
+		9CE3F1DA162415DE003D2C03 /* SCategoryCouponsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCategoryCouponsViewController.m; path = Classes/Controller/SCategoryCouponsViewController.m; sourceTree = "<group>"; };
+		9CE3F1DC162418B1003D2C03 /* SStoreCouponsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SStoreCouponsViewController.h; path = Classes/Controller/SStoreCouponsViewController.h; sourceTree = "<group>"; };
+		9CE3F1DD162418B1003D2C03 /* SStoreCouponsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SStoreCouponsViewController.m; path = Classes/Controller/SStoreCouponsViewController.m; sourceTree = "<group>"; };
 		9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_split_shadow.png; path = Resource/bg_split_shadow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -772,6 +778,8 @@
 			children = (
 				9C6418A215EF5FF00072638F /* SStoresViewController.h */,
 				9C6418A315EF5FF00072638F /* SStoresViewController.m */,
+				9CE3F1DC162418B1003D2C03 /* SStoreCouponsViewController.h */,
+				9CE3F1DD162418B1003D2C03 /* SStoreCouponsViewController.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -781,6 +789,8 @@
 			children = (
 				9C64189F15EF5FD80072638F /* SCategoriesViewController.h */,
 				9C6418A015EF5FD80072638F /* SCategoriesViewController.m */,
+				9CE3F1D9162415DE003D2C03 /* SCategoryCouponsViewController.h */,
+				9CE3F1DA162415DE003D2C03 /* SCategoryCouponsViewController.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -928,6 +938,8 @@
 				9C360DFB160D9B2200572B68 /* SMerchantCell.m in Sources */,
 				9C2B621A1622BB930038B2E7 /* CSLocalRequest.m in Sources */,
 				9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */,
+				9CE3F1DB162415DE003D2C03 /* SCategoryCouponsViewController.m in Sources */,
+				9CE3F1DE162418B1003D2C03 /* SStoreCouponsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

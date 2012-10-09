@@ -8,6 +8,7 @@
 
 #import "SCategoriesViewController.h"
 #import "SCategoryCell.h"
+#import "SCategoryCouponsViewController.h"
 
 @interface SCategoriesViewController()
 @property (nonatomic, assign) TSPullTableView *categoriesTableView;
@@ -48,6 +49,8 @@
     [self.view addSubview:_tb];
     self.categoriesTableView = _tb;
     [_tb release];
+    
+    [self.categoriesTableView startPullToRefreshWithAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -63,6 +66,9 @@
 - (void)tableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    SCategoryCouponsViewController *_ccvctr = [[SCategoryCouponsViewController alloc] initWithCategory:[self.categoriesDataStore.items objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:_ccvctr animated:YES];
+    [_ccvctr release];
 }
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [SCategoryCell cellHeight];
