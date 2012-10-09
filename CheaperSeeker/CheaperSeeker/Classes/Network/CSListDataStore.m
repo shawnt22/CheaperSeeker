@@ -73,7 +73,7 @@
     [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy getCategoriesWithCursor:kListDataStoreRefreshCursor Count:self.limitCount]];
 }
 - (void)loadmoreItems {
-    [self refreshItemsWithCachePolicy:ASIDoNotReadFromCacheCachePolicy URL:[SURLProxy getCategoriesWithCursor:self.cursorID Count:self.limitCount]];
+    [self loadMoreItemsWithURL:[SURLProxy getCategoriesWithCursor:self.cursorID Count:self.limitCount]];
 }
 
 @end

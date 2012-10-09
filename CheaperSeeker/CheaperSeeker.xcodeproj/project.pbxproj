@@ -98,6 +98,7 @@
 		9C6418B815EF60390072638F /* SSplitRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B315EF60390072638F /* SSplitRootViewController.m */; };
 		9C6418B915EF60390072638F /* SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B515EF60390072638F /* SWebViewController.m */; };
 		9C6418BC15EF60580072638F /* SListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418BB15EF60580072638F /* SListDataStore.m */; };
+		9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */; };
 		9CE6DFA315FEE4F300DD4462 /* bg_split_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */; };
 /* End PBXBuildFile section */
 
@@ -272,6 +273,8 @@
 		9C6418B515EF60390072638F /* SWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWebViewController.m; path = Classes/Controller/SWebViewController.m; sourceTree = "<group>"; };
 		9C6418BA15EF60580072638F /* SListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SListDataStore.h; path = Classes/Network/SListDataStore.h; sourceTree = "<group>"; };
 		9C6418BB15EF60580072638F /* SListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SListDataStore.m; path = Classes/Network/SListDataStore.m; sourceTree = "<group>"; };
+		9CE3F1D516240D3A003D2C03 /* SCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoryCell.h; sourceTree = "<group>"; };
+		9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCategoryCell.m; sourceTree = "<group>"; };
 		9CE6DFA215FEE4F300DD4462 /* bg_split_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_split_shadow.png; path = Resource/bg_split_shadow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -758,6 +761,8 @@
 				60DBD90315FB38880065ABC9 /* SMenuCell.m */,
 				9C360DF9160D9B2200572B68 /* SMerchantCell.h */,
 				9C360DFA160D9B2200572B68 /* SMerchantCell.m */,
+				9CE3F1D516240D3A003D2C03 /* SCategoryCell.h */,
+				9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -922,6 +927,7 @@
 				9C49AADA16033B8C00CFC4B7 /* SDWebImagePrefetcher.m in Sources */,
 				9C360DFB160D9B2200572B68 /* SMerchantCell.m in Sources */,
 				9C2B621A1622BB930038B2E7 /* CSLocalRequest.m in Sources */,
+				9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
