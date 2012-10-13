@@ -18,7 +18,7 @@
 }
 
 + (NSString *)getHomeCouponsWithCursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = [NSString stringWithFormat:@"coupon/getHomeCoupons/%@", @"20"];
+    NSString *url = [NSString stringWithFormat:@"coupon/getHomeCoupons?size=%d&cursor=%@", count, cursor];
     url = [SURLProxy prepareURL:url];
     return url;
 }
@@ -29,13 +29,13 @@
 }
 
 + (NSString *)getCategoriesWithCursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = nil;
+    NSString *url = [NSString stringWithFormat:@"coupon/getCategories?size=%d&cursor=%@", count, cursor];
     url = [SURLProxy prepareURL:url];
     return url;
 }
 
 + (NSString *)getMerchantsWithCursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = @"";
+    NSString *url = [NSString stringWithFormat:@"coupon/getFeaturedMerchants?size=%d&cursor=%@", count, cursor];
     url = [SURLProxy prepareURL:url];
     return url;
 }

@@ -51,8 +51,8 @@
 
 #pragma mark - Category
 //  category
-#define k_category_id                           @"id"
-#define k_category_title                        @"title"
+#define k_category_id                           @"category_id"
+#define k_category_title                        @"name"
 
 
 
