@@ -16,7 +16,7 @@
 + (NSString *)prepareURL:(NSString *)url {
     return [NSString stringWithFormat:@"%@%@", k_base_url, url];
 }
-
+//  已验证
 + (NSString *)getHomeCouponsWithCursor:(NSString *)cursor Count:(NSInteger)count {
     NSString *url = [NSString stringWithFormat:@"coupon/getHomeCoupons?size=%d&cursor=%@", count, cursor];
     url = [SURLProxy prepareURL:url];
@@ -27,13 +27,23 @@
     url = [SURLProxy prepareURL:url];
     return url;
 }
-
-+ (NSString *)getCategoriesWithCursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = [NSString stringWithFormat:@"coupon/getCategories?size=%d&cursor=%@", count, cursor];
++ (NSString *)searchCouponsFirstStepToGetCouponIDsWithKey:(NSString *)key Count:(NSInteger)count {
+    NSString *url = nil;
     url = [SURLProxy prepareURL:url];
     return url;
 }
-
++ (NSString *)searchCouponsSecondStepToGetCouponsThroughIDs {
+    NSString *url = nil;
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
+//  已验证，但不接受参数
++ (NSString *)getCategoriesWithCursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = @"category/getCategories";
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
+//  已验证
 + (NSString *)getMerchantsWithCursor:(NSString *)cursor Count:(NSInteger)count {
     NSString *url = [NSString stringWithFormat:@"coupon/getFeaturedMerchants?size=%d&cursor=%@", count, cursor];
     url = [SURLProxy prepareURL:url];
@@ -44,19 +54,21 @@
     url = [SURLProxy prepareURL:url];
     return url;
 }
+//  已验证
 + (NSString *)getMerchantWithMerchantID:(NSString *)mid {
-    NSString *url = nil;
+    NSString *url = [NSString stringWithFormat:@"coupon/getMerchant?id=%@", mid];
     url = [SURLProxy prepareURL:url];
     return url;
 }
-
+//  已验证 getMerchantCommonCoupons
 + (NSString *)getMerchantCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = nil;
+    NSString *url = [NSString stringWithFormat:@"coupon/getMerchantCommonCoupons?id=%@&cursor=%@&size=%d", mid, cursor, count];
     url = [SURLProxy prepareURL:url];
     return url;
 }
+//  已验证
 + (NSString *)getCategoryCouponsWithCategoryID:(NSString *)cid Cursor:(NSString *)cursor Count:(NSInteger)count {
-    NSString *url = nil;
+    NSString *url = [NSString stringWithFormat:@"coupon/getCategoryCoupons?id=%@&cursor=%@&size=%d", cid, cursor, count];
     url = [SURLProxy prepareURL:url];
     return url;
 }
