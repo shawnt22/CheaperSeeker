@@ -9,7 +9,22 @@
 #import "SViewController.h"
 #import "TSPullTableView.h"
 #import "CSListDataStore.h"
+#import "SCategoryControl.h"
 
-@interface SCategoriesViewController : SViewController <TSPullTableViewDelegate, TSViewGestureDelegate, UITableViewDataSource, SDataLoaderDelegate>
+@interface SCategoriesViewController : SViewController <UITableViewDelegate, UITableViewDataSource, SDataLoaderDelegate, SCategoryControlDataSource, SCategoryControlDelegate>
 
 @end
+
+
+@interface SCategoriesViewController (DataManager)
++ (NSArray *)subcategoriesWith:(id)category;
+- (NSArray *)currentSelectedCategoryItemSubcategories;
+@end
+
+
+@interface SCategoryItemLayout : NSObject
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, readonly) CGRect frame;
+@end
+

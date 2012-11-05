@@ -53,6 +53,7 @@
 //  category
 #define k_category_id                           @"category_id"
 #define k_category_title                        @"name"
+#define k_category_subitems                     @"items"
 
 
 

@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "SUtil.h"
 #import "SSplitContentDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface SViewController : UIViewController<SSplitControllerProtocol>
 

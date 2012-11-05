@@ -16,6 +16,7 @@
 - (NSInteger)itemNumberOfCategoryControl:(SCategoryControl *)categoryControl;
 - (CGFloat)categoryControl:(SCategoryControl *)categoryControl widthAtIndexPath:(SCategoryIndexPath)indexPath;
 - (CGFloat)categoryControl:(SCategoryControl *)categoryControl heightAtIndexPath:(SCategoryIndexPath)indexPath;
+@optional
 - (CGFloat)categoryControl:(SCategoryControl *)categoryControl marginLeftAtIndexPath:(SCategoryIndexPath)indexPath;
 @end
 
@@ -29,6 +30,9 @@
 @interface SCategoryControl : UIView <UIScrollViewDelegate, SCategoryItemDelegate>
 @property (nonatomic, assign) id<SCategoryControlDataSource> controlDataSource;
 @property (nonatomic, assign) id<SCategoryControlDelegate> controlDelegate;
+
+@property (nonatomic, assign) SCategoryIndexPath currentSelectedCategoryItemIndexPath;
+@property (nonatomic, assign) CGFloat horizontalMargin;
 
 - (UIView<SCategoryItemProtocol> *)dequeueReusableItemWithIdentifier:(NSString *)identifier;
 - (void)reloadControl;

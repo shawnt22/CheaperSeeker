@@ -20,6 +20,14 @@ NS_INLINE SCategoryIndexPath SCategoryIndexPathMake(NSInteger _column) {
 NS_INLINE BOOL SCategoryIndexPathEqual(SCategoryIndexPath indexPath, SCategoryIndexPath annother) {
     return indexPath.column == annother.column ? YES : NO;
 }
+NS_INLINE BOOL SCategoryIndexPathIsInvalid(SCategoryIndexPath indexPath) {
+    return indexPath.column < 0 ? YES : NO;
+}
+NS_INLINE SCategoryIndexPath SCategoryIndexPathCreateInvalidIndexPath() {
+    SCategoryIndexPath indexPath;
+    indexPath.column = -1;
+    return indexPath;
+}
 NS_INLINE NSString *NSStringFromSCategoryIndexPath(SCategoryIndexPath indexPath) {
     return [NSString stringWithFormat:@"%d", indexPath.column];
 }
