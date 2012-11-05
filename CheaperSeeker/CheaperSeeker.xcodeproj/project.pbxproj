@@ -98,6 +98,8 @@
 		9C6418B815EF60390072638F /* SSplitRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B315EF60390072638F /* SSplitRootViewController.m */; };
 		9C6418B915EF60390072638F /* SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B515EF60390072638F /* SWebViewController.m */; };
 		9C6418BC15EF60580072638F /* SListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418BB15EF60580072638F /* SListDataStore.m */; };
+		9CAF4D8C164763F7006BF3D3 /* SCategoryControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF4D89164763F7006BF3D3 /* SCategoryControl.m */; };
+		9CAF4D8D164763F7006BF3D3 /* SCategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF4D8B164763F7006BF3D3 /* SCategoryItem.m */; };
 		9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */; };
 		9CE3F1DB162415DE003D2C03 /* SCategoryCouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1DA162415DE003D2C03 /* SCategoryCouponsViewController.m */; };
 		9CE3F1DE162418B1003D2C03 /* SStoreCouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1DD162418B1003D2C03 /* SStoreCouponsViewController.m */; };
@@ -277,6 +279,10 @@
 		9C6418B515EF60390072638F /* SWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWebViewController.m; path = Classes/Controller/SWebViewController.m; sourceTree = "<group>"; };
 		9C6418BA15EF60580072638F /* SListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SListDataStore.h; path = Classes/Network/SListDataStore.h; sourceTree = "<group>"; };
 		9C6418BB15EF60580072638F /* SListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SListDataStore.m; path = Classes/Network/SListDataStore.m; sourceTree = "<group>"; };
+		9CAF4D88164763F7006BF3D3 /* SCategoryControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoryControl.h; sourceTree = "<group>"; };
+		9CAF4D89164763F7006BF3D3 /* SCategoryControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCategoryControl.m; sourceTree = "<group>"; };
+		9CAF4D8A164763F7006BF3D3 /* SCategoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoryItem.h; sourceTree = "<group>"; };
+		9CAF4D8B164763F7006BF3D3 /* SCategoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCategoryItem.m; sourceTree = "<group>"; };
 		9CE3F1D516240D3A003D2C03 /* SCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoryCell.h; sourceTree = "<group>"; };
 		9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCategoryCell.m; sourceTree = "<group>"; };
 		9CE3F1D9162415DE003D2C03 /* SCategoryCouponsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCategoryCouponsViewController.h; path = Classes/Controller/SCategoryCouponsViewController.h; sourceTree = "<group>"; };
@@ -745,6 +751,10 @@
 		9C64187415EF3ECB0072638F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9CAF4D88164763F7006BF3D3 /* SCategoryControl.h */,
+				9CAF4D89164763F7006BF3D3 /* SCategoryControl.m */,
+				9CAF4D8A164763F7006BF3D3 /* SCategoryItem.h */,
+				9CAF4D8B164763F7006BF3D3 /* SCategoryItem.m */,
 				9C64187C15EF41BC0072638F /* Cell */,
 				9C64187B15EF41B60072638F /* Table */,
 				9C64187515EF3F460072638F /* TSPullTableView.h */,
@@ -961,6 +971,8 @@
 				9CE3F1DE162418B1003D2C03 /* SStoreCouponsViewController.m in Sources */,
 				9CE3F1E116241EA2003D2C03 /* SAboutCell.m in Sources */,
 				9CE3F1EF16243144003D2C03 /* MBProgressHUD.m in Sources */,
+				9CAF4D8C164763F7006BF3D3 /* SCategoryControl.m in Sources */,
+				9CAF4D8D164763F7006BF3D3 /* SCategoryItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
