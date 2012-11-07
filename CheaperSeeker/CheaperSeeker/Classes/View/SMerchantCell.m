@@ -10,30 +10,25 @@
 
 @interface SMerchantCell()
 @property (nonatomic, assign) UIImageView *merchantBanner;
-@property (nonatomic, assign) UILabel *merchantTitle;
-- (void)reStyleWith:(SMerchantStyle *)style;
-- (void)reLayoutWith:(SMerchantLayout *)layout;
 - (void)reContent;
 @end
 @implementation SMerchantCell
 @synthesize merchant;
-@synthesize merchantBanner, merchantTitle;
+@synthesize merchantBanner;
+@synthesize customBackgroundView, customSelectedBackgroundView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIImageView *_banner = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _banner.backgroundColor = [UIColor whiteColor];
+        [SUtil setCustomCellBGView:self];
+        
+        UIImageView *_banner = [[UIImageView alloc] initWithFrame:CGRectMake(kMarginLeft, kMarginTop, self.contentView.bounds.size.width-kMarginLeft*2, self.contentView.bounds.size.height-kMarginTop*2)];
+        _banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _banner.backgroundColor = kCustomCellBGFillColor;
         _banner.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:_banner];
         self.merchantBanner  =_banner;
         [_banner release];
-        
-        UILabel *_ttl = [[UILabel alloc] initWithFrame:CGRectZero];
-        _ttl.textAlignment = UITextAlignmentCenter;
-        [self.contentView addSubview:_ttl];
-        self.merchantTitle = _ttl;
-        [_ttl release];
     }
     return self;
 }
@@ -41,27 +36,22 @@
     self.merchant = nil;
     [super dealloc];
 }
+- (TCustomCellBGView *)customBackgroundView {
+    return [self.backgroundView isKindOfClass:[TCustomCellBGView class]] ? (TCustomCellBGView *)self.backgroundView : nil;
+}
+- (TCustomCellBGView *)customSelectedBackgroundView {
+    return [self.selectedBackgroundView isKindOfClass:[TCustomCellBGView class]] ? (TCustomCellBGView *)self.selectedBackgroundView : nil;
+}
 + (CGFloat)cellHeight {
     return MerchantLayoutBannerHeight;
 }
 - (void)refreshWithMerchant:(id)mchant Layout:(SMerchantLayout *)layout Style:(SMerchantStyle *)style {
     self.merchant = mchant;
-    [self reStyleWith:style];
-    [self reLayoutWith:layout];
     [self reContent];
-}
-- (void)reStyleWith:(SMerchantStyle *)style {
-    self.merchantTitle.font = style.titleFont;
-    self.merchantTitle.textColor = style.titleColor;
-}
-- (void)reLayoutWith:(SMerchantLayout *)layout {
-    self.merchantBanner.frame = layout.banner;
-    self.merchantTitle.frame = layout.title;
 }
 - (void)reContent {
     self.merchantBanner.image = nil;
     [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:[self.merchant objectForKey:k_merchant_banner_image]] delegate:self];
-    self.merchantTitle.text = [self.merchant objectForKey:k_merchant_name];
 }
 
 #pragma mark SDWebImageManager delegate

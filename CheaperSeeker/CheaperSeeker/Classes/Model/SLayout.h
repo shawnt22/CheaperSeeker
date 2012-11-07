@@ -23,7 +23,7 @@
 @end
 
 
-#define MerchantLayoutBannerHeight  74.0
+#define MerchantLayoutBannerHeight  100.0
 @interface SMerchantLayout : SLayout
 @property (nonatomic, assign) CGRect banner;
 @property (nonatomic, assign) CGRect title;

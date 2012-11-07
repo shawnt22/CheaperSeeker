@@ -25,6 +25,8 @@
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
     if (self) {
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
         self.dataSource = self;
         self.pullDelegate = self;
         self.couponsTableViewDelegate = nil;
@@ -74,6 +76,8 @@
     id _coupon = [self.couponsDataStore.items objectAtIndex:indexPath.row];
     SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
     [_cell refreshWithCoupon:_coupon Layout:_layout Style:self.couponStyle];
+    _cell.customBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.couponsDataStore.items count]];
+    _cell.customSelectedBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.couponsDataStore.items count]];
     return _cell;
 }
 

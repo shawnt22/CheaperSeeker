@@ -56,7 +56,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
     self.title = kViewControllerHomeTitle;
     [SUtil setNavigationBarSplitButtonItemWith:self];
     

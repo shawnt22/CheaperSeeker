@@ -61,7 +61,7 @@
     self = [super init];
     if (self) {
         self.titleFont = [UIFont systemFontOfSize:16];
-        self.titleColor = [UIColor blackColor];
+        self.titleColor = [UIColor whiteColor];
     }
     return self;
 }

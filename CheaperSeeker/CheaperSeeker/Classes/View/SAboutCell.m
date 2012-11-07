@@ -14,23 +14,13 @@
 
 @implementation SAboutCell
 @synthesize aboutTitle;
+@synthesize customSelectedBackgroundView, customBackgroundView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        TCustomCellBGView *_bg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
-        _bg.lineColor = kCustomCellBGLineColor;
-        _bg.fillColor = kCustomCellBGFillColor;
-        _bg.innerShadowColor = kCustomCellBGInnerShadowColor;
-        _bg.innerShadowWidth = 1.0;
-        self.backgroundView = _bg;
-        [_bg release];
-        TCustomCellBGView *_sbg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
-        _sbg.lineColor = kCustomCellSelectedBGLineColor;
-        _sbg.fillColor = kCustomCellSelectedBGFillColor;
-        self.selectedBackgroundView = _sbg;
-        [_sbg release];
+        [SUtil setCustomCellBGView:self];
         
         UILabel *_ttl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.bounds.size.width-20, self.contentView.bounds.size.height)];
         _ttl.backgroundColor = [UIColor clearColor];
@@ -43,7 +33,12 @@
     }
     return self;
 }
-
+- (TCustomCellBGView *)customBackgroundView {
+    return [self.backgroundView isKindOfClass:[TCustomCellBGView class]] ? (TCustomCellBGView *)self.backgroundView : nil;
+}
+- (TCustomCellBGView *)customSelectedBackgroundView {
+    return [self.selectedBackgroundView isKindOfClass:[TCustomCellBGView class]] ? (TCustomCellBGView *)self.selectedBackgroundView : nil;
+}
 + (CGFloat)cellHeight {
     return 45.0f;
 }

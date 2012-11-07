@@ -21,11 +21,13 @@ typedef enum {
 #define kMarginLeft 10.0
 #define kMarginTop 5.0
 
-#define kCustomCellBGLineColor          SRGBCOLOR(211, 211, 211)
-#define kCustomCellBGFillColor          SRGBCOLOR(239, 239, 239)
+#define kCustomCellBGLineColor          SRGBCOLOR(195, 195, 195)
+#define kCustomCellBGFillColor          SRGBCOLOR(228, 228, 228)
 #define kCustomCellBGInnerShadowColor   SRGBCOLOR(250, 250, 250)
+#define kCustomCellBGDropShadowColor    SRGBCOLOR(250, 250, 250)
 #define kCustomCellSelectedBGLineColor  kCustomCellBGLineColor
-#define kCustomCellSelectedBGFillColor  SRGBCOLOR(255, 72, 0)
+#define kCustomCellSelectedBGFillColor  SRGBCOLOR(30, 110, 181)
+
 #define kCustomCellBGLineColor2         SRGBCOLOR(25, 25, 27)
 #define kCustomCellBGFillColor2         SRGBCOLOR(38, 40, 42)
 #define kCustomCellBGInnerShadowColor2  SRGBCOLOR(49, 50, 52)
@@ -56,3 +58,10 @@ typedef enum {
 #define kViewControllerAboutTitle       @"About"
 #define kHomeSearchBarPlaceHolder       @"search coupons"
 #define kNavigationBarSplitItemTitle    @"Split"
+
+#define k_text_about_version            @"Check latest version"
+#define k_text_about_star               @"Evaluate in AppStore"
+#define k_text_about_site               @"Visit web site"
+#define k_text_about_advice             @"Post advice"
+
+

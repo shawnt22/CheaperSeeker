@@ -46,7 +46,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
     self.title = kViewControllerCategoryTitle;
     [SUtil setNavigationBarSplitButtonItemWith:self];
     
@@ -61,6 +60,7 @@
     
     CGFloat _y = _ctr.frame.origin.y + _ctr.frame.size.height;
     UITableView *_tb = [[UITableView alloc] initWithFrame:CGRectMake(0, _y, self.view.bounds.size.width, self.view.bounds.size.height-_y-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStylePlain];
+    _tb.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tb.backgroundColor = self.view.backgroundColor;
     _tb.dataSource = self;
     _tb.delegate = self;
@@ -130,6 +130,8 @@
     }
     id _category = [[self currentSelectedCategoryItemSubcategories] objectAtIndex:indexPath.row];
     [_cell refreshWithCategory:_category];
+    _cell.customBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[[self currentSelectedCategoryItemSubcategories] count]];
+    _cell.customSelectedBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[[self currentSelectedCategoryItemSubcategories] count]];
     return _cell;
 }
 

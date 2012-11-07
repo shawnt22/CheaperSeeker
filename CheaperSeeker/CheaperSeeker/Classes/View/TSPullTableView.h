@@ -75,3 +75,11 @@ typedef enum {
 - (void)setTableDataFull:(BOOL)full;
 - (void)reloadDataWithDataFull:(BOOL)full;
 @end
+
+
+
+@interface CSPullTableView : TSPullTableView
+
+@end
+
+

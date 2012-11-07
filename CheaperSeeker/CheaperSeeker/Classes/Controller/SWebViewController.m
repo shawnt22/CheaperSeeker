@@ -40,7 +40,7 @@
     [super viewDidLoad];
     
     UIView *_abar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-49.0, self.view.bounds.size.width, 49.0)];
-    _abar.backgroundColor = [UIColor whiteColor];
+    _abar.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     [self.view addSubview:_abar];
     self.actionBar = _abar;
     [_abar release];

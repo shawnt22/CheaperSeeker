@@ -12,7 +12,7 @@
 #import "SUtil.h"
 #import "Sconfiger.h"
 
-@interface SAboutCell : UITableViewCell
+@interface SAboutCell : UITableViewCell<TCustomCellBGViewProtocol>
 
 + (CGFloat)cellHeight;
 - (void)refreshWithTitle:(NSString *)title;

@@ -16,7 +16,7 @@
 #import "SStyle.h"
 #import "SDWebImageManager.h"
 
-@interface SCouponCell : UITableViewCell<SDWebImageManagerDelegate>
+@interface SCouponCell : UITableViewCell<SDWebImageManagerDelegate, TCustomCellBGViewProtocol>
 @property (nonatomic, retain) id coupon;
 + (CGFloat)cellHeight;
 - (void)refreshWithCoupon:(id)coupon Layout:(SCouponLayout *)layout Style:(SCouponStyle *)style;

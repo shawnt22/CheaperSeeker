@@ -74,6 +74,7 @@
     [SUtil setNavigationBarSplitButtonItemWith:self];
     
     UITableView *_tb = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStyleGrouped];
+    _tb.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tb.backgroundColor = self.view.backgroundColor;
     _tb.delegate = self;
     _tb.dataSource = self;
@@ -98,24 +99,23 @@
     NSString *_cellTitle = nil;
     switch (indexPath.row) {
         case kAboutVersionRow:
-            _cellTitle = @"Check out latest version";
+            _cellTitle = k_text_about_version;
             break;
         case kAboutStarRow:
-            _cellTitle = @"Evaluate in AppStore";
+            _cellTitle = k_text_about_star;
             break;
         case kAboutSiteRow:
-            _cellTitle = @"Visit web site";
+            _cellTitle = k_text_about_site;
             break;
         case kAboutAdviceRow:
-            _cellTitle = @"Post advice";
+            _cellTitle = k_text_about_advice;
             break;
         default:
             break;
     }
     [_cell refreshWithTitle:_cellTitle];
-    
-    ((TCustomCellBGView *)_cell.backgroundView).bgStyle = [TCustomCellBGView groupStyleWithIndex:indexPath.row Count:kAboutRowNumber];
-    ((TCustomCellBGView *)_cell.selectedBackgroundView).bgStyle = [TCustomCellBGView groupStyleWithIndex:indexPath.row Count:kAboutRowNumber];
+    _cell.customBackgroundView.bgStyle = [TCustomCellBGView groupStyleWithIndex:indexPath.row Count:kAboutRowNumber];
+    _cell.customSelectedBackgroundView.bgStyle = [TCustomCellBGView groupStyleWithIndex:indexPath.row Count:kAboutRowNumber];
     return _cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

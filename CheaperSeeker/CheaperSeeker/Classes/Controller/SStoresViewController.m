@@ -15,19 +15,17 @@
 @interface SStoresViewController()
 @property (nonatomic, assign) TSPullTableView *storesTableView;
 @property (nonatomic, retain) CSMerchantsDataStore *storesDataStore;
-@property (nonatomic, retain) NSMutableArray *merchantLayouts;
 @property (nonatomic, retain) SMerchantStyle *merchantStyle;
 @end
 @implementation SStoresViewController
 @synthesize storesDataStore, storesTableView;
-@synthesize merchantLayouts, merchantStyle;
+@synthesize merchantStyle;
 
 #pragma mark init
 - (id)init {
     self = [super init];
     if (self) {
         self.storesDataStore = [[[CSMerchantsDataStore alloc] initWithDelegate:self] autorelease];
-        self.merchantLayouts = [NSMutableArray array];
         self.merchantStyle = [[[SMerchantStyle alloc] init] autorelease];
     }
     return self;
@@ -40,7 +38,6 @@
     self.storesDataStore.delegate = nil;
     self.storesDataStore = nil;
     
-    self.merchantLayouts = nil;
     self.merchantStyle = nil;
     [super dealloc];
 }
@@ -49,12 +46,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
     self.title = kViewControllerStoreTitle;
     [SUtil setNavigationBarSplitButtonItemWith:self];
     
-    TSPullTableView *_table = [[TSPullTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStylePlain];
+    TSPullTableView *_table = [[CSPullTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStylePlain];
     _table.backgroundColor = self.view.backgroundColor;
+    _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     _table.pullDelegate = self;
     _table.dataSource = self;
     [self.view addSubview:_table];
@@ -82,8 +79,7 @@
     [_scvctr release];
 }
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SMerchantLayout *_layout = [self.merchantLayouts objectAtIndex:indexPath.row];
-    return _layout ? _layout.height : [SMerchantCell cellHeight];
+    return [SMerchantCell cellHeight];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.storesDataStore.items count];
@@ -95,8 +91,9 @@
         _cell = [[[SMerchantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
     }
     id _mrchnt = [self.storesDataStore.items objectAtIndex:indexPath.row];
-    SMerchantLayout *_layout = [self.merchantLayouts objectAtIndex:indexPath.row];
-    [_cell refreshWithMerchant:_mrchnt Layout:_layout Style:self.merchantStyle];
+    [_cell refreshWithMerchant:_mrchnt Layout:nil Style:self.merchantStyle];
+    _cell.customBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.storesDataStore.items count]];
+    _cell.customSelectedBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.storesDataStore.items count]];
     return _cell;
 }
 
@@ -115,25 +112,7 @@
     }
 }
 - (void)dataloader:(SDataLoader *)dataloader submitResponse:(id)response Request:(SURLRequest *)request {
-    if (request.tag == SURLRequestItemsRefresh) {
-        self.merchantLayouts = [NSMutableArray array];
-        for (id _mechnt in response) {
-            SMerchantLayout *_layout = [[SMerchantLayout alloc] init];
-            [_layout layoutWithMerchant:_mechnt Style:self.merchantStyle];
-            [self.merchantLayouts addObject:_layout];
-            [_layout release];
-        }
-        return;
-    }
-    if (request.tag == SURLRequestItemsLoadmore) {
-        for (id _mechnt in response) {
-            SMerchantLayout *_layout = [[SMerchantLayout alloc] init];
-            [_layout layoutWithMerchant:_mechnt Style:self.merchantStyle];
-            [self.merchantLayouts addObject:_layout];
-            [_layout release];
-        }
-        return;
-    }
+    
 }
 - (void)dataloader:(SDataLoader *)dataloader didFailRequest:(SURLRequest *)request Error:(NSError *)error {
     if (request.tag == SURLRequestItemsRefresh) {

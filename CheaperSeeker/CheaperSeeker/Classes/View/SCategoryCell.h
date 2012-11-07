@@ -11,8 +11,9 @@
 #import "SUtil.h"
 #import "Sconfiger.h"
 #import "SDefine.h"
+#import "TCustomBGCell.h"
 
-@interface SCategoryCell : UITableViewCell
+@interface SCategoryCell : UITableViewCell<TCustomCellBGViewProtocol>
 @property (nonatomic, retain) id category;
 
 + (CGFloat)cellHeight;

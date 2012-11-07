@@ -14,8 +14,9 @@
 #import "SLayout.h"
 #import "SStyle.h"
 #import "SDWebImageManager.h"
+#import "TCustomBGCell.h"
 
-@interface SMerchantCell : UITableViewCell<SDWebImageManagerDelegate>
+@interface SMerchantCell : UITableViewCell<SDWebImageManagerDelegate, TCustomCellBGViewProtocol>
 @property (nonatomic, retain) id merchant;
 + (CGFloat)cellHeight;
 - (void)refreshWithMerchant:(id)merchant Layout:(SMerchantLayout *)layout Style:(SMerchantStyle *)style;

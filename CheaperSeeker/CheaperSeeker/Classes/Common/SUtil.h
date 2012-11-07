@@ -32,4 +32,6 @@
 
 + (void)openAppStore;
 
++ (void)setCustomCellBGView:(UITableViewCell *)cell;
+
 @end

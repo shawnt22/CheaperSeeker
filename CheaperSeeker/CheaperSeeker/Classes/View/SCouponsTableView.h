@@ -19,7 +19,7 @@
 - (void)couponsTableView:(SCouponsTableView *)couponsTableView didSelectCoupon:(id)coupon atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@interface SCouponsTableView : TSPullTableView <TSPullTableViewDelegate, TSViewGestureDelegate, UITableViewDataSource, SDataLoaderDelegate>
+@interface SCouponsTableView : CSPullTableView <TSPullTableViewDelegate, TSViewGestureDelegate, UITableViewDataSource, SDataLoaderDelegate>
 @property (nonatomic, retain) PListDataStore<PListRefreshLoadmoreProtocol> *couponsDataStore;
 @property (nonatomic, assign) id<SCouponsTableViewDelegate> couponsTableViewDelegate;
 

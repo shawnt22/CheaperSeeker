@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "SSplitContentDelegate.h"
 #import "SWebViewController.h"
+#import "TCustomBGCell.h"
 
 @implementation SUtil
 
@@ -95,6 +96,23 @@
 
 + (void)openAppStore {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@""]];
+}
+
++ (void)setCustomCellBGView:(UITableViewCell *)cell {
+    TCustomCellBGView *_bg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
+    _bg.lineColor = kCustomCellBGLineColor;
+    _bg.fillColor = kCustomCellBGFillColor;
+    _bg.innerShadowColor = kCustomCellBGInnerShadowColor;
+    _bg.innerShadowWidth = 1.0;
+    _bg.dropShadowColor = kCustomCellBGDropShadowColor;
+    _bg.dropShadowWidth = 1.0;
+    cell.backgroundView = _bg;
+    [_bg release];
+    TCustomCellBGView *_sbg = [[TCustomCellBGView alloc] initWithFrame:CGRectZero];
+    _sbg.lineColor = kCustomCellSelectedBGLineColor;
+    _sbg.fillColor = kCustomCellSelectedBGFillColor;
+    cell.selectedBackgroundView = _sbg;
+    [_sbg release];
 }
 
 @end

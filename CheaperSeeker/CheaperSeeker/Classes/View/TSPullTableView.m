@@ -518,3 +518,17 @@
 }
 
 @end
+
+
+
+@implementation CSPullTableView
+
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
+    self = [super initWithFrame:frame style:style];
+    if (self) {
+        self.pullFooterView.backgroundColor = kCustomCellBGFillColor;
+    }
+    return self;
+}
+
+@end

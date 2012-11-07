@@ -15,14 +15,18 @@
 @implementation SCategoryCell
 @synthesize category;
 @synthesize categoryTitle;
+@synthesize customBackgroundView, customSelectedBackgroundView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        [SUtil setCustomCellBGView:self];
+        
         self.category = nil;
         
-        UILabel *_ttl = [[UILabel alloc] initWithFrame:CGRectMake(kMarginLeft, 0, ceilf((self.contentView.bounds.size.width-kMarginLeft*2)), self.contentView.bounds.size.height)];
-        _ttl.backgroundColor = [UIColor clearColor];
+        UILabel *_ttl = [[UILabel alloc] initWithFrame:CGRectMake(kMarginLeft, 5, ceilf((self.contentView.bounds.size.width-kMarginLeft*2)), self.contentView.bounds.size.height-10)];
+        _ttl.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _ttl.backgroundColor = kCustomCellBGFillColor;
         _ttl.textColor = [UIColor blackColor];
         _ttl.font = [UIFont systemFontOfSize:18.0];
         [self.contentView addSubview:_ttl];
@@ -35,8 +39,14 @@
     self.category = nil;
     [super dealloc];
 }
+- (TCustomCellBGView *)customBackgroundView {
+    return [self.backgroundView isKindOfClass:[TCustomCellBGView class]] ? (TCustomCellBGView *)self.backgroundView : nil;
+}
+- (TCustomCellBGView *)customSelectedBackgroundView {
+    return [self.selectedBackgroundView isKindOfClass:[TCustomCellBGView class]] ? (TCustomCellBGView *)self.selectedBackgroundView : nil;
+}
 + (CGFloat)cellHeight {
-    return 45.0f;
+    return 56.0f;
 }
 - (void)refreshWithCategory:(id)ctgy {
     self.category = ctgy;

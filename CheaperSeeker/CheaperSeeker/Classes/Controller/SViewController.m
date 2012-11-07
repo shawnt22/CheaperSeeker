@@ -29,7 +29,7 @@
 #pragma mark ViewController Delegate
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kCustomCellBGFillColor;
     self.navigationController.navigationBar.tintColor = SRGBCOLOR(255, 195, 24);
 }
 - (void)viewDidUnload {
