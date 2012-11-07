@@ -110,6 +110,8 @@
 
 #pragma mark table delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     id _category = [[self currentSelectedCategoryItemSubcategories] objectAtIndex:indexPath.row];
     SCategoryCouponsViewController *_ccvctr = [[SCategoryCouponsViewController alloc] initWithCategory:_category];
     [self.navigationController pushViewController:_ccvctr animated:YES];
