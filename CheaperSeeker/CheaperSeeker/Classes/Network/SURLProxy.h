@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define k_base_url  @"http://www.cheaperseeker.com/mo/api/"
+#define k_base_url_version  @"v1/"
 
 typedef enum {
     SURLRequestInvalid,

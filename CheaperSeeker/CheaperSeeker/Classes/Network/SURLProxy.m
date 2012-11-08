@@ -14,7 +14,7 @@
 @implementation SURLProxy
 
 + (NSString *)prepareURL:(NSString *)url {
-    return [NSString stringWithFormat:@"%@%@", k_base_url, url];
+    return [NSString stringWithFormat:@"%@%@%@", k_base_url, k_base_url_version, url];
 }
 //  已验证
 + (NSString *)getHomeCouponsWithCursor:(NSString *)cursor Count:(NSInteger)count {
