@@ -16,6 +16,7 @@
 @property (nonatomic, assign) UIButton *openSafari;
 @property (nonatomic, assign) UIView *actionBar;
 - (void)refreshActionBar;
+- (void)sendMBProcessActivingViewToBack;
 @end
 @implementation SWebViewController
 @synthesize urlPath, webView;
@@ -153,14 +154,22 @@
 //}
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     self.title = @"Loading";
+    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self sendMBProcessActivingViewToBack];
     [self refreshActionBar];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)awebView {
     self.title = [awebView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [self refreshActionBar];
 }
 - (void)webView:(UIWebView *)awebView didFailLoadWithError:(NSError *)error {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [self refreshActionBar];
+}
+- (void)sendMBProcessActivingViewToBack {
+    [self.view bringSubviewToFront:self.actionBar];
 }
 
 @end
