@@ -64,4 +64,9 @@ typedef enum {
 #define k_text_about_site               @"Visit web site"
 #define k_text_about_advice             @"Post advice"
 
+#define k_coupon_web_viewcontroller_bar_buttion_show_code   @"Code"
+#define k_coupon_web_viewcontroller_bar_buttion_copy_code   @"Copy"
+
+
+
 

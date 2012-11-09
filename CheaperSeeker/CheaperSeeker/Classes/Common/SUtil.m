@@ -10,7 +10,7 @@
 #import "SConfiger.h"
 #import "AppDelegate.h"
 #import "SSplitContentDelegate.h"
-#import "SWebViewController.h"
+#import "SCouponWebViewController.h"
 #import "TCustomBGCell.h"
 
 @implementation SUtil
@@ -78,7 +78,8 @@
 }
 
 + (void)showCouponTargetLinkWithCoupon:(id)coupon ViewController:(UIViewController *)viewController {
-    SWebViewController *_web = [[SWebViewController alloc] initWithURLPath:[coupon objectForKey:k_coupon_target_link]];
+    SCouponWebViewController *_web = [[SCouponWebViewController alloc] initWithURLPath:[coupon objectForKey:k_coupon_target_link]];
+    _web.coupon = coupon;
     [viewController.navigationController pushViewController:_web animated:YES];
     [_web release];
 }
@@ -116,3 +117,4 @@
 }
 
 @end
+

@@ -37,6 +37,8 @@
 		9C49AADF16033BE500CFC4B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C49AADE16033BE500CFC4B7 /* MapKit.framework */; };
 		9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */; };
 		9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */; };
+		9C63C782164D05CA008D6344 /* SCouponWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C63C781164D05CA008D6344 /* SCouponWebViewController.m */; };
+		9C63C786164D08B3008D6344 /* SCouponCodeContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */; };
 		9C6417BF15EF16E60072638F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417BE15EF16E60072638F /* UIKit.framework */; };
 		9C6417C115EF16E60072638F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417C015EF16E60072638F /* Foundation.framework */; };
 		9C6417C315EF16E60072638F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417C215EF16E60072638F /* CoreGraphics.framework */; };
@@ -159,6 +161,10 @@
 		9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageLoader.m; path = Classes/Network/SImageLoader.m; sourceTree = "<group>"; };
 		9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageStore.h; path = Classes/Network/SImageStore.h; sourceTree = "<group>"; };
 		9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageStore.m; path = Classes/Network/SImageStore.m; sourceTree = "<group>"; };
+		9C63C780164D05CA008D6344 /* SCouponWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCouponWebViewController.h; path = Classes/Controller/SCouponWebViewController.h; sourceTree = "<group>"; };
+		9C63C781164D05CA008D6344 /* SCouponWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCouponWebViewController.m; path = Classes/Controller/SCouponWebViewController.m; sourceTree = "<group>"; };
+		9C63C784164D08B3008D6344 /* SCouponCodeContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCouponCodeContentView.h; sourceTree = "<group>"; };
+		9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCouponCodeContentView.m; sourceTree = "<group>"; };
 		9C6417BA15EF16E60072638F /* CheaperSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheaperSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C6417BE15EF16E60072638F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C6417C015EF16E60072638F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -726,6 +732,8 @@
 			children = (
 				9C6418AB15EF60200072638F /* SAboutViewController.h */,
 				9C6418AC15EF60200072638F /* SAboutViewController.m */,
+				9C63C780164D05CA008D6344 /* SCouponWebViewController.h */,
+				9C63C781164D05CA008D6344 /* SCouponWebViewController.m */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -761,6 +769,8 @@
 				9C64187615EF3F460072638F /* TSPullTableView.m */,
 				9C64188315EF428B0072638F /* TCustomBGCell.h */,
 				9C64188415EF428B0072638F /* TCustomBGCell.m */,
+				9C63C784164D08B3008D6344 /* SCouponCodeContentView.h */,
+				9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */,
 			);
 			name = View;
 			path = Classes/View;
@@ -973,6 +983,8 @@
 				9CE3F1EF16243144003D2C03 /* MBProgressHUD.m in Sources */,
 				9CAF4D8C164763F7006BF3D3 /* SCategoryControl.m in Sources */,
 				9CAF4D8D164763F7006BF3D3 /* SCategoryItem.m in Sources */,
+				9C63C782164D05CA008D6344 /* SCouponWebViewController.m in Sources */,
+				9C63C786164D08B3008D6344 /* SCouponCodeContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
