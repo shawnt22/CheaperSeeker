@@ -150,7 +150,7 @@
 - (void)loadMoreItemsWithURL:(NSString *)url {
     [self cancelRequest:self.listRequest];
     
-    SURLRequest *_request = [[SURLRequest alloc] initWithURL:nil];
+    SURLRequest *_request = [[SURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     _request.delegate = self;
     _request.tag = SURLRequestItemsLoadmore;
     _request.cachePolicy = ASIDoNotReadFromCacheCachePolicy;
