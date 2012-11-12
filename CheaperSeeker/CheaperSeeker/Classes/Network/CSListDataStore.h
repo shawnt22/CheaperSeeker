@@ -18,6 +18,14 @@
 @property (nonatomic, retain) NSString *key;
 @end
 
+@interface CSSearchPoolDataStore : PListDataStore <PListRefreshLoadmoreProtocol, SDataLoaderDelegate>
+@property (nonatomic, retain) NSString *key;
+@end
+
+@interface CSPoolCouponsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
+@property (nonatomic, retain) NSArray *couponIDs;
+@end
+
 #pragma mark - Merchant
 @interface CSMerchantsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
 

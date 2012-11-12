@@ -24,8 +24,8 @@ typedef enum {
 + (NSString *)getHomeCouponsWithCursor:(NSString *)cursor Count:(NSInteger)count;
 
 + (NSString *)searchCouponsWithKey:(NSString *)key Cursor:(NSString *)cursor Count:(NSInteger)count;
-+ (NSString *)searchCouponsFirstStepToGetCouponIDsWithKey:(NSString *)key Count:(NSInteger)count;
-+ (NSString *)searchCouponsSecondStepToGetCouponsThroughIDs;
++ (NSString *)searchCouponsIDsInPoolWithKey:(NSString *)key Count:(NSInteger)count;
++ (NSString *)searchCouponsInPoolThroughIDs;
 
 + (NSString *)getCategoriesWithCursor:(NSString *)cursor Count:(NSInteger)count;
 

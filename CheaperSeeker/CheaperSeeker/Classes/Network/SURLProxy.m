@@ -27,13 +27,13 @@
     url = [SURLProxy prepareURL:url];
     return url;
 }
-+ (NSString *)searchCouponsFirstStepToGetCouponIDsWithKey:(NSString *)key Count:(NSInteger)count {
-    NSString *url = nil;
++ (NSString *)searchCouponsIDsInPoolWithKey:(NSString *)key Count:(NSInteger)count {
+    NSString *url = [NSString stringWithFormat:@"coupon/searchCoupon/?word=%@&size=%d", key, count];
     url = [SURLProxy prepareURL:url];
     return url;
 }
-+ (NSString *)searchCouponsSecondStepToGetCouponsThroughIDs {
-    NSString *url = nil;
++ (NSString *)searchCouponsInPoolThroughIDs {
+    NSString *url = @"coupon/getCoupons";
     url = [SURLProxy prepareURL:url];
     return url;
 }
