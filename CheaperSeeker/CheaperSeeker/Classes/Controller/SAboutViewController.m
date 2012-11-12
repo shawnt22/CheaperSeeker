@@ -15,7 +15,6 @@
 
 @interface SAboutViewController()
 @property (nonatomic, assign) UITableView *theTableView;
-- (void)checkVersion;
 - (void)showWebSite;
 - (void)postAdvice;
 - (void)appraiseApp;
@@ -23,11 +22,10 @@
 @end
 
 #define kAboutSectionNumber 1
-#define kAboutRowNumber     4
-#define kAboutVersionRow    0
+#define kAboutRowNumber     3
 #define kAboutAdviceRow     1
-#define kAboutStarRow       2
-#define kAboutSiteRow       3
+#define kAboutStarRow       0
+#define kAboutSiteRow       2
 
 @implementation SAboutViewController
 @synthesize theTableView;
@@ -60,7 +58,7 @@
     _version.font = [UIFont systemFontOfSize:14];
     _version.textColor = SRGBCOLOR(107, 107, 107);
     _version.textAlignment = UITextAlignmentCenter;
-    _version.text = [NSString stringWithFormat:@"version : %@", [SUtil bundleVersion]];
+    _version.text = [NSString stringWithFormat:@"%@%@", k_text_about_desc_version, [SUtil bundleVersion]];
     [_bgview addSubview:_version];
     [_version release];
 }
@@ -98,17 +96,14 @@
     
     NSString *_cellTitle = nil;
     switch (indexPath.row) {
-        case kAboutVersionRow:
-            _cellTitle = k_text_about_version;
-            break;
         case kAboutStarRow:
-            _cellTitle = k_text_about_star;
+            _cellTitle = k_text_about_cell_star;
             break;
         case kAboutSiteRow:
-            _cellTitle = k_text_about_site;
+            _cellTitle = k_text_about_cell_site;
             break;
         case kAboutAdviceRow:
-            _cellTitle = k_text_about_advice;
+            _cellTitle = k_text_about_cell_advice;
             break;
         default:
             break;
@@ -131,9 +126,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (indexPath.row) {
-        case kAboutVersionRow:
-            [self checkVersion];
-            break;
         case kAboutStarRow:
             [self appraiseApp];
             break;
@@ -152,13 +144,16 @@
 - (void)splitAction:(id)sender {
     [SUtil splitActionWith:self];
 }
-- (void)checkVersion {}
 - (void)showWebSite {
     SWebViewController *_web = [[SWebViewController alloc] initWithURLPath:@"http://www.cheaperseeker.com/page/About-us"];
     [self.navigationController pushViewController:_web animated:YES];
     [_web release];
 }
-- (void)postAdvice {}
+- (void)postAdvice {
+    SWebViewController *_web = [[SWebViewController alloc] initWithURLPath:@"http://www.cheaperseeker.com/page/contact-us"];
+    [self.navigationController pushViewController:_web animated:YES];
+    [_web release];
+}
 - (void)appraiseApp {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=543480206"]];
 }

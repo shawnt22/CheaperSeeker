@@ -59,10 +59,10 @@ typedef enum {
 #define kHomeSearchBarPlaceHolder       @"search coupons"
 #define kNavigationBarSplitItemTitle    @"Split"
 
-#define k_text_about_version            @"Check latest version"
-#define k_text_about_star               @"Evaluate in AppStore"
-#define k_text_about_site               @"Visit web site"
-#define k_text_about_advice             @"Post advice"
+#define k_text_about_desc_version       @"version : "
+#define k_text_about_cell_star               @"Evaluate in AppStore"
+#define k_text_about_cell_site               @"About us"
+#define k_text_about_cell_advice             @"Contact us"
 
 #define k_coupon_web_viewcontroller_bar_buttion_show_code   @"Code"
 #define k_coupon_web_viewcontroller_bar_buttion_copy_code   @"Copy"
