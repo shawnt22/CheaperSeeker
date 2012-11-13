@@ -75,7 +75,7 @@
     return self.couponsDataStore.items;
 }
 - (void)refreshItemsWithCachePolicy:(ASICachePolicy)cachePolicy {
-    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy searchCouponsIDsInPoolWithKey:[Util urlDecode:self.key] Count:self.limitCount]];
+    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy searchCouponsIDsInPoolWithKey:[Util urlEncode:self.key stringEncoding:NSUTF8StringEncoding] Count:self.limitCount]];
 }
 - (void)loadmoreItems {
     [self loadMorePoolCoupons];
