@@ -103,7 +103,16 @@
     [_sbg release];
 }
 + (BOOL)needShowExpireDescriptionWithCoupon:(id)coupon {
-    return [SUtil stateWithCoupon:coupon] > CouponDateBefore ? YES : NO;
+    if ([SUtil stateWithCoupon:coupon] > CouponDateBefore) {
+        NSTimeInterval _interval = [[coupon objectForKey:k_coupon_expire_to] doubleValue];
+        NSDate *_date = [NSDate dateWithTimeIntervalSince1970:_interval];
+        NSTimeInterval _delta = [_date timeIntervalSinceNow];
+        if (_delta > S_MONTH * 10) {
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
 }
 
 @end
