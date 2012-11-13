@@ -22,9 +22,6 @@
 
 + (CGFloat)cellWidth;
 
-+ (BOOL)isCouponExpire:(id)coupon;
-+ (NSString *)couponExpireDescription:(id)expire;
-
 + (void)showCouponTargetLinkWithCoupon:(id)coupon ViewController:(UIViewController *)viewController;
 
 + (NSString *)bundleVersion;
@@ -33,5 +30,21 @@
 + (void)openAppStore;
 
 + (void)setCustomCellBGView:(UITableViewCell *)cell;
+
++ (BOOL)needShowExpireDescriptionWithCoupon:(id)coupon;
+
+@end
+
+typedef enum {
+    CouponDateBefore,           //  期限前 expire_from > now
+    CouponDateIn,               //  期限中 expire_from < now < expire_to
+    CouponDateAfter,            //  期限后，过期  expire_to < now
+}CouponDateState;
+@interface SUtil (DateFormate)
+
++ (CouponDateState)stateWithCoupon:(id)coupon;
++ (BOOL)isCouponExpire:(id)coupon;
++ (NSString *)couponExpireDescription:(id)coupon;
++ (NSString *)natureDescriptionWithDate:(NSDate *)date;
 
 @end

@@ -19,7 +19,8 @@
 @property (nonatomic, retain) UIFont *contentFont;
 @property (nonatomic, retain) UIColor *contentColor;
 @property (nonatomic, retain) UIFont *expireFont;
-@property (nonatomic, retain) UIColor *expireColor;
+@property (nonatomic, retain) UIColor *didExpireColor;
+@property (nonatomic, retain) UIColor *unExpireColor;
 
 @end
 

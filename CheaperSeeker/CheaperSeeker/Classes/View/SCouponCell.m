@@ -100,7 +100,7 @@
     [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:self.couponURLPath] delegate:self];
     self.couponTitle.text = [self.coupon objectForKey:k_coupon_title];
     self.couponContent.text = [self.coupon objectForKey:k_coupon_excerpt_description];
-    self.couponExpire.text = [SUtil couponExpireDescription:[self.coupon objectForKey:k_coupon_expire_to]];
+    self.couponExpire.text = [SUtil couponExpireDescription:self.coupon];
 }
 - (void)reStyleWith:(SCouponStyle *)style {
     self.couponTitle.font = style.titleFont;
@@ -108,7 +108,7 @@
     self.couponContent.font = style.contentFont;
     self.couponContent.textColor = style.contentColor;
     self.couponExpire.font = style.expireFont;
-    self.couponExpire.textColor = style.expireColor;
+    self.couponExpire.textColor = [SUtil isCouponExpire:self.coupon] ? style.didExpireColor : style.unExpireColor;
 }
 
 #pragma mark SDWebImageManager delegate

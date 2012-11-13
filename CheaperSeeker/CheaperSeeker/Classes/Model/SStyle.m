@@ -25,9 +25,11 @@
 
 @end
 
-
+@interface SCouponStyle ()
+@end
 @implementation SCouponStyle
-@synthesize titleColor, titleFont, contentColor, contentFont, expireColor, expireFont;
+@synthesize titleColor, titleFont, contentColor, contentFont, expireFont;
+@synthesize didExpireColor, unExpireColor;
 
 - (id)init {
     self = [super init];
@@ -36,17 +38,19 @@
         self.titleFont = [UIFont systemFontOfSize:18];
         self.contentColor = [UIColor grayColor];
         self.contentFont = [UIFont systemFontOfSize:12];
-        self.expireColor = [UIColor redColor];
+        self.didExpireColor = [UIColor redColor];
+        self.unExpireColor = [UIColor orangeColor];
         self.expireFont = [UIFont systemFontOfSize:12];
     }
     return self;
 }
 - (void)dealloc {
+    self.didExpireColor = nil;
+    self.unExpireColor = nil;
     self.titleColor = nil;
     self.titleFont = nil;
     self.contentFont = nil;
     self.contentColor = nil;
-    self.expireColor = nil;
     self.expireFont = nil;
     [super dealloc];
 }

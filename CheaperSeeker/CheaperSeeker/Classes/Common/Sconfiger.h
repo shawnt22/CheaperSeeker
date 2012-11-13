@@ -67,6 +67,13 @@ typedef enum {
 #define k_coupon_web_viewcontroller_bar_buttion_show_code   @"Code"
 #define k_coupon_web_viewcontroller_bar_buttion_copy_code   @"Copy"
 
-
+#define k_text_coupon_date_description_expired  @"Expired"
+#define k_text_coupon_date_nature_description   @"Expire in"
+#define k_text_coupon_date_nature_description_too_long  @"year"
+#define k_text_coupon_date_nature_description_too_short @"hour"
+#define k_text_coupon_date_nature_description_months    @"months"
+#define k_text_coupon_date_nature_description_weeks     @"weeks"
+#define k_text_coupon_date_nature_description_days      @"days"
+#define k_text_coupon_date_nature_description_hours     @"hours"
 
 

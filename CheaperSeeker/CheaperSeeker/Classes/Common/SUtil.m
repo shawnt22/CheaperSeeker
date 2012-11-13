@@ -64,19 +64,6 @@
     return 320.0;
 }
 
-+ (BOOL)isCouponExpire:(id)coupon {
-    BOOL result = NO;
-    NSDate *_expire = [NSDate dateWithTimeIntervalSince1970:[[coupon objectForKey:k_coupon_expire_to] doubleValue]];
-    NSDate *_now = [NSDate date];
-    if ([_expire compare:_now] == NSOrderedAscending) {
-        result = YES;
-    }
-    return result;
-}
-+ (NSString *)couponExpireDescription:(id)expire {
-    return nil;
-}
-
 + (void)showCouponTargetLinkWithCoupon:(id)coupon ViewController:(UIViewController *)viewController {
     SCouponWebViewController *_web = [[SCouponWebViewController alloc] initWithURLPath:[coupon objectForKey:k_coupon_target_link]];
     _web.coupon = coupon;
@@ -115,6 +102,98 @@
     cell.selectedBackgroundView = _sbg;
     [_sbg release];
 }
++ (BOOL)needShowExpireDescriptionWithCoupon:(id)coupon {
+    return [SUtil stateWithCoupon:coupon] > CouponDateBefore ? YES : NO;
+}
 
 @end
+
+
+@implementation SUtil (DateFormate)
+
++ (CouponDateState)stateWithCoupon:(id)coupon {
+    CouponDateState _state = CouponDateBefore;
+    
+    NSTimeInterval _to_interval = [[coupon objectForKey:k_coupon_expire_to] doubleValue];
+    NSTimeInterval _from_interval = [[coupon objectForKey:k_coupon_expire_from] doubleValue];
+    NSDate *_to_date = [NSDate dateWithTimeIntervalSince1970:_to_interval];
+    NSDate *_from_date = [NSDate dateWithTimeIntervalSince1970:_from_interval];
+    NSDate *_now_date = [NSDate date];
+    
+    if ([_to_date compare:_now_date] == NSOrderedAscending) {
+        //  过期
+        _state = CouponDateAfter;
+    }else if ([_from_date compare:_now_date] == NSOrderedAscending) {
+        //  期限中
+        _state = CouponDateIn;
+    }
+    
+    return _state;
+}
++ (BOOL)isCouponExpire:(id)coupon {
+    return [SUtil stateWithCoupon:coupon] == CouponDateAfter ? YES : NO;
+}
++ (NSString *)couponExpireDescription:(id)coupon {
+    NSString *_result = nil;
+    
+    NSTimeInterval _to_interval = [[coupon objectForKey:k_coupon_expire_to] doubleValue];
+    NSTimeInterval _from_interval = [[coupon objectForKey:k_coupon_expire_from] doubleValue];
+    NSDate *_to_date = [NSDate dateWithTimeIntervalSince1970:_to_interval];
+    NSDate *_from_date = [NSDate dateWithTimeIntervalSince1970:_from_interval];
+    
+    NSDateFormatter *_formatter = [[NSDateFormatter alloc] init];
+    NSLocale *_locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    _formatter.locale = _locale;
+    _formatter.dateFormat = @"MMM dd";
+    
+    switch ([SUtil stateWithCoupon:coupon]) {
+        case CouponDateAfter:
+        {
+            _result = k_text_coupon_date_description_expired;
+        }
+            break;
+        case CouponDateBefore:
+        {
+            _result = [NSString stringWithFormat:@"%@ - %@", [_formatter stringFromDate:_from_date], [_formatter stringFromDate:_to_date]];
+        }
+            break;
+        default:
+        {
+            _result = [NSString stringWithFormat:@"%@ %@", k_text_coupon_date_nature_description, [SUtil natureDescriptionWithDate:_to_date]];
+        }
+            break;
+    }
+    
+    [_locale release];
+    [_formatter release];
+    
+    return _result;
+}
++ (NSString *)natureDescriptionWithDate:(NSDate *)date {
+    NSString *_result = @"";
+    NSInteger _number = 0;
+    NSTimeInterval _delta = [date timeIntervalSinceNow];
+    if (_delta > S_MONTH * 10) {
+        _result = k_text_coupon_date_nature_description_too_long;
+    } else if (_delta > S_MONTH) {
+        _number = _delta / S_MONTH + 1;
+        _result = [NSString stringWithFormat:@"%d %@", _number, k_text_coupon_date_nature_description_months];
+    } else if (_delta > S_WEEK) {
+        _number = _delta / S_WEEK + 1;
+        _result = [NSString stringWithFormat:@"%d %@", _number, k_text_coupon_date_nature_description_weeks];
+    } else if (_delta > S_DAY) {
+        _number = _delta / S_DAY + 1;
+        _result = [NSString stringWithFormat:@"%d %@", _number, k_text_coupon_date_nature_description_days];
+    } else if (_delta > S_HOUR) {
+        _number = _delta / S_HOUR + 1;
+        _result = [NSString stringWithFormat:@"%d %@", _number, k_text_coupon_date_nature_description_hours];
+    } else {
+        _result = k_text_coupon_date_nature_description_too_short;
+    }
+    return _result;
+}
+
+@end
+
+
 

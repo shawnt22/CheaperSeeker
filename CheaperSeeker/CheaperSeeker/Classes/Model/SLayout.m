@@ -46,8 +46,8 @@
     _tmpHeight = self.content.origin.y+self.content.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     //  expire
-    if ([SUtil isCouponExpire:coupon]) {
-        NSString *_exp = [SUtil couponExpireDescription:[coupon objectForKey:k_coupon_expire_to]];
+    if ([SUtil needShowExpireDescriptionWithCoupon:coupon]) {
+        NSString *_exp = [SUtil couponExpireDescription:coupon];
         if (![Util isEmptyString:_exp]) {
             CGSize _size = [_exp sizeWithFont:style.expireFont forWidth:([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft) lineBreakMode:style.lineBreakMode];
             CGFloat _y = self.icon.origin.y;
