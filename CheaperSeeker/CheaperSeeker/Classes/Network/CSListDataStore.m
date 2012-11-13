@@ -42,10 +42,9 @@
 @property (nonatomic, retain) NSMutableArray *itemIDs;
 @property (nonatomic, retain) CSPoolCouponsDataStore *couponsDataStore;
 @property (nonatomic, assign) NSInteger currentPageIndex;
-- (BOOL)loadPoolCoupons;
+- (void)refreshPoolCoupons;
+- (void)loadMorePoolCoupons;
 - (NSArray *)poolCouponIDs;
-- (BOOL)isFirstPageInPool;
-- (NSString *)urlencodeKeywords;
 @end
 @implementation CSSearchPoolDataStore
 @synthesize key;
@@ -56,7 +55,7 @@
 - (id)initWithDelegate:(id<SDataLoaderDelegate>)adelegate {
     self = [super initWithDelegate:adelegate];
     if (self) {
-        self.limitCount = 200;
+        self.limitCount = 1;
         self.couponsDataStore = [[[CSPoolCouponsDataStore alloc] initWithDelegate:self] autorelease];
     }
     return self;
@@ -69,17 +68,17 @@
     self.key = nil;
     [super dealloc];
 }
-- (NSString *)urlencodeKeywords {
-    return [Util urlDecode:self.key];
+- (void)setItems:(NSMutableArray *)its {
+    self.couponsDataStore.items = its;
+}
+- (NSMutableArray *)items {
+    return self.couponsDataStore.items;
 }
 - (void)refreshItemsWithCachePolicy:(ASICachePolicy)cachePolicy {
-    self.currentPageIndex = 0;
-    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy searchCouponsIDsInPoolWithKey:[self urlencodeKeywords] Count:self.limitCount]];
+    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy searchCouponsIDsInPoolWithKey:[Util urlDecode:self.key] Count:self.limitCount]];
 }
 - (void)loadmoreItems {
-    if (![self loadPoolCoupons]) {
-        [self notifyDataloader:self didFailRequest:nil Error:nil];
-    }
+    [self loadMorePoolCoupons];
 }
 - (BOOL)canLoadMore {
     return [self.items count] < [self.itemIDs count] ? YES : NO;
@@ -88,14 +87,11 @@
     SURLRequest *request = [self prepareRequest:(SURLRequest *)asirequest];
     if (!request.error) {
         if (request.tag == SURLRequestItemsRefresh) {
-            NSArray *_items = [request.formatedResponse objectForKey:kListDataStoreResponseItems];
+            NSArray *_items = [request.formatedResponse objectForKey:@"ids"];
             if ([_items count] > 0) {
-                [self notifyDataloader:self submitResponse:_items Request:request];
                 self.itemIDs = [NSMutableArray arrayWithArray:_items];
             }
-        }
-        if (![self loadPoolCoupons]) {
-            [self notifyDataloader:self didFailRequest:request Error:request.error];
+            [self refreshPoolCoupons];
         }
     } else {
         [self notifyDataloader:self didFailRequest:request Error:request.error];
@@ -106,27 +102,21 @@
     if (_range.location < [self.itemIDs count]) {
         NSInteger _length = [self.itemIDs count] - _range.location;
         _range.length = _range.length > _length ? _length : _range.length;
-        [self.itemIDs subarrayWithRange:_range];
+        return [self.itemIDs subarrayWithRange:_range];
     }
     return nil;
 }
-- (BOOL)loadPoolCoupons {
-    BOOL _result = YES;
-    self.currentPageIndex += 1;
+- (void)refreshPoolCoupons {
+    self.currentPageIndex = 1;
     self.couponsDataStore.couponIDs = [self poolCouponIDs];
     [self.couponsDataStore refreshItemsWithCachePolicy:ASIDoNotReadFromCacheCachePolicy];
-    return _result;
 }
-- (BOOL)isFirstPageInPool {
-    return self.currentPageIndex == 1 ? YES : NO;
+- (void)loadMorePoolCoupons {
+    self.currentPageIndex += 1;
+    self.couponsDataStore.couponIDs = [self poolCouponIDs];
+    [self.couponsDataStore loadmoreItems];
 }
 - (void)dataloader:(SDataLoader *)dataloader didFinishRequest:(SURLRequest *)request {
-    if (dataloader == self.couponsDataStore && request.tag == SURLRequestItemsRefresh) {
-        if ([self isFirstPageInPool]) {
-            self.items = [NSMutableArray array];
-        }
-        [self.items addObjectsFromArray:self.couponsDataStore.items];
-    }
     [self notifyDataloader:self didFinishRequest:request];
 }
 - (void)dataloader:(SDataLoader *)dataloader submitResponse:(id)response Request:(SURLRequest *)request {
@@ -176,6 +166,24 @@
     [self startRequest:self.couponsRequest];
 }
 - (void)loadmoreItems {
+    [self loadMoreItemsWithURL:[SURLProxy searchCouponsInPoolThroughIDs]];
+}
+- (void)loadMoreItemsWithURL:(NSString *)url {
+    [self cancelRequest:self.couponsRequest];
+    
+    self.cursorID = kListDataStoreRefreshCursor;
+    SURLRequest *_request = [[SURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    _request.delegate = self;
+    _request.tag = SURLRequestItemsLoadmore;
+    _request.requestMethod = @"POST";
+    _request.cachePolicy = ASIDoNotReadFromCacheCachePolicy;
+    
+    [_request setPostValue:[self couponIDsParameterString] forKey:@"ids"];
+    
+    self.couponsRequest = _request;
+    [_request release];
+    
+    [self startRequest:self.couponsRequest];
 }
 - (BOOL)canLoadMore {
     return NO;

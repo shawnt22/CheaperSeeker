@@ -43,7 +43,7 @@
     self.couponsTableView = _ts;
     [_ts release];
     
-    CSSearchDataStore *_ds = [[CSSearchDataStore alloc] initWithDelegate:_ts];
+    CSSearchPoolDataStore *_ds = [[CSSearchPoolDataStore alloc] initWithDelegate:_ts];
     _ds.key = self.keyword;
     self.couponsTableView.couponsDataStore = _ds;
     [_ds release];
