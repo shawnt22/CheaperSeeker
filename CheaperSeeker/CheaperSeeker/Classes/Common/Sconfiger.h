@@ -57,7 +57,7 @@ typedef enum {
 #define kViewControllerCategoryTitle    @"Category"
 #define kViewControllerAboutTitle       @"About"
 #define kHomeSearchBarPlaceHolder       @"search coupons"
-#define kNavigationBarSplitItemTitle    @"Split"
+#define kNavigationBarSplitItemTitle    @"Menu"
 
 #define k_text_about_desc_version       @"version : "
 #define k_text_about_cell_star               @"Evaluate in AppStore"
