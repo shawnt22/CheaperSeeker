@@ -31,7 +31,7 @@
         [_sbg release];
         
         UIImageView *_in = [[UIImageView alloc] initWithFrame:CGRectMake(kMarginLeft, 6, 32, 32)];
-        _in.backgroundColor = [UIColor blueColor];
+        _in.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_in];
         self.icon = _in;
         [_in release];
@@ -84,16 +84,16 @@
     UIImage *result = nil;
     switch (self.currentMenuItem) {
         case MenuAbout:
-            result = [Util imageWithName:@""];
+            result = [Util imageWithName:@"bg_menu_about"];
             break;
         case MenuCategory:
-            result = [Util imageWithName:@""];
+            result = [Util imageWithName:@"bg_menu_tag"];
             break;
         case MenuHome:
-            result = [Util imageWithName:@""];
+            result = [Util imageWithName:@"bg_menu_home"];
             break;
         case MenuStore:
-            result = [Util imageWithName:@""];
+            result = [Util imageWithName:@"bg_menu_store"];
             break;
         default:
             break;
