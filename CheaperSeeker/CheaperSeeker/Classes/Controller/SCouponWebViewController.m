@@ -43,7 +43,7 @@
 
 #pragma mark actions
 - (BOOL)hasCouponCode {
-    return [self couponCode] ? YES : NO;
+    return [Util isEmptyString:[self couponCode]] ? NO : YES;
 }
 - (void)refreshCodeButton {
     NSString *_ttl = self.isCodeContentViewShowing ? k_coupon_web_viewcontroller_bar_buttion_copy_code : k_coupon_web_viewcontroller_bar_buttion_show_code;
