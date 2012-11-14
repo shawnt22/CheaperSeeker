@@ -36,6 +36,10 @@
     [super viewDidLoad];
     self.title = self.keyword;
     
+    UIBarButtonItem *_refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction:)];
+    self.navigationItem.rightBarButtonItem = _refresh;
+    [_refresh release];
+    
     SCouponsTableView *_ts = [[SCouponsTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStylePlain];
     _ts.backgroundColor = self.view.backgroundColor;
     _ts.couponsTableViewDelegate = self;
@@ -48,6 +52,10 @@
     self.couponsTableView.couponsDataStore = _ds;
     [_ds release];
     
+    [self.couponsTableView startPullToRefreshWithAnimated:YES];
+}
+- (void)refreshAction:(id)sender {
+    [self.couponsTableView finishPullToRefreshWithAnimated:NO];
     [self.couponsTableView startPullToRefreshWithAnimated:YES];
 }
 

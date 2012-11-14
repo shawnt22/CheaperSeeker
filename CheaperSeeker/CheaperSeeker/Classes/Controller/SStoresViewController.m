@@ -49,6 +49,10 @@
     self.title = kViewControllerStoreTitle;
     [SUtil setNavigationBarSplitButtonItemWith:self];
     
+    UIBarButtonItem *_refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction:)];
+    self.navigationItem.rightBarButtonItem = _refresh;
+    [_refresh release];
+    
     TSPullTableView *_table = [[CSPullTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStylePlain];
     _table.backgroundColor = self.view.backgroundColor;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -129,6 +133,10 @@
 #pragma mark Actions
 - (void)splitAction:(id)sender {
     [SUtil splitActionWith:self];
+}
+- (void)refreshAction:(id)sender {
+    [self.storesTableView finishPullToRefreshWithAnimated:NO];
+    [self.storesTableView startPullToRefreshWithAnimated:YES];
 }
 
 @end
