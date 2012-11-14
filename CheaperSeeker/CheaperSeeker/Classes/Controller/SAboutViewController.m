@@ -51,7 +51,6 @@
     UIImageView *_logo = [[UIImageView alloc] initWithFrame:CGRectMake((_bgview.bounds.size.width-_width)/2, 35.0, _width, _width)];
     _logo.backgroundColor = [UIColor clearColor];
     _logo.image = [Util imageWithName:@"Icon@2x"];
-    _logo.layer.shadowOpacity = 0.7;
     [_bgview addSubview:_logo];
     [_logo release];
     
