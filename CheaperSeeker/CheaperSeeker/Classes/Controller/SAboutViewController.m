@@ -12,6 +12,7 @@
 #import "Util.h"
 #import "Sconfiger.h"
 #import "SWebViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SAboutViewController()
 @property (nonatomic, assign) UITableView *theTableView;
@@ -48,7 +49,9 @@
     
     CGFloat _width = 100.0;
     UIImageView *_logo = [[UIImageView alloc] initWithFrame:CGRectMake((_bgview.bounds.size.width-_width)/2, 35.0, _width, _width)];
-    _logo.backgroundColor = [UIColor greenColor];
+    _logo.backgroundColor = [UIColor clearColor];
+    _logo.image = [Util imageWithName:@"Icon@2x"];
+    _logo.layer.shadowOpacity = 0.7;
     [_bgview addSubview:_logo];
     [_logo release];
     
