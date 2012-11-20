@@ -76,4 +76,7 @@ typedef enum {
 #define k_text_coupon_date_nature_description_days      @"days"
 #define k_text_coupon_date_nature_description_hours     @"hours"
 
+#define k_text_merchant_coupons_segment_item_common     @"Common"
+#define k_text_merchant_coupons_segment_item_featured   @"Featured"
+
 
