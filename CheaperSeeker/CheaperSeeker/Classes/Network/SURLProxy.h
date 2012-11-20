@@ -33,7 +33,8 @@ typedef enum {
 + (NSString *)getCouponWithCouponID:(NSString *)cid;
 + (NSString *)getMerchantWithMerchantID:(NSString *)mid;
 
-+ (NSString *)getMerchantCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count;
++ (NSString *)getMerchantCommonCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count;
++ (NSString *)getMerchantFeaturedCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count;
 + (NSString *)getCategoryCouponsWithCategoryID:(NSString *)cid Cursor:(NSString *)cursor Count:(NSInteger)count;
 
 @end

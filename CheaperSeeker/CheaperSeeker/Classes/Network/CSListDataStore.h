@@ -31,8 +31,13 @@
 
 @end
 
+typedef enum {
+    MerchantCouponsDataStoreCommon,
+    MerchantCouponsDataStoreFeatured,
+}MerchantCouponsDataStoreType;
 @interface CSMerchantCouponsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
 @property (nonatomic, retain) id merchant;
+@property (nonatomic, assign) MerchantCouponsDataStoreType dstype;
 @end
 
 #pragma mark - Category

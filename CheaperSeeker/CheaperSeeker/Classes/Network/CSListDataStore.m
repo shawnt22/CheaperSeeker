@@ -211,18 +211,36 @@
 
 @end
 
+@interface CSMerchantCouponsDataStore ()
+- (NSString *)urlPathWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count;
+@end
 @implementation CSMerchantCouponsDataStore
 @synthesize merchant;
+@synthesize dstype;
 
 - (void)dealloc {
     self.merchant = nil;
     [super dealloc];
 }
+- (NSString *)urlPathWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *_result = nil;
+    switch (self.dstype) {
+        case MerchantCouponsDataStoreFeatured:
+            _result = [SURLProxy getMerchantFeaturedCouponsWithMerchantID:mid Cursor:cursor Count:count];
+            break;
+        case MerchantCouponsDataStoreCommon:
+            _result = [SURLProxy getMerchantCommonCouponsWithMerchantID:mid Cursor:cursor Count:count];
+            break;
+        default:
+            break;
+    }
+    return _result;
+}
 - (void)refreshItemsWithCachePolicy:(ASICachePolicy)cachePolicy {
-    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy getMerchantCouponsWithMerchantID:[self.merchant objectForKey:k_merchant_id] Cursor:kListDataStoreRefreshCursor Count:self.limitCount]];
+    [self refreshItemsWithCachePolicy:cachePolicy URL:[self urlPathWithMerchantID:[self.merchant objectForKey:k_merchant_id] Cursor:kListDataStoreRefreshCursor Count:self.limitCount]];
 }
 - (void)loadmoreItems {
-    [self loadMoreItemsWithURL:[SURLProxy getMerchantCouponsWithMerchantID:[self.merchant objectForKey:k_merchant_id] Cursor:self.cursorID Count:self.limitCount]];
+    [self loadMoreItemsWithURL:[self urlPathWithMerchantID:[self.merchant objectForKey:k_merchant_id] Cursor:self.cursorID Count:self.limitCount]];
 }
 
 @end

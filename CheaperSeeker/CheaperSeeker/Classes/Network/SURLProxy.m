@@ -60,9 +60,14 @@
     url = [SURLProxy prepareURL:url];
     return url;
 }
-//  已验证 getMerchantCommonCoupons
-+ (NSString *)getMerchantCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count {
+//  已验证 
++ (NSString *)getMerchantCommonCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count {
     NSString *url = [NSString stringWithFormat:@"coupon/getMerchantCommonCoupons?id=%@&cursor=%@&size=%d", mid, cursor, count];
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
++ (NSString *)getMerchantFeaturedCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = [NSString stringWithFormat:@"coupon/getMerchantFeaturedCoupons?id=%@&cursor=%@&size=%d", mid, cursor, count];
     url = [SURLProxy prepareURL:url];
     return url;
 }
