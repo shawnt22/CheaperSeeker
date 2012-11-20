@@ -165,14 +165,9 @@
         return;
     }
     if (self.storedImageMaxNumber > 0) {
-        NSInteger currentNumber = [[self.imageStore allKeys] count];
-        NSInteger deltaNumber = currentNumber - self.storedImageMaxNumber;
-        if (deltaNumber > 0) {
-            float releaseCount = ceilf([[self.imageStore allKeys] count]/2.0);
-            for (NSInteger i = 0; i < releaseCount; i++) {
-                NSString *storedURL = [[self.imageStore allKeys] lastObject];
-                [self.imageStore removeObjectForKey:storedURL];
-            }
+        while ([[self.imageStore allKeys] count] > self.storedImageMaxNumber) {
+            NSString *_storedURL = [[self.imageStore allKeys] lastObject];
+            [self.imageStore removeObjectForKey:_storedURL];
         }
     }
     NSMutableDictionary *imgInfo = [self.imageStore objectForKey:url];
