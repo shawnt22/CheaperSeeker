@@ -7,7 +7,23 @@
 //
 
 #import "SViewController.h"
+#import "CSDetailDataStore.h"
 
-@interface SAboutViewController : SViewController <UITableViewDataSource, UITableViewDelegate>
+typedef enum {
+    AboutTableRowDescription,
+    AboutTableRowEmail,
+    AboutTableRowSite,
+    AboutTableRowAddress,
+    AboutTableRowCount,
+}AboutControllerTableRow;
+
+@interface SAboutViewController : SViewController <UITableViewDataSource, UITableViewDelegate, SDataLoaderDelegate>
+
+@end
+
+@interface SAboutViewController (DataManager)
+
++ (NSString *)contentWithIndexPath:(NSIndexPath *)indexPath About:(id)about;
++ (NSString *)titleWithIndexPath:(NSIndexPath *)indexPath About:(id)about;
 
 @end

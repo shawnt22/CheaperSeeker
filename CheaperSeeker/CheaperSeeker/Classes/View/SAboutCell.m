@@ -7,13 +7,15 @@
 //
 
 #import "SAboutCell.h"
+#import "SAboutViewController.h"
 
 @interface SAboutCell()
 @property (nonatomic, assign) UILabel *aboutTitle;
+@property (nonatomic, assign) UILabel *aboutContent;
 @end
 
 @implementation SAboutCell
-@synthesize aboutTitle;
+@synthesize aboutTitle, aboutContent;
 @synthesize customSelectedBackgroundView, customBackgroundView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -22,14 +24,10 @@
     if (self) {
         [SUtil setCustomCellBGView:self];
         
-        UILabel *_ttl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.bounds.size.width-20, self.contentView.bounds.size.height)];
-        _ttl.backgroundColor = [UIColor clearColor];
-        _ttl.textColor = [UIColor blackColor];
-        _ttl.textAlignment = UITextAlignmentCenter;
-        _ttl.font = [UIFont systemFontOfSize:16.0];
-        [self.contentView addSubview:_ttl];
-        self.aboutTitle = _ttl;
-        [_ttl release];
+        self.textLabel.backgroundColor = [UIColor clearColor];
+        self.textLabel.numberOfLines = 1;
+        self.detailTextLabel.backgroundColor = [UIColor clearColor];
+        self.detailTextLabel.numberOfLines = 1000;
     }
     return self;
 }
@@ -42,8 +40,39 @@
 + (CGFloat)cellHeight {
     return 45.0f;
 }
-- (void)refreshWithTitle:(NSString *)title {
-    self.aboutTitle.text = title;
+- (void)refreshWithTitle:(NSString *)title Content:(NSString *)content {
+    self.textLabel.text = title;
+    self.detailTextLabel.text = content;
+}
+
+@end
+
+
+@implementation SAboutCell (Layout)
+
++ (CGFloat)titleWidth {
+    return 60.0;
+}
++ (CGFloat)contentWidth {
+    return [SUtil cellWidth] - [SAboutCell titleWidth] - 3;
+}
++ (CGFloat)cellHeightWithAbout:(id)about IndexPath:(NSIndexPath *)indexPath {
+    NSString *_content = [SAboutViewController contentWithIndexPath:indexPath About:about];
+    CGSize _size = [_content sizeWithFont:[SAboutCell contentFont] constrainedToSize:CGSizeMake([SAboutCell contentWidth], 960) lineBreakMode:[SAboutCell lineBreakMode]];
+    _size.height += [SAboutCell marginTop]*2;
+    return _size.height > 44.0f ? _size.height : 44.0f;
+}
++ (UIFont *)titleFont {
+    return [UIFont systemFontOfSize:12.0];
+}
++ (UIFont *)contentFont {
+    return [UIFont systemFontOfSize:18.0];
+}
++ (NSLineBreakMode)lineBreakMode {
+    return NSLineBreakByWordWrapping;
+}
++ (CGFloat)marginTop {
+    return 10.0;
 }
 
 @end

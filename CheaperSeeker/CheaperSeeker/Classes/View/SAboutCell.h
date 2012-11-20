@@ -15,6 +15,19 @@
 @interface SAboutCell : UITableViewCell<TCustomCellBGViewProtocol>
 
 + (CGFloat)cellHeight;
-- (void)refreshWithTitle:(NSString *)title;
+- (void)refreshWithTitle:(NSString *)title Content:(NSString *)content;
 
 @end
+
+@interface SAboutCell (Layout)
++ (CGFloat)titleWidth;
++ (CGFloat)contentWidth;
++ (CGFloat)cellHeightWithAbout:(id)about IndexPath:(NSIndexPath *)indexPath;
++ (UIFont *)titleFont;
++ (UIFont *)contentFont;
++ (NSLineBreakMode)lineBreakMode;
++ (CGFloat)marginTop;
+@end
+
+
+

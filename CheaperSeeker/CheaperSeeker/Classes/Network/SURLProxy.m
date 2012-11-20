@@ -78,4 +78,10 @@
     return url;
 }
 
++ (NSString *)getAboutInfo {
+    NSString *url = @"about";
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
+
 @end

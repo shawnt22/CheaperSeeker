@@ -17,6 +17,8 @@ typedef enum {
     SURLRequestItemsRefresh,
     SURLRequestItemsLoadmore,
     
+    SURLRequestAboutInfo,
+    
 }SURLRequestTag;
 
 @interface SURLProxy : NSObject
@@ -36,5 +38,7 @@ typedef enum {
 + (NSString *)getMerchantCommonCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count;
 + (NSString *)getMerchantFeaturedCouponsWithMerchantID:(NSString *)mid Cursor:(NSString *)cursor Count:(NSInteger)count;
 + (NSString *)getCategoryCouponsWithCategoryID:(NSString *)cid Cursor:(NSString *)cursor Count:(NSInteger)count;
+
++ (NSString *)getAboutInfo;
 
 @end

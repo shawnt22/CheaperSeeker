@@ -56,6 +56,19 @@
 #define k_category_subitems                     @"items"
 
 
+#pragma mark - About
+//  about
+#define k_about_description                     @"description"
+#define k_about_email                           @"email"
+#define k_about_address                         @"address"
+#define k_about_site_title                      @"s_name"
+#define k_about_site_url                        @"s_url"
+#define k_about_privacy_url                     @"privacy"
+#define k_about_terms_url                       @"terms"
+
+
+
+
 
 
 
