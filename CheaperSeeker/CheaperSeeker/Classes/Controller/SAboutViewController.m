@@ -105,7 +105,7 @@
     
     UILabel *_and = [[UILabel alloc] initWithFrame:CGRectMake(0, _privacy.frame.origin.y, _bgview.frame.size.width, _privacy.frame.size.height)];
     _and.backgroundColor = [UIColor clearColor];
-    _and.textAlignment = NSTextAlignmentCenter;
+    _and.textAlignment = UITextAlignmentCenter;
     _and.font = [UIFont systemFontOfSize:14.0];
     _and.textColor = SRGBCOLOR(107, 107, 107);
     _and.autoresizingMask = UIViewAutoresizingFlexibleWidth;
