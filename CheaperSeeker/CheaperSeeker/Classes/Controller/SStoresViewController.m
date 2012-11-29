@@ -13,19 +13,19 @@
 #import "SStoreCouponsViewController.h"
 
 @interface SStoresViewController()
-@property (nonatomic, assign) TSPullTableView *storesTableView;
-@property (nonatomic, retain) CSMerchantsDataStore *storesDataStore;
+@property (nonatomic, assign) TSPullTableView *featuredStoresTableView;
+@property (nonatomic, retain) CSFeaturedMerchantsDataStore *featuredStoresDataStore;
 @property (nonatomic, retain) SMerchantStyle *merchantStyle;
 @end
 @implementation SStoresViewController
-@synthesize storesDataStore, storesTableView;
+@synthesize featuredStoresDataStore, featuredStoresTableView;
 @synthesize merchantStyle;
 
 #pragma mark init
 - (id)init {
     self = [super init];
     if (self) {
-        self.storesDataStore = [[[CSMerchantsDataStore alloc] initWithDelegate:self] autorelease];
+        self.featuredStoresDataStore = [[[CSFeaturedMerchantsDataStore alloc] initWithDelegate:self] autorelease];
         self.merchantStyle = [[[SMerchantStyle alloc] init] autorelease];
     }
     return self;
@@ -34,9 +34,9 @@
     [super initSubobjects];
 }
 - (void)dealloc {
-    [self.storesDataStore cancelAllRequests];
-    self.storesDataStore.delegate = nil;
-    self.storesDataStore = nil;
+    [self.featuredStoresDataStore cancelAllRequests];
+    self.featuredStoresDataStore.delegate = nil;
+    self.featuredStoresDataStore = nil;
     
     self.merchantStyle = nil;
     [super dealloc];
@@ -59,10 +59,10 @@
     _table.pullDelegate = self;
     _table.dataSource = self;
     [self.view addSubview:_table];
-    self.storesTableView = _table;
+    self.featuredStoresTableView = _table;
     [_table release];
     
-    [self.storesTableView startPullToRefreshWithAnimated:YES];
+    [self.featuredStoresTableView startPullToRefreshWithAnimated:YES];
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -70,15 +70,15 @@
 
 #pragma mark table delegate
 - (void)tableViewPullToRefresh:(TSPullTableView *)tableView {
-    [self.storesDataStore refreshItemsWithCachePolicy:ASIDoNotReadFromCacheCachePolicy];
+    [self.featuredStoresDataStore refreshItemsWithCachePolicy:ASIDoNotReadFromCacheCachePolicy];
 }
 - (void)tableViewPullToLoadmore:(TSPullTableView *)tableView {
-    [self.storesDataStore loadmoreItems];
+    [self.featuredStoresDataStore loadmoreItems];
 }
 - (void)tableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SStoreCouponsViewController *_scvctr = [[SStoreCouponsViewController alloc] initWithStore:[self.storesDataStore.items objectAtIndex:indexPath.row]];
+    SStoreCouponsViewController *_scvctr = [[SStoreCouponsViewController alloc] initWithStore:[self.featuredStoresDataStore.items objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:_scvctr animated:YES];
     [_scvctr release];
 }
@@ -86,7 +86,7 @@
     return [SMerchantCell cellHeight];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.storesDataStore.items count];
+    return [self.featuredStoresDataStore.items count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *_identifier = @"mrchnt";
@@ -94,10 +94,10 @@
     if (!_cell) {
         _cell = [[[SMerchantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
     }
-    id _mrchnt = [self.storesDataStore.items objectAtIndex:indexPath.row];
+    id _mrchnt = [self.featuredStoresDataStore.items objectAtIndex:indexPath.row];
     [_cell refreshWithMerchant:_mrchnt Layout:nil Style:self.merchantStyle];
-    _cell.customBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.storesDataStore.items count]];
-    _cell.customSelectedBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.storesDataStore.items count]];
+    _cell.customBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.featuredStoresDataStore.items count]];
+    _cell.customSelectedBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.featuredStoresDataStore.items count]];
     return _cell;
 }
 
@@ -105,13 +105,13 @@
 - (void)dataloader:(SDataLoader *)dataloader didStartRequest:(SURLRequest *)request {}
 - (void)dataloader:(SDataLoader *)dataloader didFinishRequest:(SURLRequest *)request {
     if (request.tag == SURLRequestItemsRefresh) {
-        [self.storesTableView finishPullToRefreshWithAnimated:YES];
-        [self.storesTableView reloadDataWithDataFull:![self.storesDataStore canLoadMore]];
+        [self.featuredStoresTableView finishPullToRefreshWithAnimated:YES];
+        [self.featuredStoresTableView reloadDataWithDataFull:![self.featuredStoresDataStore canLoadMore]];
         return;
     }
     if (request.tag == SURLRequestItemsLoadmore) {
-        [self.storesTableView finishPullToLoadmoreWithAnimated:YES];
-        [self.storesTableView reloadDataWithDataFull:![self.storesDataStore canLoadMore]];
+        [self.featuredStoresTableView finishPullToLoadmoreWithAnimated:YES];
+        [self.featuredStoresTableView reloadDataWithDataFull:![self.featuredStoresDataStore canLoadMore]];
         return;
     }
 }
@@ -120,11 +120,11 @@
 }
 - (void)dataloader:(SDataLoader *)dataloader didFailRequest:(SURLRequest *)request Error:(NSError *)error {
     if (request.tag == SURLRequestItemsRefresh) {
-        [self.storesTableView finishPullToRefreshWithAnimated:YES];
+        [self.featuredStoresTableView finishPullToRefreshWithAnimated:YES];
         return;
     }
     if (request.tag == SURLRequestItemsLoadmore) {
-        [self.storesTableView finishPullToLoadmoreWithAnimated:YES];
+        [self.featuredStoresTableView finishPullToLoadmoreWithAnimated:YES];
         return;
     }
 }
@@ -135,8 +135,8 @@
     [SUtil splitActionWith:self];
 }
 - (void)refreshAction:(id)sender {
-    [self.storesTableView finishPullToRefreshWithAnimated:NO];
-    [self.storesTableView startPullToRefreshWithAnimated:YES];
+    [self.featuredStoresTableView finishPullToRefreshWithAnimated:NO];
+    [self.featuredStoresTableView startPullToRefreshWithAnimated:YES];
 }
 
 @end

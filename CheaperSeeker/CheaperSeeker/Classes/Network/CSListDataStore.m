@@ -200,13 +200,13 @@
 @end
 
 #pragma mark - Merchant
-@implementation CSMerchantsDataStore
+@implementation CSFeaturedMerchantsDataStore
 
 - (void)refreshItemsWithCachePolicy:(ASICachePolicy)cachePolicy {
-    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy getMerchantsWithCursor:kListDataStoreRefreshCursor Count:self.limitCount]];
+    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy getFeaturedMerchantsWithCursor:kListDataStoreRefreshCursor Count:self.limitCount]];
 }
 - (void)loadmoreItems {
-    [self loadMoreItemsWithURL:[SURLProxy getMerchantsWithCursor:self.cursorID Count:self.limitCount]];
+    [self loadMoreItemsWithURL:[SURLProxy getFeaturedMerchantsWithCursor:self.cursorID Count:self.limitCount]];
 }
 
 @end
@@ -358,7 +358,7 @@
 }
 @end
 
-@implementation CSMerchantsDataStore(LocalRequest)
+@implementation CSFeaturedMerchantsDataStore(LocalRequest)
 - (NSString *)localResponseString:(SURLRequest *)request {
     return [CSLocalRequest merchantsJSONString];
 }

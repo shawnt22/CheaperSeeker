@@ -27,7 +27,7 @@
 @end
 
 #pragma mark - Merchant
-@interface CSMerchantsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
+@interface CSFeaturedMerchantsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
 
 @end
 
