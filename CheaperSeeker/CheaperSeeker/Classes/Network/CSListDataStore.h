@@ -27,8 +27,12 @@
 @end
 
 #pragma mark - Merchant
-@interface CSFeaturedMerchantsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
-
+typedef enum {
+    MerchantsDataStoreCommon,
+    MerchantsDataStoreFeatured,
+}MerchantsDataStoreType;
+@interface CSMerchantsDataStore : PListDataStore <PListRefreshLoadmoreProtocol>
+@property (nonatomic, assign) MerchantsDataStoreType dstype;
 @end
 
 typedef enum {

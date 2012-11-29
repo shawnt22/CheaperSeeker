@@ -13,33 +13,49 @@
 #import "SStoreCouponsViewController.h"
 
 @interface SStoresViewController()
-@property (nonatomic, assign) TSPullTableView *featuredStoresTableView;
-@property (nonatomic, retain) CSFeaturedMerchantsDataStore *featuredStoresDataStore;
-@property (nonatomic, retain) SMerchantStyle *merchantStyle;
+@property (nonatomic, assign) SMerchantsTableView *commonMerchantsTableView;
+@property (nonatomic, assign) SMerchantsTableView *featuredMerchantsTableView;
+@property (nonatomic, assign) SMerchantsTableView *currentMerchantsTableView;
+- (void)createCommonMerchantsTableView;
+- (void)createFeaturedMerchantsTableView;
+- (void)segmentControlDidChangeValue:(UISegmentedControl *)segmentControl;
 @end
+
 @implementation SStoresViewController
-@synthesize featuredStoresDataStore, featuredStoresTableView;
-@synthesize merchantStyle;
+@synthesize commonMerchantsTableView, featuredMerchantsTableView, currentMerchantsTableView;
 
 #pragma mark init
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.featuredStoresDataStore = [[[CSFeaturedMerchantsDataStore alloc] initWithDelegate:self] autorelease];
-        self.merchantStyle = [[[SMerchantStyle alloc] init] autorelease];
-    }
-    return self;
-}
-- (void)initSubobjects {
-    [super initSubobjects];
-}
-- (void)dealloc {
-    [self.featuredStoresDataStore cancelAllRequests];
-    self.featuredStoresDataStore.delegate = nil;
-    self.featuredStoresDataStore = nil;
+- (void)createCommonMerchantsTableView {
+    SMerchantsTableView *_ts = [[SMerchantsTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+    _ts.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _ts.backgroundColor = self.view.backgroundColor;
+    _ts.merchantsTableViewDelegate = self;
+    [self.view addSubview:_ts];
+    self.commonMerchantsTableView = _ts;
+    [_ts release];
     
-    self.merchantStyle = nil;
-    [super dealloc];
+    CSMerchantsDataStore *_ds = [[CSMerchantsDataStore alloc] initWithDelegate:_ts];
+    _ds.dstype = MerchantsDataStoreCommon;
+    self.commonMerchantsTableView.merchantsDataStore = _ds;
+    [_ds release];
+    
+    [_ts startPullToRefreshWithAnimated:YES];
+}
+- (void)createFeaturedMerchantsTableView {
+    SMerchantsTableView *_ts = [[SMerchantsTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+    _ts.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _ts.backgroundColor = self.view.backgroundColor;
+    _ts.merchantsTableViewDelegate = self;
+    [self.view addSubview:_ts];
+    self.featuredMerchantsTableView = _ts;
+    [_ts release];
+    
+    CSMerchantsDataStore *_ds = [[CSMerchantsDataStore alloc] initWithDelegate:_ts];
+    _ds.dstype = MerchantsDataStoreFeatured;
+    self.featuredMerchantsTableView.merchantsDataStore = _ds;
+    [_ds release];
+    
+    [_ts startPullToRefreshWithAnimated:YES];
 }
 
 #pragma mark ViewController Delegate
@@ -53,90 +69,58 @@
     self.navigationItem.rightBarButtonItem = _refresh;
     [_refresh release];
     
-    TSPullTableView *_table = [[CSPullTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.bounds.size.height-[UIApplication sharedApplication].statusBarFrame.size.height) style:UITableViewStylePlain];
-    _table.backgroundColor = self.view.backgroundColor;
-    _table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _table.pullDelegate = self;
-    _table.dataSource = self;
-    [self.view addSubview:_table];
-    self.featuredStoresTableView = _table;
-    [_table release];
+    UISegmentedControl *_segment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:k_text_merchants_segment_item_fetured, k_text_merchants_segment_item_all, nil]];
+    _segment.segmentedControlStyle = UISegmentedControlStyleBar;
+    [_segment addTarget:self action:@selector(segmentControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = _segment;
+    [_segment release];
     
-    [self.featuredStoresTableView startPullToRefreshWithAnimated:YES];
+    _segment.selectedSegmentIndex = 0;
+    [self segmentControlDidChangeValue:_segment];
+    [self.currentMerchantsTableView startPullToRefreshWithAnimated:YES];
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
 
 #pragma mark table delegate
-- (void)tableViewPullToRefresh:(TSPullTableView *)tableView {
-    [self.featuredStoresDataStore refreshItemsWithCachePolicy:ASIDoNotReadFromCacheCachePolicy];
+- (void)segmentControlDidChangeValue:(UISegmentedControl *)segmentControl {
+    self.currentMerchantsTableView.hidden = YES;
+    switch (segmentControl.selectedSegmentIndex) {
+        case 0:
+        {
+            if (!self.featuredMerchantsTableView) {
+                [self createFeaturedMerchantsTableView];
+            }
+            self.currentMerchantsTableView = self.featuredMerchantsTableView;
+        }
+            break;
+        case 1:
+        {
+            if (!self.commonMerchantsTableView) {
+                [self createCommonMerchantsTableView];
+            }
+            self.currentMerchantsTableView = self.commonMerchantsTableView;
+        }
+            break;
+        default:
+            break;
+    }
+    self.currentMerchantsTableView.hidden = NO;
 }
-- (void)tableViewPullToLoadmore:(TSPullTableView *)tableView {
-    [self.featuredStoresDataStore loadmoreItems];
-}
-- (void)tableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    SStoreCouponsViewController *_scvctr = [[SStoreCouponsViewController alloc] initWithStore:[self.featuredStoresDataStore.items objectAtIndex:indexPath.row]];
+- (void)merchantsTableView:(SMerchantsTableView *)merchantsTableView didSelectMerchant:(id)merchant atIndexPath:(NSIndexPath *)indexPath {
+    SStoreCouponsViewController *_scvctr = [[SStoreCouponsViewController alloc] initWithStore:merchant];
     [self.navigationController pushViewController:_scvctr animated:YES];
     [_scvctr release];
 }
-- (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [SMerchantCell cellHeight];
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.featuredStoresDataStore.items count];
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *_identifier = @"mrchnt";
-    SMerchantCell *_cell = (SMerchantCell *)[tableView dequeueReusableCellWithIdentifier:_identifier];
-    if (!_cell) {
-        _cell = [[[SMerchantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
-    }
-    id _mrchnt = [self.featuredStoresDataStore.items objectAtIndex:indexPath.row];
-    [_cell refreshWithMerchant:_mrchnt Layout:nil Style:self.merchantStyle];
-    _cell.customBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.featuredStoresDataStore.items count]];
-    _cell.customSelectedBackgroundView.bgStyle = [TCustomCellBGView plainStyleWithIndex:indexPath.row Count:[self.featuredStoresDataStore.items count]];
-    return _cell;
-}
-
-#pragma mark dataloader delegate
-- (void)dataloader:(SDataLoader *)dataloader didStartRequest:(SURLRequest *)request {}
-- (void)dataloader:(SDataLoader *)dataloader didFinishRequest:(SURLRequest *)request {
-    if (request.tag == SURLRequestItemsRefresh) {
-        [self.featuredStoresTableView finishPullToRefreshWithAnimated:YES];
-        [self.featuredStoresTableView reloadDataWithDataFull:![self.featuredStoresDataStore canLoadMore]];
-        return;
-    }
-    if (request.tag == SURLRequestItemsLoadmore) {
-        [self.featuredStoresTableView finishPullToLoadmoreWithAnimated:YES];
-        [self.featuredStoresTableView reloadDataWithDataFull:![self.featuredStoresDataStore canLoadMore]];
-        return;
-    }
-}
-- (void)dataloader:(SDataLoader *)dataloader submitResponse:(id)response Request:(SURLRequest *)request {
-    
-}
-- (void)dataloader:(SDataLoader *)dataloader didFailRequest:(SURLRequest *)request Error:(NSError *)error {
-    if (request.tag == SURLRequestItemsRefresh) {
-        [self.featuredStoresTableView finishPullToRefreshWithAnimated:YES];
-        return;
-    }
-    if (request.tag == SURLRequestItemsLoadmore) {
-        [self.featuredStoresTableView finishPullToLoadmoreWithAnimated:YES];
-        return;
-    }
-}
-- (void)dataloader:(SDataLoader *)dataloader didCancelRequest:(SURLRequest *)request {}
 
 #pragma mark Actions
 - (void)splitAction:(id)sender {
     [SUtil splitActionWith:self];
 }
 - (void)refreshAction:(id)sender {
-    [self.featuredStoresTableView finishPullToRefreshWithAnimated:NO];
-    [self.featuredStoresTableView startPullToRefreshWithAnimated:YES];
+    [self.currentMerchantsTableView finishPullToRefreshWithAnimated:NO];
+    [self.currentMerchantsTableView startPullToRefreshWithAnimated:YES];
 }
 
 @end

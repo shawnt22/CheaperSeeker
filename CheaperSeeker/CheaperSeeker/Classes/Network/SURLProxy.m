@@ -44,6 +44,11 @@
     return url;
 }
 //  已验证
++ (NSString *)getCommonMerchantsWithCursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *url = [NSString stringWithFormat:@"coupon/getCommonMerchants?size=%d&cursor=%@", count, cursor];
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
 + (NSString *)getFeaturedMerchantsWithCursor:(NSString *)cursor Count:(NSInteger)count {
     NSString *url = [NSString stringWithFormat:@"coupon/getFeaturedMerchants?size=%d&cursor=%@", count, cursor];
     url = [SURLProxy prepareURL:url];

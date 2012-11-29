@@ -78,6 +78,8 @@ typedef enum {
 
 #define k_text_merchant_coupons_segment_item_common     @"Common"
 #define k_text_merchant_coupons_segment_item_featured   @"Featured"
+#define k_text_merchants_segment_item_all            @"All"
+#define k_text_merchants_segment_item_fetured           @"Featured"
 
 #define k_text_about_row_description                    @"Description"
 #define k_text_about_row_email                          @"Email"

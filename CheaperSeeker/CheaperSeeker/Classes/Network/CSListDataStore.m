@@ -200,13 +200,28 @@
 @end
 
 #pragma mark - Merchant
-@implementation CSFeaturedMerchantsDataStore
+@interface CSMerchantsDataStore ()
+- (NSString *)urlPathWithCursor:(NSString *)cursor Count:(NSInteger)count;
+@end
+@implementation CSMerchantsDataStore
 
+- (NSString *)urlPathWithCursor:(NSString *)cursor Count:(NSInteger)count {
+    NSString *_resutl = nil;
+    switch (self.dstype) {
+        case MerchantsDataStoreCommon:
+            _resutl = [SURLProxy getCommonMerchantsWithCursor:cursor Count:count];
+            break;
+        default:
+            _resutl = [SURLProxy getFeaturedMerchantsWithCursor:cursor Count:count];
+            break;
+    }
+    return _resutl;
+}
 - (void)refreshItemsWithCachePolicy:(ASICachePolicy)cachePolicy {
-    [self refreshItemsWithCachePolicy:cachePolicy URL:[SURLProxy getFeaturedMerchantsWithCursor:kListDataStoreRefreshCursor Count:self.limitCount]];
+    [self refreshItemsWithCachePolicy:cachePolicy URL:[self urlPathWithCursor:kListDataStoreRefreshCursor Count:self.limitCount]];
 }
 - (void)loadmoreItems {
-    [self loadMoreItemsWithURL:[SURLProxy getFeaturedMerchantsWithCursor:self.cursorID Count:self.limitCount]];
+    [self loadMoreItemsWithURL:[self urlPathWithCursor:self.cursorID Count:self.limitCount]];
 }
 
 @end
@@ -358,7 +373,7 @@
 }
 @end
 
-@implementation CSFeaturedMerchantsDataStore(LocalRequest)
+@implementation CSMerchantsDataStore(LocalRequest)
 - (NSString *)localResponseString:(SURLRequest *)request {
     return [CSLocalRequest merchantsJSONString];
 }

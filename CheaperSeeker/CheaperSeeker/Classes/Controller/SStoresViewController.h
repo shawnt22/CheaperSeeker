@@ -7,9 +7,8 @@
 //
 
 #import "SViewController.h"
-#import "TSPullTableView.h"
-#import "CSListDataStore.h"
+#import "SMerchantsTableView.h"
 
-@interface SStoresViewController : SViewController<TSPullTableViewDelegate, TSViewGestureDelegate, UITableViewDataSource, SDataLoaderDelegate>
+@interface SStoresViewController : SViewController<SMerchantsTableViewDelegate>
 
 @end
