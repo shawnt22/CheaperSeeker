@@ -135,7 +135,7 @@
     [self createLogoView];
     [self createPrivacyView];
     
-    [self.aboutInfoDataStore getAboutInfo];
+    [self.aboutInfoDataStore getAboutInfo:ASIDoNotReadFromCacheCachePolicy];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

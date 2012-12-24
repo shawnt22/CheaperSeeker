@@ -9,5 +9,5 @@
 #import "SDataLoader.h"
 
 @interface CSAboutInfoDataStore : SDataLoader
-- (void)getAboutInfo;
+- (void)getAboutInfo:(ASICachePolicy)cachePolicy;
 @end

@@ -22,13 +22,13 @@
     [super cancelAllRequests];
     [self cancelRequest:self.aboutRequest];
 }
-- (void)getAboutInfo {
+- (void)getAboutInfo:(ASICachePolicy)cachePolicy {
     [self cancelRequest:self.aboutRequest];
     
     SURLRequest *_request = [[SURLRequest alloc] initWithURL:[NSURL URLWithString:[SURLProxy getAboutInfo]]];
     _request.delegate = self;
     _request.tag = SURLRequestAboutInfo;
-    _request.cachePolicy = ASIDoNotReadFromCacheCachePolicy;
+    _request.cachePolicy = cachePolicy;
     self.aboutRequest = _request;
     [_request release];
     
