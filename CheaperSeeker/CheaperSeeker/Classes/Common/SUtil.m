@@ -21,6 +21,12 @@
 + (NSString *)currentImageCacheStoragePath {
     return nil;
 }
++ (NSString *)commonFilePath {
+    return [Util filePathWith:@"common" isDirectory:YES];
+}
++ (NSString *)commonDocFilePath {
+    return [Util filePathWith:@"common/doc" isDirectory:YES];
+}
 
 + (void)setNavigationBarSplitButtonItemWith:(UIViewController *)viewController {
     UIBarButtonItem *_splitItem = [[UIBarButtonItem alloc] initWithTitle:kNavigationBarSplitItemTitle style:UIBarButtonItemStylePlain target:viewController action:@selector(splitAction:)];

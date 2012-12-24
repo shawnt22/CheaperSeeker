@@ -13,6 +13,8 @@
 
 + (NSString *)currentDocumentCacheStoragePath;
 + (NSString *)currentImageCacheStoragePath;
++ (NSString *)commonFilePath;
++ (NSString *)commonDocFilePath;
 
 + (void)setNavigationBarSplitButtonItemWith:(UIViewController *)viewController;
 + (void)splitActionWith:(UIViewController<SSplitControllerProtocol> *)viewController;

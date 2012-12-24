@@ -12,16 +12,19 @@
 #pragma mark - Base
 @protocol SSettingProtocol <NSObject, NSCoding>
 @required
-+ (NSString *)settingFilePath;
-+ (id)resumeSetting;
-- (BOOL)saveSetting;
++ (NSString *)filePath;
++ (id)resume;
+- (BOOL)save;
 @optional
-- (BOOL)clearSetting;
-- (void)resetSetting;
+- (BOOL)clear;
+- (void)reset;
 @end
 
 @interface SSetting : NSObject<SSettingProtocol>
++ (id)shareSetting;
+@end
 
-- (void)initSubobjects;
-
+#define k_usetting_email    @"email"
+@interface SGSetting : SSetting
+@property (nonatomic, retain) NSString *email;
 @end

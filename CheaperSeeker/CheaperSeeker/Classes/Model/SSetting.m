@@ -7,46 +7,89 @@
 //
 
 #import "SSetting.h"
+#import "Util.h"
+#import "SUtil.h"
 
 #pragma mark - Base
 @implementation SSetting
 
++ (id)shareSetting {
+    return nil;
+}
 - (void)encodeWithCoder:(NSCoder *)aCoder {
 }
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [self init];
     if (self) {
-        [self initSubobjects];
     }
     return self;
+}
++ (NSString *)filePath {
+	return nil;
+}
++ (id)resume {
+    Class _class = [self class];
+    NSData *_data = [NSData dataWithContentsOfFile:[_class filePath]];
+    id _setting = nil;
+    if (_data) {
+        _setting = [NSKeyedUnarchiver unarchiveObjectWithData:_data];
+    } else {
+        _setting = [[[_class alloc] init] autorelease];
+    }
+	return _setting;
+}
+- (BOOL)save {
+    BOOL _result = NO;
+    NSData *_data = [NSKeyedArchiver archivedDataWithRootObject:self];
+    _result = [_data writeToFile:[[self class] filePath] atomically:YES];
+	return _result;
+}
+- (BOOL)clear {
+    return [Util removePathAt:[[self class] filePath]];
+}
+- (void)reset {
+}
+
+@end
+
+
+static SGSetting *gsetting = nil;
+@implementation SGSetting
+@synthesize email;
+
++ (id)shareSetting {
+    if (!gsetting) {
+        gsetting = [[SGSetting resume] retain];
+    }
+    return gsetting;
 }
 - (id)init {
     self = [super init];
     if (self) {
-        [self initSubobjects];
+        self.email = nil;
     }
     return self;
 }
-- (void)initSubobjects {
+- (void)dealloc {
+    self.email = nil;
+    [super dealloc];
 }
-+ (NSString *)settingFilePath {
-	return nil;
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        id _v = [aDecoder decodeObjectForKey:k_usetting_email];
+        if (_v) {
+            self.email = _v;
+        }
+    }
+    return self;
 }
-+ (id)resumeSetting {
-    NSData *data = [NSData dataWithContentsOfFile:[SSetting settingFilePath]];
-    SSetting *setting = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-	return setting;
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.email forKey:k_usetting_email];
 }
-- (BOOL)saveSetting {
-    BOOL result = NO;
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-    result = [data writeToFile:[[self class] settingFilePath] atomically:YES];
-	return result;
-}
-- (BOOL)clearSetting {
-	return NO;
-}
-- (void)resetSetting {
++ (NSString *)filePath {
+    return [[SUtil commonDocFilePath] stringByAppendingString:[@"gsetting" lastPathComponent]];
 }
 
 @end

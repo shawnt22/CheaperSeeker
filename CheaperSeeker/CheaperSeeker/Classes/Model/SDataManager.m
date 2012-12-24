@@ -30,7 +30,9 @@ static SDataManager *_dataManager = nil;
 }
 
 #pragma mark login manager
-- (void)prepareBeforeLogin {}
+- (void)prepareBeforeLogin {
+    [Util createDirectoryIfNecessaryAtPath:[SUtil commonDocFilePath]];
+}
 - (void)prepareAfterLogin {}
 - (BOOL)isLogin {
     return self.currentUser ? YES : NO;

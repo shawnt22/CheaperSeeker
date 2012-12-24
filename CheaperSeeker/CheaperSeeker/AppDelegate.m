@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SNavigationController.h"
+#import "SDataManager.h"
 
 @interface AppDelegate()
 - (void)launchControllers;
@@ -52,6 +53,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    
+    [[SDataManager shareDataManager] prepareBeforeLogin];
     
     [self launchControllers];
     

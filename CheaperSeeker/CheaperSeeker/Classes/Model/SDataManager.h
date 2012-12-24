@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SConfiger.h"
+#import "SSetting.h"
 
 @interface SDataManager : NSObject
 @property (nonatomic, assign) id currentUser;
