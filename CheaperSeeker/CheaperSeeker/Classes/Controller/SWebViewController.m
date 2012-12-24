@@ -9,12 +9,6 @@
 #import "SWebViewController.h"
 
 @interface SWebViewController()
-@property (nonatomic, assign) UIButton *goBack;
-@property (nonatomic, assign) UIButton *goForward;
-@property (nonatomic, assign) UIButton *reloadWeb;
-@property (nonatomic, assign) UIButton *stopLoad;
-@property (nonatomic, assign) UIButton *openSafari;
-@property (nonatomic, assign) UIView *actionBar;
 - (void)refreshActionBar;
 - (void)sendMBProcessActivingViewToBack;
 @end
