@@ -224,7 +224,7 @@
 #pragma marc Empty String
 + (BOOL)isEmptyString:(NSString *)string {
     BOOL result = NO;
-    if (string == nil || [string length] == 0 || [string isEqualToString:@""]) {
+    if (string == nil || ![string respondsToSelector:@selector(length)] || [string length] == 0 || [string isEqualToString:@""]) {
         result = YES;
     }
     return result;
