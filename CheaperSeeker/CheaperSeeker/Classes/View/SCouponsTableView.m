@@ -14,18 +14,28 @@
 @interface SCouponsTableView()
 @property (nonatomic, retain) SCouponStyle *couponStyle;
 @property (nonatomic, retain) NSMutableArray *couponLayouts;
+@property (nonatomic, assign) BOOL isCellOpening;
+@property (nonatomic, assign) CGRect originalCellFrame;
+- (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated;
+- (void)performOpenCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)finishOpenCellAnimated:(BOOL)animated;
+- (void)closeCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated;
+- (void)performCloseCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)finishCloseCellAnimated:(BOOL)animated;
 @end
 
 @implementation SCouponsTableView
 @synthesize couponsDataStore;
 @synthesize couponStyle, couponLayouts;
 @synthesize couponsTableViewDelegate;
+@synthesize isCellOpening, originalCellFrame;
 
 #pragma mark init & dealloc
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
     if (self) {
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.isCellOpening = NO;
         
         self.dataSource = self;
         self.pullDelegate = self;
@@ -47,6 +57,88 @@
     [super dealloc];
 }
 
+#pragma mark open/close animation
+#define k_coupons_table_cell_animation_duration 0.4
+- (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated {
+    self.scrollEnabled = NO;
+    
+    UITableViewCell *_cell = [self cellForRowAtIndexPath:indexPath];
+    self.originalCellFrame = _cell.frame;
+    
+    if (animated) {
+        [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             [self performOpenCellAtIndexPath:indexPath];
+                         }
+                         completion:^(BOOL finished){
+                             [self finishOpenCellAnimated:animated];
+                         }];
+    } else {
+        [self performOpenCellAtIndexPath:indexPath];
+        [self finishOpenCellAnimated:animated];
+    }
+}
+- (void)performOpenCellAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *_selectedCell = [self cellForRowAtIndexPath:indexPath];
+    CGRect _convertRect = [self convertRect:_selectedCell.frame toView:self.superview];
+    
+    for (UITableViewCell *_vcell in self.visibleCells) {
+        NSIndexPath *_idph = [self indexPathForCell:_vcell];
+        CGRect _f = _vcell.frame;
+        if (_idph.row < indexPath.row) {
+            _f.origin.y = _f.origin.y - _convertRect.origin.y;
+            _vcell.frame = _f;
+        } else if (_idph.row > indexPath.row) {
+            _f.origin.y = self.bounds.size.height - _convertRect.origin.y + _f.origin.y;
+            _vcell.frame = _f;
+        } else if (_idph.row == indexPath.row) {
+            _f.origin.y = _f.origin.y - _convertRect.origin.y;
+            _f.size.width = self.bounds.size.width;
+            _f.size.height = self.bounds.size.height;
+            _vcell.frame = _f;
+        }
+    }
+}
+- (void)finishOpenCellAnimated:(BOOL)animated {
+    
+}
+- (void)closeCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated {
+    self.scrollEnabled = YES;
+    
+    if (animated) {
+        [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             [self performCloseCellAtIndexPath:indexPath];
+                         }
+                         completion:^(BOOL finished){
+                             [self finishCloseCellAnimated:animated];
+                         }];
+    } else {
+        [self performCloseCellAtIndexPath:indexPath];
+        [self finishCloseCellAnimated:animated];
+    }
+}
+- (void)performCloseCellAtIndexPath:(NSIndexPath *)indexPath {
+    CGRect _convertRect = [self convertRect:self.originalCellFrame toView:self.superview];
+    
+    for (UITableViewCell *_vcell in self.visibleCells) {
+        NSIndexPath *_idph = [self indexPathForCell:_vcell];
+        CGRect _f = _vcell.frame;
+        if (_idph.row < indexPath.row) {
+            _f.origin.y = _vcell.frame.origin.y + _convertRect.origin.y;
+            _vcell.frame = _f;
+        } else if (_idph.row > indexPath.row) {
+            _f.origin.y = _vcell.frame.origin.y - (self.bounds.size.height - _convertRect.origin.y - _convertRect.size.height);
+            _vcell.frame = _f;
+        } else if (_idph.row == indexPath.row) {
+            _vcell.frame = self.originalCellFrame;
+        }
+    }
+}
+- (void)finishCloseCellAnimated:(BOOL)animated {
+    
+}
+
 #pragma mark table delegate
 - (void)tableViewPullToRefresh:(TSPullTableView *)tableView {
     [self.couponsDataStore refreshItemsWithCachePolicy:ASIDoNotReadFromCacheCachePolicy];
@@ -55,10 +147,20 @@
     [self.couponsDataStore loadmoreItems];
 }
 - (void)tableView:(TSPullTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.couponsTableViewDelegate && [self.couponsTableViewDelegate respondsToSelector:@selector(couponsTableView:didSelectCoupon:atIndexPath:)]) {
-        [self.couponsTableViewDelegate couponsTableView:self didSelectCoupon:[self.couponsDataStore.items objectAtIndex:indexPath.row] atIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (self.isCellOpening) {
+        [self closeCellAtIndexPath:indexPath Animated:YES];
+    } else {
+        [self openCellAtIndexPath:indexPath Animated:YES];
     }
+    self.isCellOpening = !self.isCellOpening;
+    
+    
+    
+//    if (self.couponsTableViewDelegate && [self.couponsTableViewDelegate respondsToSelector:@selector(couponsTableView:didSelectCoupon:atIndexPath:)]) {
+//        [self.couponsTableViewDelegate couponsTableView:self didSelectCoupon:[self.couponsDataStore.items objectAtIndex:indexPath.row] atIndexPath:indexPath];
+//    }
 }
 - (CGFloat)tableView:(TSPullTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
@@ -72,6 +174,7 @@
     SCouponCell *_cell = (SCouponCell *)[tableView dequeueReusableCellWithIdentifier:_identifier];
     if (!_cell) {
         _cell = [[[SCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier] autorelease];
+        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     id _coupon = [self.couponsDataStore.items objectAtIndex:indexPath.row];
     SCouponLayout *_layout = [self.couponLayouts objectAtIndex:indexPath.row];
