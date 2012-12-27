@@ -502,6 +502,74 @@
 @end
 
 
+@implementation Util (OS)
+
+/*  < 6.0
+ UILineBreakModeWordWrap = 0,            // Wrap at word boundaries
+ UILineBreakModeCharacterWrap,           // Wrap at character boundaries
+ UILineBreakModeClip,                    // Simply clip when it hits the end of the rect
+ UILineBreakModeHeadTruncation,          // Truncate at head of line: "...wxyz". Will truncate multiline text on first line
+ UILineBreakModeTailTruncation,          // Truncate at tail of line: "abcd...". Will truncate multiline text on last line
+ UILineBreakModeMiddleTruncation,        // Truncate middle of line:  "ab...yz". Will truncate multiline text in the middle
+ */
++ (NSInteger)lineBreakMode:(SLineBreakMode)mode {
+    NSInteger result = mode;
+    if ([Util isCurrentVersionLowerThanRequiredVersion:@"6.0"]) {
+        switch (mode) {
+            case SLineBreakByCharWrapping:
+                result = UILineBreakModeWordWrap;
+                break;
+            case SLineBreakByClipping:
+                result = UILineBreakModeClip;
+                break;
+            case SLineBreakByTruncatingHead:
+                result = UILineBreakModeHeadTruncation;
+                break;
+            case SLineBreakByTruncatingMiddle:
+                result = UILineBreakModeMiddleTruncation;
+                break;
+            case SLineBreakByTruncatingTail:
+                result = UILineBreakModeTailTruncation;
+                break;
+            case SLineBreakByWordWrapping:
+                result = UILineBreakModeCharacterWrap;
+                break;
+            default:
+                result = UILineBreakModeTailTruncation;
+                break;
+        }
+    }
+    return result;
+}
+/*  < 6.0
+ UITextAlignmentLeft = 0,
+ UITextAlignmentCenter,
+ UITextAlignmentRight,
+ */
++ (NSInteger)textAlignment:(STextAlignment)alignment {
+    NSInteger result = alignment;
+    if ([Util isCurrentVersionLowerThanRequiredVersion:@"6.0"]) {
+        switch (alignment) {
+            case STextAlignmentLeft:
+                result = UITextAlignmentLeft;
+                break;
+            case STextAlignmentRight:
+                result = UITextAlignmentRight;
+                break;
+            case STextAlignmentCenter:
+                result = UITextAlignmentCenter;
+                break;
+            default:
+                result = UITextAlignmentLeft;
+                break;
+        }
+    }
+    return result;
+}
+
+@end
+
+
 #pragma mark - Base64Encode/Decode
 #include <math.h>
 

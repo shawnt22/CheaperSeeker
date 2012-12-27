@@ -25,7 +25,7 @@
 + (CGFloat)cellHeightWithAbout:(id)about IndexPath:(NSIndexPath *)indexPath;
 + (UIFont *)titleFont;
 + (UIFont *)contentFont;
-+ (NSLineBreakMode)lineBreakMode;
++ (NSInteger)lineBreakMode;
 + (CGFloat)marginTop;
 @end
 

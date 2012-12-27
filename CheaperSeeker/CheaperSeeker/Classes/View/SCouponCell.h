@@ -20,5 +20,11 @@
 @property (nonatomic, retain) id coupon;
 + (CGFloat)cellHeight;
 - (void)refreshWithCoupon:(id)coupon Layout:(SCouponLayout *)layout Style:(SCouponStyle *)style;
+@end
 
+@interface SCouponCell (OpenClose)
+- (void)openWithAnimated:(BOOL)animated;
+- (void)closeWithAnimated:(BOOL)animated;
+- (void)finishOpenAnimation:(BOOL)animated;
+- (void)finishCloseAnimation:(BOOL)animated;
 @end

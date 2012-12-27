@@ -7,6 +7,7 @@
 //
 
 #import "SStyle.h"
+#import "Util.h"
 
 @implementation SStyle
 @synthesize lineBreakMode;
@@ -14,7 +15,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.lineBreakMode = UILineBreakModeWordWrap;
+        self.lineBreakMode = [Util lineBreakMode:SLineBreakByWordWrapping];
     }
     return self;
 }

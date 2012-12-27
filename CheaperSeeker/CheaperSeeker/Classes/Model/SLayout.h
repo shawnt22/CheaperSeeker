@@ -19,6 +19,13 @@
 @property (nonatomic, assign) CGRect title;
 @property (nonatomic, assign) CGRect content;
 @property (nonatomic, assign) CGRect expire;
+@property (nonatomic, assign) CGRect type;
+
+@property (nonatomic, assign) CGRect icon_open;
+@property (nonatomic, assign) CGRect title_open;
+@property (nonatomic, assign) CGRect content_open;
+@property (nonatomic, assign) CGRect expire_open;
+@property (nonatomic, assign) CGRect type_open;
 - (void)layoutWithCoupon:(id)coupon Style:(SCouponStyle *)style;
 @end
 

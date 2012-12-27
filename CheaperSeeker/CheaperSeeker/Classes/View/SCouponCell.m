@@ -7,6 +7,7 @@
 //
 
 #import "SCouponCell.h"
+#import "SCouponTypeView.h"
 
 @interface SCouponCell()
 @property (nonatomic, readonly) NSString *couponURLPath;
@@ -14,6 +15,7 @@
 @property (nonatomic, assign) UILabel *couponTitle;
 @property (nonatomic, assign) UILabel *couponContent;
 @property (nonatomic, assign) UILabel *couponExpire;
+@property (nonatomic, assign) SCouponTypeView *couponType;
 @property (nonatomic, retain) SCouponLayout *couponLayout;
 @property (nonatomic, retain) SCouponStyle *couponStyle;
 - (void)reStyleWith:(SCouponStyle *)style;
@@ -23,7 +25,7 @@
 @implementation SCouponCell
 @synthesize coupon, couponLayout, couponStyle;
 @synthesize couponURLPath;
-@synthesize couponCover, couponContent, couponExpire, couponTitle;
+@synthesize couponCover, couponContent, couponExpire, couponTitle, couponType;
 @synthesize customBackgroundView, customSelectedBackgroundView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -60,6 +62,11 @@
         [self.contentView addSubview:_exp];
         self.couponExpire = _exp;
         [_exp release];
+        
+        SCouponTypeView *_tpv = [[SCouponTypeView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_tpv];
+        self.couponType = _tpv;
+        [_tpv release];
     }
     return self;
 }
@@ -98,6 +105,7 @@
     self.couponTitle.frame = layout.title;
     self.couponContent.frame = layout.content;
     self.couponExpire.frame = layout.expire;
+    self.couponType.frame = layout.type;
 }
 - (void)reContent {
     self.couponCover.image = nil;
@@ -105,6 +113,7 @@
     self.couponTitle.text = [self.coupon objectForKey:k_coupon_title];
     self.couponContent.text = [self.coupon objectForKey:k_coupon_excerpt_description];
     self.couponExpire.text = [SUtil couponExpireDescription:self.coupon];
+    self.couponType.text = [SUtil descriptionWithCouponType:[SUtil couponType:self.coupon]];
 }
 - (void)reStyleWith:(SCouponStyle *)style {
     self.couponTitle.font = style.titleFont;
@@ -121,5 +130,15 @@
         self.couponCover.image = image;
     }
 }
+
+@end
+
+
+@implementation SCouponCell (OpenClose)
+
+- (void)openWithAnimated:(BOOL)animated {}
+- (void)closeWithAnimated:(BOOL)animated {}
+- (void)finishOpenAnimation:(BOOL)animated {}
+- (void)finishCloseAnimation:(BOOL)animated {}
 
 @end

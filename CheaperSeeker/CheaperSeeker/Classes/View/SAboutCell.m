@@ -68,8 +68,8 @@
 + (UIFont *)contentFont {
     return [UIFont systemFontOfSize:18.0];
 }
-+ (NSLineBreakMode)lineBreakMode {
-    return NSLineBreakByWordWrapping;
++ (NSInteger)lineBreakMode {
+    return [Util lineBreakMode:SLineBreakByWordWrapping];
 }
 + (CGFloat)marginTop {
     return 10.0;

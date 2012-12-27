@@ -88,4 +88,8 @@ typedef enum {
 #define k_text_about_privacy                            @"Privacy"
 #define k_text_about_terms                              @"Terms"
 
+#define k_text_coupon_type_sale                         @"SALE"
+#define k_text_coupon_type_code                         @"CODE"
+
+
 

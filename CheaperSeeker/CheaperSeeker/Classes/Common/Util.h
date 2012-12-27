@@ -118,6 +118,34 @@ typedef enum
 
 @end
 
+#pragma mark - OS
+typedef enum {
+    SLineBreakByWordWrapping = 0,     	/* Wrap at word boundaries, default */
+    SLineBreakByCharWrapping,		/* Wrap at character boundaries */
+    SLineBreakByClipping,		/* Simply clip */
+    SLineBreakByTruncatingHead,	/* Truncate at head of line: "...wxyz" */
+    SLineBreakByTruncatingTail,	/* Truncate at tail of line: "abcd..." */
+    SLineBreakByTruncatingMiddle	/* Truncate middle of line:  "ab...yz" */
+}SLineBreakMode;
+
+typedef enum {
+    STextAlignmentLeft      = 0,    // Visually left aligned
+#if TARGET_OS_IPHONE
+    STextAlignmentCenter    = 1,    // Visually centered
+    STextAlignmentRight     = 2,    // Visually right aligned
+#else /* !TARGET_OS_IPHONE */
+    STextAlignmentRight     = 1,    // Visually right aligned
+    STextAlignmentCenter    = 2,    // Visually centered
+#endif
+    STextAlignmentJustified = 3,    // Fully-justified. The last line in a paragraph is natural-aligned.
+    STextAlignmentNatural   = 4,    // Indicates the default alignment for script
+}STextAlignment;
+
+@interface Util (OS)
++ (NSInteger)lineBreakMode:(SLineBreakMode)mode;
++ (NSInteger)textAlignment:(STextAlignment)alignment;
+@end
+
 
 #pragma mark - Base64Encode/Decode
 extern size_t EstimateBase64EncodedDataSize(size_t inDataSize);

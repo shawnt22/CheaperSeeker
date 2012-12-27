@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SStyle : NSObject
-@property (nonatomic, assign) UILineBreakMode lineBreakMode;
+@property (nonatomic, assign) NSInteger lineBreakMode;
 
 @end
 

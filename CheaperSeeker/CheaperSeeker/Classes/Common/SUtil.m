@@ -124,6 +124,28 @@
 @end
 
 
+@implementation SUtil (CouponType)
++ (BOOL)hasCouponCode:(id)coupon {
+    return [Util isEmptyString:[coupon objectForKey:k_coupon_code]] ? NO : YES;
+}
++ (CouponType)couponType:(id)coupon {
+    return [SUtil hasCouponCode:coupon] ? CouponCode : CouponSale;
+}
++ (NSString *)descriptionWithCouponType:(CouponType)type {
+    NSString *_desc = nil;
+    switch (type) {
+        case CouponCode:
+            _desc = k_text_coupon_type_code;
+            break;
+        default:
+            _desc = k_text_coupon_type_sale;
+            break;
+    }
+    return _desc;
+}
+@end
+
+
 @implementation SUtil (DateFormate)
 
 + (CouponDateState)stateWithCoupon:(id)coupon {

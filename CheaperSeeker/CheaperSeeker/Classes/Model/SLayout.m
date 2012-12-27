@@ -22,9 +22,11 @@
 @end
 
 @implementation SCouponLayout
-@synthesize icon, title, content, expire;
+@synthesize icon, title, content, expire, type;
+@synthesize icon_open, title_open, content_open, expire_open, type_open;
 
 - (void)layoutWithCoupon:(id)coupon Style:(SCouponStyle *)style {
+    //  cell 关闭状态
     //  icon
     self.icon = CGRectMake(kMarginLeft, kMarginTop, 64, 64);
     self.height = self.icon.origin.y+self.icon.size.height+kMarginTop;
@@ -45,22 +47,29 @@
     }
     _tmpHeight = self.content.origin.y+self.content.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
+    //  type
+    CGFloat _y = self.icon.origin.y;
+    if (self.content.size.height > 0) {
+        _y = self.content.origin.y+self.content.size.height+5;
+    } else if (self.title.size.height > 0) {
+        _y = self.title.origin.y+self.title.size.height+5;
+    }
+    self.type = CGRectMake(self.icon.origin.x+self.icon.size.width+5, _y, 40.0, 15.0);
+    _tmpHeight = self.type.origin.y+self.type.size.height+kMarginTop;
+    self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     //  expire
     if ([SUtil needShowExpireDescriptionWithCoupon:coupon]) {
         NSString *_exp = [SUtil couponExpireDescription:coupon];
         if (![Util isEmptyString:_exp]) {
             CGSize _size = [_exp sizeWithFont:style.expireFont forWidth:([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft) lineBreakMode:style.lineBreakMode];
-            CGFloat _y = self.icon.origin.y;
-            if (self.content.size.height > 0) {
-                _y = self.content.origin.y+self.content.size.height+5;
-            } else if (self.title.size.height > 0) {
-                _y = self.title.origin.y+self.title.size.height+5;
-            }
-            self.expire = CGRectMake(self.icon.origin.x+self.icon.size.width+5, _y, _size.width, _size.height);
+            self.expire = CGRectMake([SUtil cellWidth]-_size.width-kMarginLeft, self.type.origin.y, _size.width, _size.height);
         }
         _tmpHeight = self.expire.origin.y+self.expire.size.height+kMarginTop;
         self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     }
+    
+    //  cell 打开状态
+    
 }
 
 @end

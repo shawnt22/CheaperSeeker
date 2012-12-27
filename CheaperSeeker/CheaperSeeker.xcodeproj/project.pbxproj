@@ -109,6 +109,7 @@
 		9C6418B915EF60390072638F /* SWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418B515EF60390072638F /* SWebViewController.m */; };
 		9C6418BC15EF60580072638F /* SListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6418BB15EF60580072638F /* SListDataStore.m */; };
 		9C751389168832BD00F305A9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C751388168832BD00F305A9 /* Default-568h@2x.png */; };
+		9CACFABF168C1673007D7045 /* SCouponTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CACFABE168C1673007D7045 /* SCouponTypeView.m */; };
 		9CAF4D8C164763F7006BF3D3 /* SCategoryControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF4D89164763F7006BF3D3 /* SCategoryControl.m */; };
 		9CAF4D8D164763F7006BF3D3 /* SCategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF4D8B164763F7006BF3D3 /* SCategoryItem.m */; };
 		9CE3F1D716240D3A003D2C03 /* SCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F1D616240D3A003D2C03 /* SCategoryCell.m */; };
@@ -305,6 +306,8 @@
 		9C6418BA15EF60580072638F /* SListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SListDataStore.h; path = Classes/Network/SListDataStore.h; sourceTree = "<group>"; };
 		9C6418BB15EF60580072638F /* SListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SListDataStore.m; path = Classes/Network/SListDataStore.m; sourceTree = "<group>"; };
 		9C751388168832BD00F305A9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9CACFABD168C1673007D7045 /* SCouponTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCouponTypeView.h; sourceTree = "<group>"; };
+		9CACFABE168C1673007D7045 /* SCouponTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCouponTypeView.m; sourceTree = "<group>"; };
 		9CAF4D88164763F7006BF3D3 /* SCategoryControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoryControl.h; sourceTree = "<group>"; };
 		9CAF4D89164763F7006BF3D3 /* SCategoryControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCategoryControl.m; sourceTree = "<group>"; };
 		9CAF4D8A164763F7006BF3D3 /* SCategoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCategoryItem.h; sourceTree = "<group>"; };
@@ -809,6 +812,8 @@
 				9C64188415EF428B0072638F /* TCustomBGCell.m */,
 				9C63C784164D08B3008D6344 /* SCouponCodeContentView.h */,
 				9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */,
+				9CACFABD168C1673007D7045 /* SCouponTypeView.h */,
+				9CACFABE168C1673007D7045 /* SCouponTypeView.m */,
 			);
 			name = View;
 			path = Classes/View;
@@ -1034,6 +1039,7 @@
 				9C63C786164D08B3008D6344 /* SCouponCodeContentView.m in Sources */,
 				9C32A815165B2BF400A4E8FB /* CSDetailDataStore.m in Sources */,
 				9C309BC8166742C700814BA0 /* SMerchantsTableView.m in Sources */,
+				9CACFABF168C1673007D7045 /* SCouponTypeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

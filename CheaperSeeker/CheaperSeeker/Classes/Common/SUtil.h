@@ -38,6 +38,17 @@
 @end
 
 typedef enum {
+    CouponSale,         //  deal
+    CouponCode,         //  coupon
+}CouponType;
+
+@interface SUtil (CouponType)
++ (BOOL)hasCouponCode:(id)coupon;
++ (CouponType)couponType:(id)coupon;
++ (NSString *)descriptionWithCouponType:(CouponType)type;
+@end
+
+typedef enum {
     CouponDateBefore,           //  期限前 expire_from > now
     CouponDateIn,               //  期限中 expire_from < now < expire_to
     CouponDateAfter,            //  期限后，过期  expire_to < now
