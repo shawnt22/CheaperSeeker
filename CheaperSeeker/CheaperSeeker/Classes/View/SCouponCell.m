@@ -8,6 +8,7 @@
 
 #import "SCouponCell.h"
 #import "SCouponTypeView.h"
+#import "SCouponsTableView.h"
 
 @interface SCouponCell()
 @property (nonatomic, readonly) NSString *couponURLPath;
@@ -16,17 +17,24 @@
 @property (nonatomic, assign) UILabel *couponContent;
 @property (nonatomic, assign) UILabel *couponExpire;
 @property (nonatomic, assign) SCouponTypeView *couponType;
+@property (nonatomic, assign) UIView *actionsToolBar;
+
 @property (nonatomic, retain) SCouponLayout *couponLayout;
 @property (nonatomic, retain) SCouponStyle *couponStyle;
 - (void)reStyleWith:(SCouponStyle *)style;
 - (void)reLayoutWith:(SCouponLayout *)layout;
 - (void)reContent;
+
+- (void)showActionBar;
+- (void)hideActionBar;
 @end
 @implementation SCouponCell
 @synthesize coupon, couponLayout, couponStyle;
 @synthesize couponURLPath;
 @synthesize couponCover, couponContent, couponExpire, couponTitle, couponType;
 @synthesize customBackgroundView, customSelectedBackgroundView;
+@synthesize couponsTableView;
+@synthesize actionsToolBar;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -67,6 +75,13 @@
         [self.contentView addSubview:_tpv];
         self.couponType = _tpv;
         [_tpv release];
+        
+        UIView *_tool = [[UIView alloc] initWithFrame:CGRectMake(0, self.contentView.bounds.size.height-k_coupon_cell_tool_bar_height, self.contentView.bounds.size.width, k_coupon_cell_tool_bar_height)];
+        _tool.backgroundColor = SRGBACOLOR(0, 0, 0, 0.5);
+        _tool.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        [self.contentView addSubview:_tool];
+        self.actionsToolBar = _tool;
+        [_tool release];
     }
     return self;
 }
@@ -98,6 +113,9 @@
     self.coupon = cpn;
     self.couponLayout = layout;
     self.couponStyle = style;
+    
+    [self hideActionBar];
+    
     [self reStyleWith:style];
     [self reLayoutWith:layout];
     [self reContent];
@@ -133,12 +151,105 @@
     }
 }
 
+#pragma mark actions
+- (void)closeCellAction:(id)sender {
+    [self.couponsTableView tableView:self.couponsTableView didSelectRowAtIndexPath:[self.couponsTableView indexPathForCell:self]];
+}
+- (void)copyCodeAction:(id)sender {
+    UIPasteboard *_pasteboard = [UIPasteboard generalPasteboard];
+    _pasteboard.string = [self.coupon objectForInfoDictionaryKey:k_coupon_code];
+}
+- (void)showCouponWebDetailAction:(id)sender {
+    if (self.couponsTableView.couponsTableViewDelegate && [self.couponsTableView.couponsTableViewDelegate respondsToSelector:@selector(couponsTableView:didSelectCoupon:atIndexPath:)]) {
+        [self.couponsTableView.couponsTableViewDelegate couponsTableView:self.couponsTableView didSelectCoupon:self.coupon atIndexPath:[self.couponsTableView indexPathForCell:self]];
+    }
+}
+- (void)emailMeLaterAction:(id)sender {
+    if (self.couponsTableView.couponsTableViewDelegate && [self.couponsTableView.couponsTableViewDelegate respondsToSelector:@selector(couponsTableView:EmailMeLater:)]) {
+        [self.couponsTableView.couponsTableViewDelegate couponsTableView:self.couponsTableView EmailMeLater:self.coupon];
+    }
+}
+- (void)showActionBar {
+    self.actionsToolBar.hidden = NO;
+    
+    CGFloat _w = 60.0;
+    CGFloat _h = 40.0;
+    CGFloat _y = ceilf((self.actionsToolBar.bounds.size.height - _h)/2);
+    UIViewAutoresizing _autoresizing = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    if ([SUtil hasCouponCode:self.coupon]) {
+        CGFloat _space = ceilf((self.actionsToolBar.bounds.size.width - _w*4)/5);
+        UIButton *_close = [[UIButton alloc] initWithFrame:CGRectMake(_space, _y, _w, _h)];
+        _close.autoresizingMask = _autoresizing;
+        _close.backgroundColor = [UIColor greenColor];
+        [_close setTitle:@"BK" forState:UIControlStateNormal];
+        [_close addTarget:self action:@selector(closeCellAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionsToolBar addSubview:_close];
+        [_close release];
+        
+        UIButton *_code = [[UIButton alloc] initWithFrame:CGRectMake(_close.frame.origin.x+_close.frame.size.width+_space, _y, _w, _h)];
+        _code.autoresizingMask = _autoresizing;
+        _code.backgroundColor = [UIColor greenColor];
+        [_code setTitle:@"CD" forState:UIControlStateNormal];
+        [_code addTarget:self action:@selector(copyCodeAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionsToolBar addSubview:_code];
+        [_code release];
+        
+        UIButton *_email = [[UIButton alloc] initWithFrame:CGRectMake(_code.frame.origin.x+_code.frame.size.width+_space, _y, _w, _h)];
+        _email.autoresizingMask = _autoresizing;
+        _email.backgroundColor = [UIColor greenColor];
+        [_email setTitle:@"EM" forState:UIControlStateNormal];
+        [_email addTarget:self action:@selector(emailMeLaterAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionsToolBar addSubview:_email];
+        [_email release];
+        
+        UIButton *_detail = [[UIButton alloc] initWithFrame:CGRectMake(_email.frame.origin.x+_email.frame.size.width+_space, _y, _w, _h)];
+        _detail.autoresizingMask = _autoresizing;
+        _detail.backgroundColor = [UIColor greenColor];
+        [_detail setTitle:@"WB" forState:UIControlStateNormal];
+        [_detail addTarget:self action:@selector(showCouponWebDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionsToolBar addSubview:_detail];
+        [_detail release];
+    } else {
+        CGFloat _space = ceilf((self.actionsToolBar.bounds.size.width - _w*3)/4);
+        UIButton *_close = [[UIButton alloc] initWithFrame:CGRectMake(_space, _y, _w, _h)];
+        _close.autoresizingMask = _autoresizing;
+        _close.backgroundColor = [UIColor greenColor];
+        [_close setTitle:@"BK" forState:UIControlStateNormal];
+        [_close addTarget:self action:@selector(closeCellAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionsToolBar addSubview:_close];
+        [_close release];
+        
+        UIButton *_email = [[UIButton alloc] initWithFrame:CGRectMake(_close.frame.origin.x+_close.frame.size.width+_space, _y, _w, _h)];
+        _email.autoresizingMask = _autoresizing;
+        _email.backgroundColor = [UIColor greenColor];
+        [_email setTitle:@"EM" forState:UIControlStateNormal];
+        [_email addTarget:self action:@selector(emailMeLaterAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionsToolBar addSubview:_email];
+        [_email release];
+        
+        UIButton *_detail = [[UIButton alloc] initWithFrame:CGRectMake(_email.frame.origin.x+_email.frame.size.width+_space, _y, _w, _h)];
+        _detail.autoresizingMask = _autoresizing;
+        _detail.backgroundColor = [UIColor greenColor];
+        [_detail setTitle:@"WB" forState:UIControlStateNormal];
+        [_detail addTarget:self action:@selector(showCouponWebDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionsToolBar addSubview:_detail];
+        [_detail release];
+    }
+}
+- (void)hideActionBar {
+    self.actionsToolBar.hidden = YES;
+    for (UIView *sv in self.actionsToolBar.subviews) {
+        [sv removeFromSuperview];
+    }
+}
+
 @end
 
 
 @implementation SCouponCell (OpenClose)
 
 - (void)openWithAnimated:(BOOL)animated {
+    [self startOpenAnimation:animated];
     if (animated) {
         [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
@@ -161,6 +272,7 @@
     }
 }
 - (void)closeWithAnimated:(BOOL)animated {
+    [self startCloseAnimation:animated];
     SCouponLayout *layout = self.couponLayout;
     if (animated) {
         [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
@@ -183,7 +295,13 @@
         [self finishCloseAnimation:animated];
     }
 }
-- (void)finishOpenAnimation:(BOOL)animated {}
+- (void)finishOpenAnimation:(BOOL)animated {
+    [self showActionBar];
+}
 - (void)finishCloseAnimation:(BOOL)animated {}
+- (void)startOpenAnimation:(BOOL)animated {}
+- (void)startCloseAnimation:(BOOL)animated {
+    [self hideActionBar];
+}
 
 @end

@@ -16,8 +16,12 @@
 #import "SStyle.h"
 #import "SDWebImageManager.h"
 
+#define k_coupon_cell_tool_bar_height 44.0
+
+@class SCouponsTableView;
 @interface SCouponCell : UITableViewCell<SDWebImageManagerDelegate, TCustomCellBGViewProtocol>
 @property (nonatomic, retain) id coupon;
+@property (nonatomic, assign) SCouponsTableView *couponsTableView;
 + (CGFloat)cellHeight;
 - (void)refreshWithCoupon:(id)coupon Layout:(SCouponLayout *)layout Style:(SCouponStyle *)style;
 @end
@@ -27,4 +31,6 @@
 - (void)closeWithAnimated:(BOOL)animated;
 - (void)finishOpenAnimation:(BOOL)animated;
 - (void)finishCloseAnimation:(BOOL)animated;
+- (void)startOpenAnimation:(BOOL)animated;
+- (void)startCloseAnimation:(BOOL)animated;
 @end

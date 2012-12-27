@@ -17,6 +17,7 @@
 @protocol SCouponsTableViewDelegate <NSObject>
 @optional
 - (void)couponsTableView:(SCouponsTableView *)couponsTableView didSelectCoupon:(id)coupon atIndexPath:(NSIndexPath *)indexPath;
+- (void)couponsTableView:(SCouponsTableView *)couponsTableView EmailMeLater:(id)coupon;
 @end
 
 @interface SCouponsTableView : CSPullTableView <TSPullTableViewDelegate, TSViewGestureDelegate, UITableViewDataSource, SDataLoaderDelegate>

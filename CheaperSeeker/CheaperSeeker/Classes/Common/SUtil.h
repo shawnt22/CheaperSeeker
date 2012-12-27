@@ -25,6 +25,7 @@
 + (CGFloat)cellWidth;
 
 + (void)showCouponTargetLinkWithCoupon:(id)coupon ViewController:(UIViewController *)viewController;
++ (void)emailMeLaterWithCoupon:(id)coupon ViewController:(UIViewController *)viewController;
 
 + (NSString *)bundleVersion;
 + (BOOL)isCurrentVersionLowerThanVersion:(NSString *)version;

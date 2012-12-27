@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "SSplitContentDelegate.h"
 #import "SCouponWebViewController.h"
+#import "SEmailMeLaterViewController.h"
 #import "TCustomBGCell.h"
 
 @implementation SUtil
@@ -75,6 +76,11 @@
     _web.coupon = coupon;
     [viewController.navigationController pushViewController:_web animated:YES];
     [_web release];
+}
++ (void)emailMeLaterWithCoupon:(id)coupon ViewController:(UIViewController *)viewController {
+    SEmailMeLaterViewController *_eml = [[SEmailMeLaterViewController alloc] initWithCoupon:coupon];
+    [viewController.navigationController pushViewController:_eml animated:YES];
+    [_eml release];
 }
 
 + (NSString *)bundleVersion {

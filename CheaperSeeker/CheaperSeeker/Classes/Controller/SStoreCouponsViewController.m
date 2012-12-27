@@ -129,5 +129,8 @@
 - (void)couponsTableView:(SCouponsTableView *)couponsTableView didSelectCoupon:(id)coupon atIndexPath:(NSIndexPath *)indexPath {
     [SUtil showCouponTargetLinkWithCoupon:coupon ViewController:self];
 }
+- (void)couponsTableView:(SCouponsTableView *)couponsTableView EmailMeLater:(id)coupon {
+    [SUtil emailMeLaterWithCoupon:coupon ViewController:self];
+}
 
 @end

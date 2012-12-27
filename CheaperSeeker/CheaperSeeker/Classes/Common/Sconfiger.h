@@ -93,5 +93,6 @@ typedef enum {
 #define k_text_coupon_type_sale                         @"SALE"
 #define k_text_coupon_type_code                         @"CODE"
 
+#define k_text_email_me_later_controller_title          @"Email Me Later"
 
 

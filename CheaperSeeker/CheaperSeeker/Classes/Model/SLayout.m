@@ -21,6 +21,7 @@
 
 @end
 
+#import "SCouponCell.h"
 @interface SCouponLayout ()
 - (void)layoutOpenWithCoupon:(id)coupon Style:(SCouponStyle *)style;
 @end
@@ -109,7 +110,7 @@
     if (![Util isEmptyString:_cnt]) {
         CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-kMarginLeft*2, 1000) lineBreakMode:style.lineBreakMode];
         CGFloat _y = self.type_open.origin.y+self.type_open.size.height+5;
-        CGFloat _delta = [UIScreen mainScreen].bounds.size.height - 44 - 20 - (_y + _size.height);
+        CGFloat _delta = [UIScreen mainScreen].bounds.size.height - 44 - 20 - k_coupon_cell_tool_bar_height - (_y + _size.height);
         _size.height = _delta < 0 ? _size.height + _delta : _size.height;
         self.content_open = CGRectMake(kMarginLeft, _y, _size.width, _size.height);
     }
