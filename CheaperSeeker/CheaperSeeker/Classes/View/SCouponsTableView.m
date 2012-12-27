@@ -16,19 +16,25 @@
 @property (nonatomic, retain) NSMutableArray *couponLayouts;
 @property (nonatomic, assign) BOOL isCellOpening;
 @property (nonatomic, assign) CGRect originalCellFrame;
+@property (nonatomic, retain) NSMutableDictionary *originalCellFrames;
+
 - (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated;
 - (void)performOpenCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)finishOpenCellAnimated:(BOOL)animated;
 - (void)closeCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated;
 - (void)performCloseCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)finishCloseCellAnimated:(BOOL)animated;
+
+- (void)addOriginalFrame:(CGRect)oframe forIndexPath:(NSIndexPath *)indexPath;
+- (CGRect)originalFrameForIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @implementation SCouponsTableView
 @synthesize couponsDataStore;
 @synthesize couponStyle, couponLayouts;
 @synthesize couponsTableViewDelegate;
-@synthesize isCellOpening, originalCellFrame;
+@synthesize isCellOpening, originalCellFrame, originalCellFrames;
 
 #pragma mark init & dealloc
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -54,6 +60,8 @@
     self.couponStyle = nil;
     self.couponLayouts = nil;
     
+    self.originalCellFrames = nil;
+    
     [super dealloc];
 }
 
@@ -62,8 +70,10 @@
 - (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated {
     self.scrollEnabled = NO;
     
-    UITableViewCell *_cell = [self cellForRowAtIndexPath:indexPath];
-    self.originalCellFrame = _cell.frame;
+    self.originalCellFrames = [NSMutableDictionary dictionary];
+    for (UITableViewCell *cell in self.visibleCells) {
+        [self addOriginalFrame:cell.frame forIndexPath:[self indexPathForCell:cell]];
+    }
     
     if (animated) {
         [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseIn
@@ -79,8 +89,7 @@
     }
 }
 - (void)performOpenCellAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *_selectedCell = [self cellForRowAtIndexPath:indexPath];
-    CGRect _convertRect = [self convertRect:_selectedCell.frame toView:self.superview];
+    CGRect _convertRect = [self convertRect:[self cellForRowAtIndexPath:indexPath].frame toView:self.superview];
     
     for (UITableViewCell *_vcell in self.visibleCells) {
         NSIndexPath *_idph = [self indexPathForCell:_vcell];
@@ -119,24 +128,19 @@
     }
 }
 - (void)performCloseCellAtIndexPath:(NSIndexPath *)indexPath {
-    CGRect _convertRect = [self convertRect:self.originalCellFrame toView:self.superview];
-    
-    for (UITableViewCell *_vcell in self.visibleCells) {
-        NSIndexPath *_idph = [self indexPathForCell:_vcell];
-        CGRect _f = _vcell.frame;
-        if (_idph.row < indexPath.row) {
-            _f.origin.y = _vcell.frame.origin.y + _convertRect.origin.y;
-            _vcell.frame = _f;
-        } else if (_idph.row > indexPath.row) {
-            _f.origin.y = _vcell.frame.origin.y - (self.bounds.size.height - _convertRect.origin.y - _convertRect.size.height);
-            _vcell.frame = _f;
-        } else if (_idph.row == indexPath.row) {
-            _vcell.frame = self.originalCellFrame;
-        }
+    for (UITableViewCell *cell in self.visibleCells) {
+        cell.frame = [self originalFrameForIndexPath:[self indexPathForCell:cell]];
     }
 }
 - (void)finishCloseCellAnimated:(BOOL)animated {
     
+}
+- (void)addOriginalFrame:(CGRect)oframe forIndexPath:(NSIndexPath *)indexPath {
+    [self.originalCellFrames setObject:NSStringFromCGRect(oframe) forKey:indexPath];
+}
+- (CGRect)originalFrameForIndexPath:(NSIndexPath *)indexPath {
+    NSString *frameStr = [self.originalCellFrames objectForKey:indexPath];
+    return [Util isEmptyString:frameStr] ? CGRectZero : CGRectFromString(frameStr);
 }
 
 #pragma mark table delegate
