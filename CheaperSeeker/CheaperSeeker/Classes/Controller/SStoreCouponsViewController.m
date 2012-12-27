@@ -95,6 +95,8 @@
 }
 - (void)refreshAction:(id)sender {
     [self.currentCouponsTableView finishPullToRefreshWithAnimated:NO];
+    [self.currentCouponsTableView reloadData];
+    self.currentCouponsTableView.scrollEnabled = YES;
     [self.currentCouponsTableView startPullToRefreshWithAnimated:YES];
 }
 

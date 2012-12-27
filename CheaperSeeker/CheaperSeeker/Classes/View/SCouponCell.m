@@ -14,12 +14,14 @@
 @property (nonatomic, assign) UILabel *couponTitle;
 @property (nonatomic, assign) UILabel *couponContent;
 @property (nonatomic, assign) UILabel *couponExpire;
+@property (nonatomic, retain) SCouponLayout *couponLayout;
+@property (nonatomic, retain) SCouponStyle *couponStyle;
 - (void)reStyleWith:(SCouponStyle *)style;
 - (void)reLayoutWith:(SCouponLayout *)layout;
 - (void)reContent;
 @end
 @implementation SCouponCell
-@synthesize coupon;
+@synthesize coupon, couponLayout, couponStyle;
 @synthesize couponURLPath;
 @synthesize couponCover, couponContent, couponExpire, couponTitle;
 @synthesize customBackgroundView, customSelectedBackgroundView;
@@ -64,6 +66,8 @@
 - (void)dealloc {
     [[SDWebImageManager sharedManager] cancelForDelegate:self];
     self.coupon = nil;
+    self.couponLayout = nil;
+    self.couponStyle = nil;
     [super dealloc];
 }
 - (TCustomCellBGView *)customBackgroundView {
