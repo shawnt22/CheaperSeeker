@@ -70,9 +70,14 @@
 
 #pragma mark open/close animation
 - (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated {
-    self.scrollEnabled = NO;
-    self.originalTableFooterView = self.tableFooterView;
+    [self.couponsDataStore cancelAllRequests];
+    [self finishPullToRefreshWithAnimated:NO];
+    [self finishPullToLoadmoreWithAnimated:NO];
+    [self setTableDataFull:YES];
     self.tableFooterView = nil;
+    
+    self.scrollEnabled = NO;
+//    self.originalTableFooterView = self.tableFooterView;
     
     self.originalCellFrames = [NSMutableDictionary dictionary];
     for (UITableViewCell *cell in self.visibleCells) {
@@ -117,7 +122,8 @@
 }
 - (void)closeCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated {
     self.scrollEnabled = YES;
-    self.tableFooterView = self.originalTableFooterView;
+    [self setTableDataFull:![self.couponsDataStore canLoadMore]];
+//    self.tableFooterView = self.originalTableFooterView;
     
     if (animated) {
         [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseIn
