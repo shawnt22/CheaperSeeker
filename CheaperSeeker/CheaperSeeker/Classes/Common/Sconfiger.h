@@ -21,6 +21,8 @@ typedef enum {
 #define kMarginLeft 10.0
 #define kMarginTop 5.0
 
+#define k_coupons_table_cell_animation_duration 0.4
+
 #define kCustomCellBGLineColor          SRGBCOLOR(195, 195, 195)
 #define kCustomCellBGFillColor          SRGBCOLOR(228, 228, 228)
 #define kCustomCellBGInnerShadowColor   SRGBCOLOR(250, 250, 250)

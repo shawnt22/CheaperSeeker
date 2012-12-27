@@ -21,12 +21,14 @@
 
 @end
 
+@interface SCouponLayout ()
+- (void)layoutOpenWithCoupon:(id)coupon Style:(SCouponStyle *)style;
+@end
 @implementation SCouponLayout
 @synthesize icon, title, content, expire, type;
-@synthesize icon_open, title_open, content_open, expire_open, type_open;
+@synthesize icon_open, title_open, content_open, expire_open, type_open, height_open;
 
 - (void)layoutWithCoupon:(id)coupon Style:(SCouponStyle *)style {
-    //  cell 关闭状态
     //  icon
     self.icon = CGRectMake(kMarginLeft, kMarginTop, 64, 64);
     self.height = self.icon.origin.y+self.icon.size.height+kMarginTop;
@@ -68,8 +70,49 @@
         self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     }
     
-    //  cell 打开状态
-    
+    [self layoutOpenWithCoupon:coupon Style:style];
+}
+- (void)layoutOpenWithCoupon:(id)coupon Style:(SCouponStyle *)style {
+    //  icon
+    self.icon_open = CGRectMake(kMarginLeft, kMarginTop, [SUtil cellWidth]-kMarginLeft*2, 128);
+    self.height_open = self.icon_open.origin.y+self.icon_open.size.height+kMarginTop;
+    //  title
+    NSString *_ttl = [coupon objectForKey:k_coupon_title];
+    if (![Util isEmptyString:_ttl]) {
+        CGSize _size = [_ttl sizeWithFont:style.titleFont constrainedToSize:CGSizeMake([SUtil cellWidth]-kMarginLeft*2, 1000) lineBreakMode:style.lineBreakMode];
+        self.title_open = CGRectMake(kMarginLeft, self.icon_open.origin.y+self.icon_open.size.height+5, _size.width, _size.height);
+    }
+    CGFloat _tmpHeight = self.title_open.origin.y+self.title_open.size.height+kMarginTop;
+    self.height_open = _tmpHeight > self.height_open ? _tmpHeight : self.height_open;
+    //  content
+    NSString *_cnt = [coupon objectForKey:k_coupon_excerpt_description];
+    if (![Util isEmptyString:_cnt]) {
+        CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-kMarginLeft*2, 1000) lineBreakMode:style.lineBreakMode];
+        CGFloat _y = self.title_open.size.height > 0 ? self.title_open.origin.y+self.title_open.size.height+5 : self.icon_open.origin.y+self.icon_open.size.height+5;
+        self.content_open = CGRectMake(kMarginLeft, _y, _size.width, _size.height);
+    }
+    _tmpHeight = self.content_open.origin.y+self.content_open.size.height+kMarginTop;
+    self.height_open = _tmpHeight > self.height_open ? _tmpHeight : self.height_open;
+    //  type
+    CGFloat _y = self.icon_open.origin.y+self.icon_open.size.height+5;
+    if (self.content_open.size.height > 0) {
+        _y = self.content_open.origin.y+self.content_open.size.height+5;
+    } else if (self.title_open.size.height > 0) {
+        _y = self.title_open.origin.y+self.title_open.size.height+5;
+    }
+    self.type_open = CGRectMake(kMarginLeft, _y, 40.0, 15.0);
+    _tmpHeight = self.type_open.origin.y+self.type_open.size.height+kMarginTop;
+    self.height_open = _tmpHeight > self.height_open ? _tmpHeight : self.height_open;
+    //  expire
+    if ([SUtil needShowExpireDescriptionWithCoupon:coupon]) {
+        NSString *_exp = [SUtil couponExpireDescription:coupon];
+        if (![Util isEmptyString:_exp]) {
+            CGSize _size = [_exp sizeWithFont:style.expireFont forWidth:([SUtil cellWidth]-kMarginLeft*2) lineBreakMode:style.lineBreakMode];
+            self.expire_open = CGRectMake([SUtil cellWidth]-_size.width-kMarginLeft, self.type_open.origin.y, _size.width, _size.height);
+        }
+        _tmpHeight = self.expire_open.origin.y+self.expire_open.size.height+kMarginTop;
+        self.height_open = _tmpHeight > self.height_open ? _tmpHeight : self.height_open;
+    }
 }
 
 @end

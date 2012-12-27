@@ -26,6 +26,7 @@
 @property (nonatomic, assign) CGRect content_open;
 @property (nonatomic, assign) CGRect expire_open;
 @property (nonatomic, assign) CGRect type_open;
+@property (nonatomic, assign) CGFloat height_open;
 - (void)layoutWithCoupon:(id)coupon Style:(SCouponStyle *)style;
 @end
 

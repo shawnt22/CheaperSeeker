@@ -56,8 +56,7 @@
 }
 - (void)refreshAction:(id)sender {
     [self.couponsTableView finishPullToRefreshWithAnimated:NO];
-    [self.couponsTableView reloadData];
-    self.couponsTableView.scrollEnabled = YES;
+    [self.couponsTableView resetCellOpenState];
     [self.couponsTableView startPullToRefreshWithAnimated:YES];
 }
 

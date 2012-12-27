@@ -96,6 +96,8 @@
 }
 - (void)refreshWithCoupon:(id)cpn Layout:(SCouponLayout *)layout Style:(SCouponStyle *)style {
     self.coupon = cpn;
+    self.couponLayout = layout;
+    self.couponStyle = style;
     [self reStyleWith:style];
     [self reLayoutWith:layout];
     [self reContent];
@@ -136,8 +138,51 @@
 
 @implementation SCouponCell (OpenClose)
 
-- (void)openWithAnimated:(BOOL)animated {}
-- (void)closeWithAnimated:(BOOL)animated {}
+- (void)openWithAnimated:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             self.couponCover.frame = self.couponLayout.icon_open;
+                             self.couponTitle.frame = self.couponLayout.title_open;
+                             self.couponContent.frame = self.couponLayout.content_open;
+                             self.couponExpire.frame = self.couponLayout.expire_open;
+                             self.couponType.frame = self.couponLayout.type_open;
+                         }
+                         completion:^(BOOL finished){
+                             [self finishOpenAnimation:animated];
+                         }];
+    } else {
+        self.couponCover.frame = self.couponLayout.icon_open;
+        self.couponTitle.frame = self.couponLayout.title_open;
+        self.couponContent.frame = self.couponLayout.content_open;
+        self.couponExpire.frame = self.couponLayout.expire_open;
+        self.couponType.frame = self.couponLayout.type_open;
+        [self finishOpenAnimation:animated];
+    }
+}
+- (void)closeWithAnimated:(BOOL)animated {
+    SCouponLayout *layout = self.couponLayout;
+    if (animated) {
+        [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             self.couponCover.frame = layout.icon;
+                             self.couponTitle.frame = layout.title;
+                             self.couponContent.frame = layout.content;
+                             self.couponExpire.frame = layout.expire;
+                             self.couponType.frame = layout.type;
+                         }
+                         completion:^(BOOL finished){
+                             [self finishCloseAnimation:animated];
+                         }];
+    } else {
+        self.couponCover.frame = layout.icon;
+        self.couponTitle.frame = layout.title;
+        self.couponContent.frame = layout.content;
+        self.couponExpire.frame = layout.expire;
+        self.couponType.frame = layout.type;
+        [self finishCloseAnimation:animated];
+    }
+}
 - (void)finishOpenAnimation:(BOOL)animated {}
 - (void)finishCloseAnimation:(BOOL)animated {}
 

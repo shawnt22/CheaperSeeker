@@ -15,7 +15,9 @@
 @property (nonatomic, retain) SCouponStyle *couponStyle;
 @property (nonatomic, retain) NSMutableArray *couponLayouts;
 @property (nonatomic, assign) BOOL isCellOpening;
+@property (nonatomic, retain) NSIndexPath *selectedIndexPath;
 @property (nonatomic, retain) NSMutableDictionary *originalCellFrames;
+@property (nonatomic, retain) UIView *originalTableFooterView;
 
 - (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated;
 - (void)performOpenCellAtIndexPath:(NSIndexPath *)indexPath;
@@ -33,7 +35,7 @@
 @synthesize couponsDataStore;
 @synthesize couponStyle, couponLayouts;
 @synthesize couponsTableViewDelegate;
-@synthesize isCellOpening, originalCellFrames;
+@synthesize isCellOpening, originalCellFrames, selectedIndexPath, originalTableFooterView;
 
 #pragma mark init & dealloc
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -60,14 +62,17 @@
     self.couponLayouts = nil;
     
     self.originalCellFrames = nil;
+    self.selectedIndexPath = nil;
+    self.originalTableFooterView = nil;
     
     [super dealloc];
 }
 
 #pragma mark open/close animation
-#define k_coupons_table_cell_animation_duration 0.4
 - (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated {
     self.scrollEnabled = NO;
+    self.originalTableFooterView = self.tableFooterView;
+    self.tableFooterView = nil;
     
     self.originalCellFrames = [NSMutableDictionary dictionary];
     for (UITableViewCell *cell in self.visibleCells) {
@@ -112,6 +117,7 @@
 }
 - (void)closeCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated {
     self.scrollEnabled = YES;
+    self.tableFooterView = self.originalTableFooterView;
     
     if (animated) {
         [UIView animateWithDuration:k_coupons_table_cell_animation_duration delay:0.0 options:UIViewAnimationOptionCurveEaseIn
@@ -141,6 +147,15 @@
     NSString *frameStr = [self.originalCellFrames objectForKey:indexPath];
     return [Util isEmptyString:frameStr] ? CGRectZero : CGRectFromString(frameStr);
 }
+- (void)resetCellOpenState {
+    self.scrollEnabled = YES;
+    self.isCellOpening = NO;
+    self.selectedIndexPath = nil;
+    self.originalCellFrames = nil;
+    self.tableFooterView = self.originalTableFooterView;
+    self.originalTableFooterView = nil;
+    [self reloadData];
+}
 
 #pragma mark table delegate
 - (void)tableViewPullToRefresh:(TSPullTableView *)tableView {
@@ -153,9 +168,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     if (self.isCellOpening) {
-        [self closeCellAtIndexPath:indexPath Animated:YES];
+        [self closeCellAtIndexPath:self.selectedIndexPath Animated:YES];
+        [(SCouponCell *)[tableView cellForRowAtIndexPath:self.selectedIndexPath] closeWithAnimated:YES];
     } else {
+        self.selectedIndexPath = indexPath;
         [self openCellAtIndexPath:indexPath Animated:YES];
+        [(SCouponCell *)[tableView cellForRowAtIndexPath:self.selectedIndexPath] openWithAnimated:YES];
     }
     self.isCellOpening = !self.isCellOpening;
     

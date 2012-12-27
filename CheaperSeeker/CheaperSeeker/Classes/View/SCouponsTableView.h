@@ -23,4 +23,6 @@
 @property (nonatomic, retain) PListDataStore<PListRefreshLoadmoreProtocol> *couponsDataStore;
 @property (nonatomic, assign) id<SCouponsTableViewDelegate> couponsTableViewDelegate;
 
+- (void)resetCellOpenState;
+
 @end
