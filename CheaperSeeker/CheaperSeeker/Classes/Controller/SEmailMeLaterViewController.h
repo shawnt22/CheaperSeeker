@@ -8,7 +8,7 @@
 
 #import "SViewController.h"
 
-@interface SEmailMeLaterViewController : SViewController
+@interface SEmailMeLaterViewController : SViewController <UITextFieldDelegate>
 @property (nonatomic, retain) id coupon;
 
 - (id)initWithCoupon:(id)coupon;

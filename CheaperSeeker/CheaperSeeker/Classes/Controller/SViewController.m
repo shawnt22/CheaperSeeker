@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = kCustomCellBGFillColor;
-    self.navigationController.navigationBar.tintColor = SRGBCOLOR(255, 195, 24);
+//    self.navigationController.navigationBar.tintColor = SRGBCOLOR(255, 195, 24);
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
