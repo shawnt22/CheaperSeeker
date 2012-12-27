@@ -15,7 +15,6 @@
 @property (nonatomic, retain) SCouponStyle *couponStyle;
 @property (nonatomic, retain) NSMutableArray *couponLayouts;
 @property (nonatomic, assign) BOOL isCellOpening;
-@property (nonatomic, assign) CGRect originalCellFrame;
 @property (nonatomic, retain) NSMutableDictionary *originalCellFrames;
 
 - (void)openCellAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated;
@@ -34,7 +33,7 @@
 @synthesize couponsDataStore;
 @synthesize couponStyle, couponLayouts;
 @synthesize couponsTableViewDelegate;
-@synthesize isCellOpening, originalCellFrame, originalCellFrames;
+@synthesize isCellOpening, originalCellFrames;
 
 #pragma mark init & dealloc
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {

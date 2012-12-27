@@ -385,6 +385,7 @@ typedef enum {
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.contentMode = UIViewContentModeRedraw;
         self.backgroundColor = [UIColor clearColor];
         self.contentInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         
