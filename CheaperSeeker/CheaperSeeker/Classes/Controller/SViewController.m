@@ -10,6 +10,7 @@
 
 @implementation SViewController
 @synthesize splitNavigationController, splitViewController;
+@synthesize messageHUD;
 
 #pragma mark init
 - (id)init {
@@ -23,6 +24,7 @@
 - (void)initSubobjects {
 }
 - (void)dealloc {
+    self.messageHUD = nil;
     [super dealloc];
 }
 
@@ -31,9 +33,20 @@
     [super viewDidLoad];
     self.view.backgroundColor = kCustomCellBGFillColor;
 //    self.navigationController.navigationBar.tintColor = SRGBCOLOR(255, 195, 24);
+    
+    MBProgressHUD *_hud = [[MBProgressHUD alloc] initWithView:self.view];
+    _hud.mode = MBProgressHUDModeText;
+    _hud.userInteractionEnabled = YES;
+    _hud.removeFromSuperViewOnHide = YES;
+    self.messageHUD = _hud;
+    [_hud release];
+    
+    UITapGestureRecognizer *_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMessageHUDAction:)];
+    [_hud addGestureRecognizer:_tap];
+    [_tap release];
 }
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 #pragma mark SplitController Protocol
@@ -42,6 +55,22 @@
 }
 - (UIViewController<SSplitControllerProtocol> *)splitViewController {
     return self;
+}
+
+#pragma mark hud
+- (void)showMessageHUD:(NSString *)message Animated:(BOOL)animated {
+    if (!self.messageHUD.superview) {
+        [self.view addSubview:self.messageHUD];
+    }
+    [self.view bringSubviewToFront:self.messageHUD];
+    self.messageHUD.labelText = message;
+    [self.messageHUD show:animated];
+}
+- (void)hideMessageHUD:(BOOL)animated {
+    [self.messageHUD hide:animated];
+}
+- (void)hideMessageHUDAction:(id)sender {
+    [self hideMessageHUD:YES];
 }
 
 @end

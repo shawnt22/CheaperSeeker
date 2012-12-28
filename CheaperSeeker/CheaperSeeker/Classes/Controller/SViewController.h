@@ -13,8 +13,12 @@
 #import "SSplitContentDelegate.h"
 #import "MBProgressHUD.h"
 
-@interface SViewController : UIViewController<SSplitControllerProtocol>
+@interface SViewController : UIViewController<SSplitControllerProtocol, MBProgressHUDDelegate>
+@property (nonatomic, retain) MBProgressHUD *messageHUD;
 
 - (void)initSubobjects;
+
+- (void)showMessageHUD:(NSString *)message Animated:(BOOL)animated;
+- (void)hideMessageHUD:(BOOL)animated;
 
 @end

@@ -50,6 +50,7 @@
 		9C627BB7168D67C000585B34 /* btn_coupon_email_me_later_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C627BB3168D67C000585B34 /* btn_coupon_email_me_later_normal.png */; };
 		9C627BB8168D67C000585B34 /* btn_coupon_save_code_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C627BB4168D67C000585B34 /* btn_coupon_save_code_normal.png */; };
 		9C627BB9168D67C000585B34 /* btn_coupon_web_link_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C627BB5168D67C000585B34 /* btn_coupon_web_link_normal.png */; };
+		9C627BBC168D849700585B34 /* SAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C627BBB168D849700585B34 /* SAlertView.m */; };
 		9C63C782164D05CA008D6344 /* SCouponWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C63C781164D05CA008D6344 /* SCouponWebViewController.m */; };
 		9C63C786164D08B3008D6344 /* SCouponCodeContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */; };
 		9C6417BF15EF16E60072638F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417BE15EF16E60072638F /* UIKit.framework */; };
@@ -193,6 +194,8 @@
 		9C627BB3168D67C000585B34 /* btn_coupon_email_me_later_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_coupon_email_me_later_normal.png; sourceTree = "<group>"; };
 		9C627BB4168D67C000585B34 /* btn_coupon_save_code_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_coupon_save_code_normal.png; sourceTree = "<group>"; };
 		9C627BB5168D67C000585B34 /* btn_coupon_web_link_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_coupon_web_link_normal.png; sourceTree = "<group>"; };
+		9C627BBA168D849700585B34 /* SAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAlertView.h; sourceTree = "<group>"; };
+		9C627BBB168D849700585B34 /* SAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAlertView.m; sourceTree = "<group>"; };
 		9C63C780164D05CA008D6344 /* SCouponWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCouponWebViewController.h; path = Classes/Controller/SCouponWebViewController.h; sourceTree = "<group>"; };
 		9C63C781164D05CA008D6344 /* SCouponWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCouponWebViewController.m; path = Classes/Controller/SCouponWebViewController.m; sourceTree = "<group>"; };
 		9C63C784164D08B3008D6344 /* SCouponCodeContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCouponCodeContentView.h; sourceTree = "<group>"; };
@@ -836,6 +839,8 @@
 				9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */,
 				9CACFABD168C1673007D7045 /* SCouponTypeView.h */,
 				9CACFABE168C1673007D7045 /* SCouponTypeView.m */,
+				9C627BBA168D849700585B34 /* SAlertView.h */,
+				9C627BBB168D849700585B34 /* SAlertView.m */,
 			);
 			name = View;
 			path = Classes/View;
@@ -1068,6 +1073,7 @@
 				9CACFABF168C1673007D7045 /* SCouponTypeView.m in Sources */,
 				9CACFAC3168C5377007D7045 /* SEmailMeLaterViewController.m in Sources */,
 				9C627BB0168D67A300585B34 /* UIImage_Additions.m in Sources */,
+				9C627BBC168D849700585B34 /* SAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
