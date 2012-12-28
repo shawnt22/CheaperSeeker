@@ -36,6 +36,7 @@
     
     MBProgressHUD *_hud = [[MBProgressHUD alloc] initWithView:self.view];
     _hud.mode = MBProgressHUDModeText;
+    _hud.detailsLabelFont = [UIFont systemFontOfSize:14];
     _hud.userInteractionEnabled = YES;
     _hud.removeFromSuperViewOnHide = YES;
     self.messageHUD = _hud;
@@ -58,12 +59,16 @@
 }
 
 #pragma mark hud
-- (void)showMessageHUD:(NSString *)message Animated:(BOOL)animated {
+- (void)showMessageHUD:(NSString *)title Animated:(BOOL)animated {
+    [self showMessageHUD:title Message:nil Animated:animated];
+}
+- (void)showMessageHUD:(NSString *)title Message:(NSString *)message Animated:(BOOL)animated {
     if (!self.messageHUD.superview) {
         [self.view addSubview:self.messageHUD];
     }
     [self.view bringSubviewToFront:self.messageHUD];
-    self.messageHUD.labelText = message;
+    self.messageHUD.labelText = title;
+    self.messageHUD.detailsLabelText = message;
     [self.messageHUD show:animated];
 }
 - (void)hideMessageHUD:(BOOL)animated {

@@ -12,6 +12,7 @@
 #import "Sconfiger.h"
 #import "TSPullTableView.h"
 #import "CSListDataStore.h"
+#import "SViewController.h"
 
 @class SCouponsTableView;
 @protocol SCouponsTableViewDelegate <NSObject>
@@ -22,7 +23,7 @@
 
 @interface SCouponsTableView : CSPullTableView <TSPullTableViewDelegate, TSViewGestureDelegate, UITableViewDataSource, SDataLoaderDelegate>
 @property (nonatomic, retain) PListDataStore<PListRefreshLoadmoreProtocol> *couponsDataStore;
-@property (nonatomic, assign) id<SCouponsTableViewDelegate> couponsTableViewDelegate;
+@property (nonatomic, assign) SViewController<SCouponsTableViewDelegate> *couponsTableViewDelegate;
 
 - (void)resetCellOpenState;
 

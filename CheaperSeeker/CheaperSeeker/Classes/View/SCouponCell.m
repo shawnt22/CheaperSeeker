@@ -158,7 +158,9 @@
 }
 - (void)copyCodeAction:(id)sender {
     UIPasteboard *_pasteboard = [UIPasteboard generalPasteboard];
-    _pasteboard.string = [self.coupon objectForInfoDictionaryKey:k_coupon_code];
+    _pasteboard.string = [self.coupon objectForKey:k_coupon_code];
+    
+    [self.couponsTableView.couponsTableViewDelegate showMessageHUD:[self.coupon objectForKey:k_coupon_code] Message:k_text_copy_coupon_code_success Animated:YES];
 }
 - (void)showCouponWebDetailAction:(id)sender {
     if (self.couponsTableView.couponsTableViewDelegate && [self.couponsTableView.couponsTableViewDelegate respondsToSelector:@selector(couponsTableView:didSelectCoupon:atIndexPath:)]) {

@@ -18,7 +18,8 @@
 
 - (void)initSubobjects;
 
-- (void)showMessageHUD:(NSString *)message Animated:(BOOL)animated;
+- (void)showMessageHUD:(NSString *)title Animated:(BOOL)animated;
+- (void)showMessageHUD:(NSString *)title Message:(NSString *)message Animated:(BOOL)animated;
 - (void)hideMessageHUD:(BOOL)animated;
 
 @end

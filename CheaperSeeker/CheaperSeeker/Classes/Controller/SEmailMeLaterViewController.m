@@ -74,6 +74,7 @@
     
     MBProgressHUD *_hud = [[MBProgressHUD alloc] initWithView:_bg];
     _hud.mode = MBProgressHUDModeText;
+    _hud.detailsLabelFont = [UIFont systemFontOfSize:14];
     _hud.removeFromSuperViewOnHide = YES;
     _hud.userInteractionEnabled = YES;
     self.messageHUD = _hud;
@@ -99,11 +100,11 @@
     setting.email = self.emailField.text;
     [setting save];
 }
-- (void)showMessageHUD:(NSString *)message Animated:(BOOL)animated {
+- (void)showMessageHUD:(NSString *)title Animated:(BOOL)animated {
     if (!self.messageHUD.superview) {
         [self.contentBGView addSubview:self.messageHUD];
     }
-    [super showMessageHUD:message Animated:animated];
+    [super showMessageHUD:title Animated:animated];
 }
 
 @end
