@@ -11,7 +11,7 @@
 
 @interface SEmailMeLaterViewController ()
 @property (nonatomic, assign) UIView *contentBGView;
-@property (nonatomic, assign) UILabel *descriptionField;
+@property (nonatomic, assign) UITextView *descriptionField;
 @property (nonatomic, assign) UITextField *emailField;
 - (void)saveEmail;
 @end
@@ -53,7 +53,7 @@
     _txt.font = [UIFont systemFontOfSize:20];
     _txt.returnKeyType = UIReturnKeyDone;
     _txt.borderStyle = UITextBorderStyleBezel;
-    _txt.backgroundColor = self.view.backgroundColor;
+    _txt.backgroundColor = _bg.backgroundColor;
     _txt.placeholder = k_text_email_me_later_txtfield_placeholder;
     _txt.clearButtonMode = UITextFieldViewModeWhileEditing;
     _txt.text = ((SGSetting *)[SGSetting shareSetting]).email;
@@ -63,11 +63,14 @@
     
     [_txt becomeFirstResponder];
     
-    UILabel *_lbl = [[UILabel alloc] initWithFrame:CGRectMake(_txt.frame.origin.x, _txt.frame.origin.y+_txt.frame.size.height+10, _txt.frame.size.width, 130.0)];
-    _lbl.backgroundColor = [UIColor greenColor];
-    _lbl.text = @"这得说点介绍什么的";
-    [_bg addSubview:_lbl];
-    [_lbl release];
+    UITextView *_desc = [[UITextView alloc] initWithFrame:CGRectMake(_txt.frame.origin.x, _txt.frame.origin.y+_txt.frame.size.height+10, _txt.frame.size.width, 130.0)];
+    _desc.backgroundColor = _bg.backgroundColor;
+    _desc.editable = NO;
+    _desc.font = [UIFont systemFontOfSize:16];
+    _desc.textColor = [UIColor grayColor];
+    _desc.text = k_text_email_me_later_description;
+    [_bg addSubview:_desc];
+    [_desc release];
     
     MBProgressHUD *_hud = [[MBProgressHUD alloc] initWithView:_bg];
     _hud.mode = MBProgressHUDModeText;
