@@ -44,7 +44,7 @@
     //  content
     NSString *_cnt = [coupon objectForKey:k_coupon_excerpt_description];
     if (![Util isEmptyString:_cnt]) {
-        CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft, 1000) lineBreakMode:style.lineBreakMode];
+        CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft, 30) lineBreakMode:style.lineBreakMode];   //  content 默认最多显示2行
         CGFloat _y = self.title.size.height > 0 ? self.title.origin.y+self.title.size.height+5 : self.icon.origin.y;
         self.content = CGRectMake(self.icon.origin.x+self.icon.size.width+5, _y, _size.width, _size.height);
     }
