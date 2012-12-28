@@ -36,7 +36,7 @@
     //  title
     NSString *_ttl = [coupon objectForKey:k_coupon_title];
     if (![Util isEmptyString:_ttl]) {
-        CGSize _size = [_ttl sizeWithFont:style.titleFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft, 1000) lineBreakMode:style.lineBreakMode];
+        CGSize _size = [_ttl sizeWithFont:style.titleFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft, 40) lineBreakMode:style.lineBreakMode];     //  title 默认最多显示2行
         self.title = CGRectMake(self.icon.origin.x+self.icon.size.width+5, self.icon.origin.y, _size.width, _size.height);
     }
     CGFloat _tmpHeight = self.title.origin.y+self.title.size.height+kMarginTop;
