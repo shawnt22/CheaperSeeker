@@ -12,6 +12,7 @@
 @interface SEmailMeLaterViewController ()
 @property (nonatomic, assign) UILabel *descriptionField;
 @property (nonatomic, assign) UITextField *emailField;
+- (void)saveEmail;
 @end
 
 @implementation SEmailMeLaterViewController
@@ -42,6 +43,7 @@
     
     UITextField *_txt = [[UITextField alloc] initWithFrame:CGRectMake(_margin_left, _margin_top, self.view.bounds.size.width-_margin_left*2, 36.0)];
     _txt.font = [UIFont systemFontOfSize:20];
+    _txt.returnKeyType = UIReturnKeyDone;
     _txt.borderStyle = UITextBorderStyleBezel;
     _txt.backgroundColor = self.view.backgroundColor;
     _txt.delegate = self;
@@ -49,6 +51,7 @@
     _txt.clearButtonMode = UITextFieldViewModeWhileEditing;
     _txt.text = ((SGSetting *)[SGSetting shareSetting]).email;
     [self.view addSubview:_txt];
+    self.emailField = _txt;
     [_txt release];
     
     [_txt becomeFirstResponder];
@@ -60,10 +63,20 @@
     [_lbl release];
 }
 - (void)emailAction:(id)sender {
+    [self saveEmail];
+    //  todo : post to server
     
+    //  todo : 成功post后返回
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self saveEmail];
     return YES;
+}
+- (void)saveEmail {
+    SGSetting *setting = [SGSetting shareSetting];
+    setting.email = self.emailField.text;
+    [setting save];
 }
 
 @end

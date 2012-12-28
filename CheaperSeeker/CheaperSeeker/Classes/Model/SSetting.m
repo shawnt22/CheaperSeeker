@@ -24,6 +24,13 @@
     }
     return self;
 }
+- (id)init {
+    self = [super init];
+    if (self) {
+        [Util createDirectoryIfNecessaryAtPath:[SUtil commonDocFilePath]];
+    }
+    return self;
+}
 + (NSString *)filePath {
 	return nil;
 }
