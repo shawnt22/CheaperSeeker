@@ -65,7 +65,7 @@
         NSString *_exp = [SUtil couponExpireDescription:coupon];
         if (![Util isEmptyString:_exp]) {
             CGSize _size = [_exp sizeWithFont:style.expireFont forWidth:([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft) lineBreakMode:style.lineBreakMode];
-            self.expire = CGRectMake([SUtil cellWidth]-_size.width-kMarginLeft, self.type.origin.y, _size.width, _size.height);
+            self.expire = CGRectMake(self.type.origin.x+self.type.size.width+5, self.type.origin.y, _size.width, _size.height);
         }
         _tmpHeight = self.expire.origin.y+self.expire.size.height+kMarginTop;
         self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
