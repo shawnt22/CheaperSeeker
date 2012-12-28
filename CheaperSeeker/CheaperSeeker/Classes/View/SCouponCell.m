@@ -134,6 +134,7 @@
     self.couponContent.text = [self.coupon objectForKey:k_coupon_excerpt_description];
     self.couponExpire.text = [SUtil couponExpireDescription:self.coupon];
     self.couponType.text = [SUtil descriptionWithCouponType:[SUtil couponType:self.coupon]];
+    [self.couponType setNeedsDisplay];
 }
 - (void)reStyleWith:(SCouponStyle *)style {
     self.couponTitle.font = style.titleFont;
@@ -182,6 +183,7 @@
     CGFloat _h = 40.0;
     CGFloat _y = ceilf((self.actionsToolBar.bounds.size.height - _h)/2);
     UIViewAutoresizing _autoresizing = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    NSLog(@"%@", self.coupon);
     if ([SUtil hasCouponCode:self.coupon]) {
         CGFloat _space = ceilf((self.actionsToolBar.bounds.size.width - _w*4)/5);
         SButton *_close = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_space, _y, _w, _h)];
