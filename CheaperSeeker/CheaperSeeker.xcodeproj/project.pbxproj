@@ -45,6 +45,11 @@
 		9C49AADF16033BE500CFC4B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C49AADE16033BE500CFC4B7 /* MapKit.framework */; };
 		9C4E2A0E15F7563B0088D7F8 /* SImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */; };
 		9C4E2A1515F75ECE0088D7F8 /* SImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */; };
+		9C627BB0168D67A300585B34 /* UIImage_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C627BAF168D67A300585B34 /* UIImage_Additions.m */; };
+		9C627BB6168D67C000585B34 /* btn_coupon_close_cell_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C627BB2168D67C000585B34 /* btn_coupon_close_cell_normal.png */; };
+		9C627BB7168D67C000585B34 /* btn_coupon_email_me_later_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C627BB3168D67C000585B34 /* btn_coupon_email_me_later_normal.png */; };
+		9C627BB8168D67C000585B34 /* btn_coupon_save_code_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C627BB4168D67C000585B34 /* btn_coupon_save_code_normal.png */; };
+		9C627BB9168D67C000585B34 /* btn_coupon_web_link_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C627BB5168D67C000585B34 /* btn_coupon_web_link_normal.png */; };
 		9C63C782164D05CA008D6344 /* SCouponWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C63C781164D05CA008D6344 /* SCouponWebViewController.m */; };
 		9C63C786164D08B3008D6344 /* SCouponCodeContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */; };
 		9C6417BF15EF16E60072638F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6417BE15EF16E60072638F /* UIKit.framework */; };
@@ -182,6 +187,12 @@
 		9C4E2A0D15F7563B0088D7F8 /* SImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageLoader.m; path = Classes/Network/SImageLoader.m; sourceTree = "<group>"; };
 		9C4E2A1315F75ECD0088D7F8 /* SImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SImageStore.h; path = Classes/Network/SImageStore.h; sourceTree = "<group>"; };
 		9C4E2A1415F75ECD0088D7F8 /* SImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SImageStore.m; path = Classes/Network/SImageStore.m; sourceTree = "<group>"; };
+		9C627BAE168D67A300585B34 /* UIImage_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage_Additions.h; sourceTree = "<group>"; };
+		9C627BAF168D67A300585B34 /* UIImage_Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_Additions.m; sourceTree = "<group>"; };
+		9C627BB2168D67C000585B34 /* btn_coupon_close_cell_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_coupon_close_cell_normal.png; sourceTree = "<group>"; };
+		9C627BB3168D67C000585B34 /* btn_coupon_email_me_later_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_coupon_email_me_later_normal.png; sourceTree = "<group>"; };
+		9C627BB4168D67C000585B34 /* btn_coupon_save_code_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_coupon_save_code_normal.png; sourceTree = "<group>"; };
+		9C627BB5168D67C000585B34 /* btn_coupon_web_link_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_coupon_web_link_normal.png; sourceTree = "<group>"; };
 		9C63C780164D05CA008D6344 /* SCouponWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCouponWebViewController.h; path = Classes/Controller/SCouponWebViewController.h; sourceTree = "<group>"; };
 		9C63C781164D05CA008D6344 /* SCouponWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCouponWebViewController.m; path = Classes/Controller/SCouponWebViewController.m; sourceTree = "<group>"; };
 		9C63C784164D08B3008D6344 /* SCouponCodeContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCouponCodeContentView.h; sourceTree = "<group>"; };
@@ -353,6 +364,10 @@
 		60D5DF6516528C6900EAC558 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				9C627BB2168D67C000585B34 /* btn_coupon_close_cell_normal.png */,
+				9C627BB3168D67C000585B34 /* btn_coupon_email_me_later_normal.png */,
+				9C627BB4168D67C000585B34 /* btn_coupon_save_code_normal.png */,
+				9C627BB5168D67C000585B34 /* btn_coupon_web_link_normal.png */,
 				60D5DF6616528C6900EAC558 /* bg_menu_about.png */,
 				60D5DF6716528C6900EAC558 /* bg_menu_home.png */,
 				60D5DF6816528C6900EAC558 /* bg_menu_store.png */,
@@ -672,6 +687,8 @@
 		9C64183615EF16E70072638F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				9C627BAE168D67A300585B34 /* UIImage_Additions.h */,
+				9C627BAF168D67A300585B34 /* UIImage_Additions.m */,
 				9C64183715EF16E70072638F /* Sconfiger.h */,
 				9C64183815EF16E70072638F /* SUtil.h */,
 				9C64183915EF16E70072638F /* SUtil.m */,
@@ -958,6 +975,10 @@
 				9C19DC151653AD56009F80F3 /* Icon.png in Resources */,
 				9C19DC171653AD5D009F80F3 /* Icon@2x.png in Resources */,
 				9C751389168832BD00F305A9 /* Default-568h@2x.png in Resources */,
+				9C627BB6168D67C000585B34 /* btn_coupon_close_cell_normal.png in Resources */,
+				9C627BB7168D67C000585B34 /* btn_coupon_email_me_later_normal.png in Resources */,
+				9C627BB8168D67C000585B34 /* btn_coupon_save_code_normal.png in Resources */,
+				9C627BB9168D67C000585B34 /* btn_coupon_web_link_normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1046,6 +1067,7 @@
 				9C309BC8166742C700814BA0 /* SMerchantsTableView.m in Sources */,
 				9CACFABF168C1673007D7045 /* SCouponTypeView.m in Sources */,
 				9CACFAC3168C5377007D7045 /* SEmailMeLaterViewController.m in Sources */,
+				9C627BB0168D67A300585B34 /* UIImage_Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

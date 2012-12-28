@@ -77,7 +77,7 @@
         [_tpv release];
         
         UIView *_tool = [[UIView alloc] initWithFrame:CGRectMake(0, self.contentView.bounds.size.height-k_coupon_cell_tool_bar_height, self.contentView.bounds.size.width, k_coupon_cell_tool_bar_height)];
-        _tool.backgroundColor = SRGBACOLOR(0, 0, 0, 0.5);
+        _tool.backgroundColor = SRGBCOLOR(62, 87, 129);
         _tool.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         [self.contentView addSubview:_tool];
         self.actionsToolBar = _tool;
@@ -172,65 +172,71 @@
 - (void)showActionBar {
     self.actionsToolBar.hidden = NO;
     
+    UIView *_tline = [[UIView alloc] initWithFrame:CGRectMake(0, -1, self.actionsToolBar.bounds.size.width, 1)];
+    _tline.backgroundColor = [UIColor whiteColor];
+    _tline.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.actionsToolBar addSubview:_tline];
+    [_tline release];
+    
     CGFloat _w = 60.0;
     CGFloat _h = 40.0;
     CGFloat _y = ceilf((self.actionsToolBar.bounds.size.height - _h)/2);
     UIViewAutoresizing _autoresizing = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     if ([SUtil hasCouponCode:self.coupon]) {
         CGFloat _space = ceilf((self.actionsToolBar.bounds.size.width - _w*4)/5);
-        UIButton *_close = [[UIButton alloc] initWithFrame:CGRectMake(_space, _y, _w, _h)];
+        SButton *_close = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_space, _y, _w, _h)];
         _close.autoresizingMask = _autoresizing;
-        _close.backgroundColor = [UIColor greenColor];
-        [_close setTitle:@"BK" forState:UIControlStateNormal];
+        [_close setBGImage:[Util imageWithName:@"btn_coupon_close_cell_normal"] forState:UIControlStateNormal];
+        [_close setNeedsDisplay];
         [_close addTarget:self action:@selector(closeCellAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionsToolBar addSubview:_close];
         [_close release];
         
-        UIButton *_code = [[UIButton alloc] initWithFrame:CGRectMake(_close.frame.origin.x+_close.frame.size.width+_space, _y, _w, _h)];
+        SButton *_code = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_close.frame.origin.x+_close.frame.size.width+_space, _y, _w, _h)];
         _code.autoresizingMask = _autoresizing;
-        _code.backgroundColor = [UIColor greenColor];
-        [_code setTitle:@"CD" forState:UIControlStateNormal];
+        [_code setBGImage:[Util imageWithName:@"btn_coupon_save_code_normal"] forState:UIControlStateNormal];
+        [_code setNeedsDisplay];
         [_code addTarget:self action:@selector(copyCodeAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionsToolBar addSubview:_code];
         [_code release];
         
-        UIButton *_email = [[UIButton alloc] initWithFrame:CGRectMake(_code.frame.origin.x+_code.frame.size.width+_space, _y, _w, _h)];
+        SButton *_email = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_code.frame.origin.x+_code.frame.size.width+_space, _y, _w, _h)];
         _email.autoresizingMask = _autoresizing;
-        _email.backgroundColor = [UIColor greenColor];
-        [_email setTitle:@"EM" forState:UIControlStateNormal];
+        [_email setBGImage:[Util imageWithName:@"btn_coupon_email_me_later_normal"] forState:UIControlStateNormal];
+        [_email setNeedsDisplay];
         [_email addTarget:self action:@selector(emailMeLaterAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionsToolBar addSubview:_email];
         [_email release];
         
-        UIButton *_detail = [[UIButton alloc] initWithFrame:CGRectMake(_email.frame.origin.x+_email.frame.size.width+_space, _y, _w, _h)];
+        SButton *_detail = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_email.frame.origin.x+_email.frame.size.width+_space, _y, _w, _h)];
         _detail.autoresizingMask = _autoresizing;
-        _detail.backgroundColor = [UIColor greenColor];
-        [_detail setTitle:@"WB" forState:UIControlStateNormal];
+        [_detail setBGImage:[Util imageWithName:@"btn_coupon_web_link_normal"] forState:UIControlStateNormal];
+        [_detail setNeedsDisplay];
         [_detail addTarget:self action:@selector(showCouponWebDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionsToolBar addSubview:_detail];
         [_detail release];
     } else {
         CGFloat _space = ceilf((self.actionsToolBar.bounds.size.width - _w*3)/4);
-        UIButton *_close = [[UIButton alloc] initWithFrame:CGRectMake(_space, _y, _w, _h)];
+        SButton *_close = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_space, _y, _w, _h)];
         _close.autoresizingMask = _autoresizing;
-        _close.backgroundColor = [UIColor greenColor];
-        [_close setTitle:@"BK" forState:UIControlStateNormal];
+        [_close setBGImage:[Util imageWithName:@"btn_coupon_close_cell_normal"] forState:UIControlStateNormal];
+        [_close setNeedsDisplay];
         [_close addTarget:self action:@selector(closeCellAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionsToolBar addSubview:_close];
         [_close release];
         
-        UIButton *_email = [[UIButton alloc] initWithFrame:CGRectMake(_close.frame.origin.x+_close.frame.size.width+_space, _y, _w, _h)];
+        SButton *_email = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_close.frame.origin.x+_close.frame.size.width+_space, _y, _w, _h)];
         _email.autoresizingMask = _autoresizing;
-        _email.backgroundColor = [UIColor greenColor];
-        [_email setTitle:@"EM" forState:UIControlStateNormal];
+        [_email setBGImage:[Util imageWithName:@"btn_coupon_email_me_later_normal"] forState:UIControlStateNormal];
+        [_email setNeedsDisplay];
         [_email addTarget:self action:@selector(emailMeLaterAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionsToolBar addSubview:_email];
         [_email release];
         
-        UIButton *_detail = [[UIButton alloc] initWithFrame:CGRectMake(_email.frame.origin.x+_email.frame.size.width+_space, _y, _w, _h)];
+        SButton *_detail = [[SCouponCellButton alloc] initWithFrame:CGRectMake(_email.frame.origin.x+_email.frame.size.width+_space, _y, _w, _h)];
         _detail.autoresizingMask = _autoresizing;
-        _detail.backgroundColor = [UIColor greenColor];
-        [_detail setTitle:@"WB" forState:UIControlStateNormal];
+        [_detail setBGImage:[Util imageWithName:@"btn_coupon_web_link_normal"] forState:UIControlStateNormal];
+        [_detail setNeedsDisplay];
         [_detail addTarget:self action:@selector(showCouponWebDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.actionsToolBar addSubview:_detail];
         [_detail release];
