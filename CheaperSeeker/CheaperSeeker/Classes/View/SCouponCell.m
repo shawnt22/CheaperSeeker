@@ -41,7 +41,7 @@
     if (self) {
         [SUtil setCustomCellBGView:self];
         
-        UIColor *_bgcolor = kCustomCellBGFillColor;
+        UIColor *_bgcolor = [UIColor clearColor];
         
         UIImageView *_imgv = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imgv.backgroundColor = _bgcolor;
