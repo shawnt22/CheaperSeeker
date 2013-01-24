@@ -63,6 +63,7 @@
     [_request addRequestHeader:@"Platform" value:[Util platform]];
     [_request addPostValue:email forKey:@"email"];
     [_request addPostValue:[Util currentUUIDString] forKey:@"uuid"];
+    [_request addPostValue:couponID forKey:@"c_id"];
     
     self.emailRequest = _request;
     [_request release];
