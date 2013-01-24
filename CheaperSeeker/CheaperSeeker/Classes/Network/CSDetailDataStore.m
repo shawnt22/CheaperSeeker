@@ -36,3 +36,38 @@
 }
 
 @end
+
+@interface CSEmailMeLaterDataStore ()
+@property (nonatomic, retain) SURLRequest *emailRequest;
+@end
+@implementation CSEmailMeLaterDataStore
+@synthesize emailRequest;
+
+- (void)dealloc {
+    [super dealloc];
+    self.emailRequest = nil;
+}
+- (void)cancelAllRequests {
+    [super cancelAllRequests];
+    [self cancelRequest:self.emailRequest];
+}
+- (void)postEmail:(NSString *)email CouponID:(NSString *)couponID {
+    [self cancelRequest:self.emailRequest];
+    
+    SURLRequest *_request = [[SURLRequest alloc] initWithURL:[NSURL URLWithString:[SURLProxy postEmailAddress]]];
+    _request.delegate = self;
+    _request.tag = SURLRequestPostEmail;
+    _request.cachePolicy = ASIDoNotReadFromCacheCachePolicy;
+    
+    _request.requestMethod = @"POST";
+    [_request addRequestHeader:@"Platform" value:[Util platform]];
+    [_request addPostValue:email forKey:@"email"];
+    [_request addPostValue:[Util currentUUIDString] forKey:@"uuid"];
+    
+    self.emailRequest = _request;
+    [_request release];
+    
+    [self startRequest:self.emailRequest];
+}
+
+@end

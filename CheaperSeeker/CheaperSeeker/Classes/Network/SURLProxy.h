@@ -18,6 +18,7 @@ typedef enum {
     SURLRequestItemsLoadmore,
     
     SURLRequestAboutInfo,
+    SURLRequestPostEmail,
     
 }SURLRequestTag;
 
@@ -41,5 +42,6 @@ typedef enum {
 + (NSString *)getCategoryCouponsWithCategoryID:(NSString *)cid Cursor:(NSString *)cursor Count:(NSInteger)count;
 
 + (NSString *)getAboutInfo;
++ (NSString *)postEmailAddress;
 
 @end

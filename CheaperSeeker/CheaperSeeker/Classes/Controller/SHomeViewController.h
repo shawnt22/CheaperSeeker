@@ -8,7 +8,8 @@
 
 #import "SViewController.h"
 #import "SCouponsTableView.h"
+#import "SEmailMeLaterViewController.h"
 
-@interface SHomeViewController : SViewController <SCouponsTableViewDelegate, UISearchBarDelegate>
+@interface SHomeViewController : SViewController <SCouponsTableViewDelegate, UISearchBarDelegate, SEmailMeLaterViewControllerDelegate>
 
 @end

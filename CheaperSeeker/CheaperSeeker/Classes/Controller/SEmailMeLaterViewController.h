@@ -7,9 +7,17 @@
 //
 
 #import "SViewController.h"
+#import "CSDetailDataStore.h"
 
-@interface SEmailMeLaterViewController : SViewController
+@class SEmailMeLaterViewController;
+@protocol SEmailMeLaterViewControllerDelegate <NSObject>
+@optional
+- (void)didFinishPostEmailAddress:(SEmailMeLaterViewController *)emailMeLaterViewController;
+@end
+
+@interface SEmailMeLaterViewController : SViewController <SDataLoaderDelegate>
 @property (nonatomic, retain) id coupon;
+@property (nonatomic, assign) id<SEmailMeLaterViewControllerDelegate> controllerDelegate;
 
 - (id)initWithCoupon:(id)coupon;
 

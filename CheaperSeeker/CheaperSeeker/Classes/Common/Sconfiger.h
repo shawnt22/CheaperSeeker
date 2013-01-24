@@ -98,6 +98,10 @@ typedef enum {
 #define k_text_email_me_later_controller_title          @"Email Me Later"
 #define k_text_email_me_later_txtfield_placeholder      @"Enter Your Email Here"
 #define k_text_email_me_later_post_success              @"Email Me Later Success"
+#define k_text_email_me_later_loading                   @"Loading..."
+#define k_text_email_me_later_post_success              @"Post Success"
+#define k_text_email_me_later_post_fail                 @"Post Fail"
 #define k_text_email_me_later_description               @"Bala Bala Bala\nBala Bala Bala\nBala Bala Bala\nBala Bala Bala\nBala Bala Bala\nBala Bala Bala"
 #define k_text_error_email_me_empty_email               @"Please Enter Your Email"
+#define k_text_error_email_me_invalid_email             @"Please Enter Your Effective Email"
 

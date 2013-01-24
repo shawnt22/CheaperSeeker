@@ -11,3 +11,7 @@
 @interface CSAboutInfoDataStore : SDataLoader
 - (void)getAboutInfo:(ASICachePolicy)cachePolicy;
 @end
+
+@interface CSEmailMeLaterDataStore : SDataLoader
+- (void)postEmail:(NSString *)email CouponID:(NSString *)couponID;
+@end

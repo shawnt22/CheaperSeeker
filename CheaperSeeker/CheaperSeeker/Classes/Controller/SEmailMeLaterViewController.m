@@ -13,22 +13,32 @@
 @property (nonatomic, assign) UIView *contentBGView;
 @property (nonatomic, assign) UITextView *descriptionField;
 @property (nonatomic, assign) UITextField *emailField;
+@property (nonatomic, retain) CSEmailMeLaterDataStore *emailDataStore;
 - (void)saveEmail;
+- (BOOL)checkEmail;
 @end
 
 @implementation SEmailMeLaterViewController
 @synthesize coupon;
 @synthesize descriptionField, emailField;
 @synthesize contentBGView;
+@synthesize emailDataStore;
+@synthesize controllerDelegate;
 
 - (id)initWithCoupon:(id)cpn {
     self = [super init];
     if (self) {
         self.coupon = cpn;
+        
+        self.emailDataStore = [[[CSEmailMeLaterDataStore alloc] initWithDelegate:self] autorelease];
     }
     return self;
 }
 - (void)dealloc {
+    [self.emailDataStore cancelAllRequests];
+    self.emailDataStore.delegate = nil;
+    self.emailDataStore = nil;
+    
     self.coupon = nil;
     [super dealloc];
 }
@@ -85,15 +95,22 @@
     [_tap release];
 }
 - (void)emailAction:(id)sender {
-    if ([Util isEmptyString:self.emailField.text]) {
-        [self showMessageHUD:k_text_error_email_me_empty_email Animated:YES];
+    if ([self checkEmail]) {
         return;
     }
     [self saveEmail];
-    //  todo : post to server
+    [self.emailDataStore postEmail:self.emailField.text CouponID:[self.coupon objectForKey:k_coupon_id]];
     
-    //  todo : 成功post后返回
-    [self.navigationController popViewControllerAnimated:YES];
+    [MBProgressHUD hideAllHUDsForView:self.contentBGView animated:NO];
+    [MBProgressHUD showHUDAddedTo:self.contentBGView animated:YES];
+}
+- (BOOL)checkEmail {
+    BOOL _result = YES;
+    if ([Util isEmptyString:self.emailField.text]) {
+        [self showMessageHUD:k_text_error_email_me_empty_email Animated:YES];
+        _result = NO;
+    } 
+    return _result;
 }
 - (void)saveEmail {
     SGSetting *setting = [SGSetting shareSetting];
@@ -105,6 +122,25 @@
         [self.contentBGView addSubview:self.messageHUD];
     }
     [super showMessageHUD:title Animated:animated];
+}
+
+#pragma mark loader
+- (void)dataloader:(SDataLoader *)dataloader didFinishRequest:(SURLRequest *)request {
+    if (request.tag == SURLRequestPostEmail) {
+        [MBProgressHUD hideAllHUDsForView:self.contentBGView animated:NO];
+        if (self.controllerDelegate && [self.controllerDelegate respondsToSelector:@selector(didFinishPostEmailAddress:)]) {
+            [self.controllerDelegate didFinishPostEmailAddress:self];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+}
+- (void)dataloader:(SDataLoader *)dataloader didFailRequest:(SURLRequest *)request Error:(NSError *)error {
+    if (request.tag == SURLRequestPostEmail) {
+        [MBProgressHUD hideAllHUDsForView:self.contentBGView animated:NO];
+        [self showMessageHUD:k_text_email_me_later_post_fail Message:[error localizedDescription] Animated:YES];
+        return;
+    }
 }
 
 @end

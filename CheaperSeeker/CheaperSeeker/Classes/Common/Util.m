@@ -461,7 +461,7 @@
     if ([platform isEqualToString:@"iPhone1,2"])	return UIDevice3GiPhone;
 	return UIDeviceUnknown;
 }
-+ (BOOL)isCurrentVersionLowerThanRequiredVersion:(NSString *)sysVersion {
++ (BOOL)isCurrentOSVersionLowerThanRequiredVersion:(NSString *)sysVersion {
 	NSString *curVersion = [[UIDevice currentDevice] systemVersion];
 	if ([curVersion compare:sysVersion options:NSNumericSearch] == NSOrderedAscending) {
 		return YES;
@@ -514,7 +514,7 @@
  */
 + (NSInteger)lineBreakMode:(SLineBreakMode)mode {
     NSInteger result = mode;
-    if ([Util isCurrentVersionLowerThanRequiredVersion:@"6.0"]) {
+    if ([Util isCurrentOSVersionLowerThanRequiredVersion:@"6.0"]) {
         switch (mode) {
             case SLineBreakByCharWrapping:
                 result = UILineBreakModeWordWrap;
@@ -548,7 +548,7 @@
  */
 + (NSInteger)textAlignment:(STextAlignment)alignment {
     NSInteger result = alignment;
-    if ([Util isCurrentVersionLowerThanRequiredVersion:@"6.0"]) {
+    if ([Util isCurrentOSVersionLowerThanRequiredVersion:@"6.0"]) {
         switch (alignment) {
             case STextAlignmentLeft:
                 result = UITextAlignmentLeft;

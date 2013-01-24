@@ -72,5 +72,8 @@
 - (void)couponsTableView:(SCouponsTableView *)couponsTableView EmailMeLater:(id)coupon {
     [SUtil emailMeLaterWithCoupon:coupon ViewController:self];
 }
+- (void)didFinishPostEmailAddress:(SEmailMeLaterViewController *)emailMeLaterViewController {
+    [self showMessageHUD:k_text_email_me_later_post_success Animated:YES];
+}
 
 @end

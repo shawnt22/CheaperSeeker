@@ -8,8 +8,9 @@
 
 #import "SViewController.h"
 #import "SCouponsTableView.h"
+#import "SEmailMeLaterViewController.h"
 
-@interface SStoreCouponsViewController : SViewController<SCouponsTableViewDelegate>
+@interface SStoreCouponsViewController : SViewController<SCouponsTableViewDelegate, SEmailMeLaterViewControllerDelegate>
 @property (nonatomic, retain) id store;
 
 - (id)initWithStore:(id)store;

@@ -106,8 +106,9 @@ typedef enum
 
 //  rotate manager
 + (void)rotateView:(UIView *)view From:(UIInterfaceOrientation)currentOrientation To:(UIInterfaceOrientation)targetOrientation With:(BOOL)animated Delegate:(id)delegate;
++ (NSString *)platform;
 + (UIDevicePlatform)platformType;
-+ (BOOL)isCurrentVersionLowerThanRequiredVersion:(NSString *)sysVersion;
++ (BOOL)isCurrentOSVersionLowerThanRequiredVersion:(NSString *)sysVersion;
 
 + (void)replaceDictionaryValue:(NSMutableDictionary*)dict value:(id)value forKey:(id)key;
 + (void)removeAndReleaseViewSafefly:(UIView *)aview;

@@ -77,8 +77,9 @@
     [viewController.navigationController pushViewController:_web animated:YES];
     [_web release];
 }
-+ (void)emailMeLaterWithCoupon:(id)coupon ViewController:(UIViewController *)viewController {
++ (void)emailMeLaterWithCoupon:(id)coupon ViewController:(UIViewController<SEmailMeLaterViewControllerDelegate> *)viewController {
     SEmailMeLaterViewController *_eml = [[SEmailMeLaterViewController alloc] initWithCoupon:coupon];
+    _eml.controllerDelegate = viewController;
     [viewController.navigationController pushViewController:_eml animated:YES];
     [_eml release];
 }

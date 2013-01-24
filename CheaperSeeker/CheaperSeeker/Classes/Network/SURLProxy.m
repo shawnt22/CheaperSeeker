@@ -89,4 +89,10 @@
     return url;
 }
 
++ (NSString *)postEmailAddress {
+    NSString *url = @"user/addEmail";
+    url = [SURLProxy prepareURL:url];
+    return url;
+}
+
 @end

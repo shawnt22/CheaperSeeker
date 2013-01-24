@@ -8,8 +8,9 @@
 
 #import "SViewController.h"
 #import "SCouponsTableView.h"
+#import "SEmailMeLaterViewController.h"
 
-@interface SCategoryCouponsViewController : SViewController<SCouponsTableViewDelegate>
+@interface SCategoryCouponsViewController : SViewController<SCouponsTableViewDelegate, SEmailMeLaterViewControllerDelegate>
 @property (nonatomic, retain) id category;
 
 - (id)initWithCategory:(id)category;

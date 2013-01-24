@@ -8,8 +8,9 @@
 
 #import "SViewController.h"
 #import "SCouponsTableView.h"
+#import "SEmailMeLaterViewController.h"
 
-@interface SSearchCouponsViewController : SViewController <SCouponsTableViewDelegate>
+@interface SSearchCouponsViewController : SViewController <SCouponsTableViewDelegate, SEmailMeLaterViewControllerDelegate>
 @property (nonatomic, retain) NSString *keyword;
 
 - (id)initWithKeyword:(NSString *)keyword;

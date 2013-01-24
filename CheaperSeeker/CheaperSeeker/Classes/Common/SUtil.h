@@ -31,9 +31,7 @@
 + (BOOL)isCurrentVersionLowerThanVersion:(NSString *)version;
 
 + (void)openAppStore;
-
 + (void)setCustomCellBGView:(UITableViewCell *)cell;
-
 + (BOOL)needShowExpireDescriptionWithCoupon:(id)coupon;
 
 @end
