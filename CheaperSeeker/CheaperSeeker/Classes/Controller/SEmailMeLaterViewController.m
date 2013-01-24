@@ -57,13 +57,13 @@
     [_bg release];
     
     CGFloat _margin_left = 10.0;
-    CGFloat _margin_top = 10.0;
+    CGFloat _margin_top = 20.0;
     
     UITextField *_txt = [[UITextField alloc] initWithFrame:CGRectMake(_margin_left, _margin_top, _bg.bounds.size.width-_margin_left*2, 36.0)];
     _txt.font = [UIFont systemFontOfSize:20];
     _txt.returnKeyType = UIReturnKeyDone;
     _txt.borderStyle = UITextBorderStyleBezel;
-    _txt.backgroundColor = _bg.backgroundColor;
+    _txt.backgroundColor = [UIColor whiteColor];
     _txt.placeholder = k_text_email_me_later_txtfield_placeholder;
     _txt.clearButtonMode = UITextFieldViewModeWhileEditing;
     _txt.text = ((SGSetting *)[SGSetting shareSetting]).email;
