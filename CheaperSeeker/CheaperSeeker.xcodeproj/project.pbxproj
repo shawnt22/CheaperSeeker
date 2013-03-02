@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6049C74716E21039007B04E5 /* SCouponCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6049C74616E21039007B04E5 /* SCouponCardView.m */; };
 		60D5DF6A16528C6900EAC558 /* bg_menu_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D5DF6616528C6900EAC558 /* bg_menu_about.png */; };
 		60D5DF6B16528C6900EAC558 /* bg_menu_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D5DF6716528C6900EAC558 /* bg_menu_home.png */; };
 		60D5DF6C16528C6900EAC558 /* bg_menu_store.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D5DF6816528C6900EAC558 /* bg_menu_store.png */; };
@@ -127,6 +128,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6049C74516E21039007B04E5 /* SCouponCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCouponCardView.h; sourceTree = "<group>"; };
+		6049C74616E21039007B04E5 /* SCouponCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCouponCardView.m; sourceTree = "<group>"; };
 		60D5DF6616528C6900EAC558 /* bg_menu_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_menu_about.png; sourceTree = "<group>"; };
 		60D5DF6716528C6900EAC558 /* bg_menu_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_menu_home.png; sourceTree = "<group>"; };
 		60D5DF6816528C6900EAC558 /* bg_menu_store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_menu_store.png; sourceTree = "<group>"; };
@@ -836,6 +839,8 @@
 				9C63C785164D08B3008D6344 /* SCouponCodeContentView.m */,
 				9CACFABD168C1673007D7045 /* SCouponTypeView.h */,
 				9CACFABE168C1673007D7045 /* SCouponTypeView.m */,
+				6049C74516E21039007B04E5 /* SCouponCardView.h */,
+				6049C74616E21039007B04E5 /* SCouponCardView.m */,
 			);
 			name = View;
 			path = Classes/View;
@@ -1068,6 +1073,7 @@
 				9CACFABF168C1673007D7045 /* SCouponTypeView.m in Sources */,
 				9CACFAC3168C5377007D7045 /* SEmailMeLaterViewController.m in Sources */,
 				9C627BB0168D67A300585B34 /* UIImage_Additions.m in Sources */,
+				6049C74716E21039007B04E5 /* SCouponCardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

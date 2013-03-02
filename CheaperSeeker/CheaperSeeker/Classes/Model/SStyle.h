@@ -29,3 +29,11 @@
 @property (nonatomic, retain) UIColor *titleColor;
 @end
 
+@interface SCouponCardStyle : SStyle
+@property (nonatomic, retain) UIColor *keyColor;
+@property (nonatomic, retain) UIFont *titleFont;
+@property (nonatomic, retain) UIColor *titleColor;
+@property (nonatomic, retain) UIFont *canDoFont;
+@property (nonatomic, retain) UIColor *canDoColor;
+@end
+

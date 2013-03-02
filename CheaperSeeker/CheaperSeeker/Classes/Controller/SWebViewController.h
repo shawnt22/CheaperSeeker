@@ -8,9 +8,10 @@
 
 #import "SViewController.h"
 
+@class SWebView;
 @interface SWebViewController : SViewController <UIWebViewDelegate, UIActionSheetDelegate>
 @property (nonatomic, retain) NSString *urlPath;
-@property (nonatomic, assign) UIWebView *webView;
+@property (nonatomic, assign) SWebView *webView;
 
 @property (nonatomic, assign) UIButton *goBack;
 @property (nonatomic, assign) UIButton *goForward;
@@ -21,4 +22,7 @@
 
 - (id)initWithURLPath:(NSString *)urlPath;
 
+@end
+
+@interface SWebView : UIWebView
 @end

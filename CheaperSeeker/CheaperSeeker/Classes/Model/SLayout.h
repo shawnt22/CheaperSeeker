@@ -38,3 +38,8 @@
 - (void)layoutWithMerchant:(id)merchant Style:(SMerchantStyle *)style;
 
 @end
+
+
+@interface SCouponCardLayout : NSObject
+
+@end

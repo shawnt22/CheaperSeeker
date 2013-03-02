@@ -45,8 +45,7 @@
 #pragma mark ViewController Delegate
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = kViewControllerCategoryTitle;
+    [self refreshTitle];
     [SUtil setNavigationBarSplitButtonItemWith:self];
     
     SCategoryControl *_ctr = [[SCategoryControl alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, k_categorycontrol_height)];
@@ -78,6 +77,9 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+- (void)refreshTitle {
+    self.title = self.currentCategoryTitle;
+}
 
 #pragma mark category control
 - (UIView<SCategoryItemProtocol> *)categoryControl:(SCategoryControl *)categoryControl itemAtIndexPath:(SCategoryIndexPath)indexPath {
@@ -106,6 +108,7 @@
 - (void)categoryControl:(SCategoryControl *)categoryControl didSelectItem:(UIView<SCategoryItemProtocol> *)item {
     [self.categoriesTableView scrollRectToVisible:CGRectMake(0, 0, self.categoriesTableView.bounds.size.width, 1) animated:NO];
     [self.categoriesTableView reloadData];
+    [self refreshTitle];
 }
 
 #pragma mark table delegate
@@ -194,6 +197,15 @@
         return [SCategoriesViewController subcategoriesWith:[self.categoriesDataStore.items objectAtIndex:_currentIndexPath.column]];
     }
     return nil;
+}
+- (NSString *)currentCategoryTitle {
+    NSString *_result = kViewControllerCategoryTitle;
+    SCategoryIndexPath _currentIndexPath = self.categoriesControl.currentSelectedCategoryItemIndexPath;
+    if ([self.categoriesDataStore.items count] > 0 && !SCategoryIndexPathIsInvalid(_currentIndexPath)) {
+        NSString *_ttl = [[self.categoriesDataStore.items objectAtIndex:_currentIndexPath.column] objectForKey:k_category_title];
+        _result = [Util isEmptyString:_ttl] ? _result : _ttl;
+    }
+    return _result;
 }
 
 @end

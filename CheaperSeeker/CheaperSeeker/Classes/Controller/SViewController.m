@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = kCustomCellBGFillColor;
-//    self.navigationController.navigationBar.tintColor = SRGBCOLOR(255, 195, 24);
+    //    self.navigationController.navigationBar.tintColor = SRGBCOLOR(255, 195, 24);
     
     MBProgressHUD *_hud = [[MBProgressHUD alloc] initWithView:self.view];
     _hud.mode = MBProgressHUDModeText;
@@ -45,9 +45,17 @@
     UITapGestureRecognizer *_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMessageHUDAction:)];
     [_hud addGestureRecognizer:_tap];
     [_tap release];
+    
+    UISwipeGestureRecognizer *_swip = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(popViewController)];
+    _swip.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:_swip];
+    [_swip release];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+- (void)popViewController {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark SplitController Protocol

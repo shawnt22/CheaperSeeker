@@ -17,6 +17,7 @@
 
 
 @interface SCategoriesViewController (DataManager)
+@property (nonatomic, readonly) NSString *currentCategoryTitle;
 + (NSArray *)subcategoriesWith:(id)category;
 - (NSArray *)currentSelectedCategoryItemSubcategories;
 @end

@@ -135,3 +135,10 @@
 @end
 
 
+
+@implementation SCouponCardLayout
+
+
+
+@end
+

@@ -77,9 +77,8 @@
     [viewController.navigationController pushViewController:_web animated:YES];
     [_web release];
 }
-+ (void)emailMeLaterWithCoupon:(id)coupon ViewController:(UIViewController<SEmailMeLaterViewControllerDelegate> *)viewController {
++ (void)emailMeLaterWithCoupon:(id)coupon ViewController:(UIViewController *)viewController {
     SEmailMeLaterViewController *_eml = [[SEmailMeLaterViewController alloc] initWithCoupon:coupon];
-    _eml.controllerDelegate = viewController;
     [viewController.navigationController pushViewController:_eml animated:YES];
     [_eml release];
 }
@@ -120,7 +119,7 @@
         NSTimeInterval _interval = [[coupon objectForKey:k_coupon_expire_to] doubleValue];
         NSDate *_date = [NSDate dateWithTimeIntervalSince1970:_interval];
         NSTimeInterval _delta = [_date timeIntervalSinceNow];
-        if (_delta > S_MONTH * 10) {
+        if (_delta > S_WEEK * 6) {
             return NO;
         }
         return YES;

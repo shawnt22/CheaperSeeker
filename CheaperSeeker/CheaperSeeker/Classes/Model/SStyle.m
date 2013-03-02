@@ -79,3 +79,23 @@
 @end
 
 
+@implementation SCouponCardStyle
+@synthesize keyColor, titleColor, titleFont, canDoColor, canDoFont;
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+- (void)dealloc {
+    self.keyColor = nil;
+    self.titleFont = nil;
+    self.titleColor = nil;
+    self.canDoFont = nil;
+    self.canDoColor = nil;
+    [super dealloc];
+}
+
+@end
