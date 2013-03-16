@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "SStyle.h"
-#import "SLayout.h"
+
+typedef struct {
+    CGRect title;
+    CGRect view;
+}CouponCardLayout;
+
+NS_INLINE CouponCardLayout CouponCardLayoutMake(CGRect title, CGRect view) {
+    CouponCardLayout layout;
+    layout.title = title;
+    layout.view = view;
+    return layout;
+}
 
 @interface SCouponCardView : UIView
-- (void)relayoutWithAnimated:(BOOL)animated isOpen:(BOOL)isOpen;
++ (CGFloat)cardTitleHeight;
+- (void)refreshWithTitle:(NSString *)title Style:(SCouponCardStyle *)style Layout:(CouponCardLayout)layout;
 @end

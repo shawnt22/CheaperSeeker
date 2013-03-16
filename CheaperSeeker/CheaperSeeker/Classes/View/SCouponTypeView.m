@@ -16,9 +16,7 @@
 @property (nonatomic, retain) UIFont *textFont;
 @property (nonatomic, retain) UIColor *textColor;
 - (void)fillBGWithContext:(CGContextRef)context Rect:(CGRect)rect Color:(UIColor *)color;
-+ (void)fillBGWithContext:(CGContextRef)context Rect:(CGRect)rect Color:(UIColor *)color Radius:(CGFloat)radius;
 - (void)drawTextWithContext:(CGContextRef)context Rect:(CGRect)rect;
-+ (void)drawTextWithContext:(CGContextRef)context Rect:(CGRect)rect Text:(NSString *)text Color:(UIColor *)color Font:(UIFont *)font LineBreakMode:(NSInteger)mode Alignment:(NSInteger)alignment;
 @end
 
 @implementation SCouponTypeView
@@ -46,6 +44,12 @@
     self.textColor = nil;
     [super dealloc];
 }
++ (CGFloat)normalWidth {
+    return 40.0;
+}
++ (CGFloat)normalHeight {
+    return 15.0;
+}
 - (void)refreshWithText:(NSString *)txt {
     self.text = txt;
     [self setNeedsDisplay];
@@ -62,6 +66,14 @@
 - (void)fillBGWithContext:(CGContextRef)context Rect:(CGRect)rect Color:(UIColor *)color {
     [SCouponTypeView fillBGWithContext:context Rect:rect Color:color Radius:k_coupon_type_view_bg_radius];
 }
+- (void)drawTextWithContext:(CGContextRef)context Rect:(CGRect)rect {
+    [SCouponTypeView drawTextWithContext:context Rect:rect Text:self.text Color:self.textColor Font:self.textFont LineBreakMode:[Util lineBreakMode:SLineBreakByTruncatingTail] Alignment:[Util textAlignment:STextAlignmentCenter]];
+}
+
+@end
+
+@implementation SCouponTypeView (Draw)
+
 + (void)fillBGWithContext:(CGContextRef)context Rect:(CGRect)rect Color:(UIColor *)color Radius:(CGFloat)radius {
     if (!color) {
         return;
@@ -79,9 +91,6 @@
     CGContextFillPath(context);
     
     CGContextRestoreGState(context);
-}
-- (void)drawTextWithContext:(CGContextRef)context Rect:(CGRect)rect {
-    [SCouponTypeView drawTextWithContext:context Rect:rect Text:self.text Color:self.textColor Font:self.textFont LineBreakMode:[Util lineBreakMode:SLineBreakByTruncatingTail] Alignment:[Util textAlignment:STextAlignmentCenter]];
 }
 + (void)drawTextWithContext:(CGContextRef)context Rect:(CGRect)rect Text:(NSString *)text Color:(UIColor *)color Font:(UIFont *)font LineBreakMode:(NSInteger)mode Alignment:(NSInteger)alignment {
     if ([Util isEmptyString:text]) {
@@ -270,3 +279,64 @@
 }
 
 @end
+
+@interface SCouponCanDoView ()
+@property (nonatomic, assign) UIImageView *imageView;
+@end
+@implementation SCouponCanDoView
+@synthesize imageView;
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.clipsToBounds = YES;
+        
+        UIImageView *_imgv = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _imgv.backgroundColor = [UIColor greenColor];
+        [self addSubview:_imgv];
+        self.imageView = _imgv;
+        [_imgv release];
+        
+        self.textFont = [SCouponCanDoView textFont];
+    }
+    return self;
+}
++ (UIFont *)textFont {
+    return [UIFont systemFontOfSize:8];
+}
++ (CGFloat)normalWidth {
+    return 40.0;
+}
++ (CanDoViewLayout)layoutWithNumber:(NSString *)number {
+    CanDoViewLayout _result;
+    CGSize _img_size = CGSizeMake(12, 12);
+    CGSize _text_size = [number sizeWithFont:[SCouponCanDoView textFont] constrainedToSize:CGSizeMake([self normalWidth]-_img_size.width-6-2, 15) lineBreakMode:[Util lineBreakMode:SLineBreakByWordWrapping]];
+    _result.image = CGRectMake(3, ceilf(([self normalHeight]-_img_size.height)/2), _img_size.width, _img_size.height);
+    _result.text = CGRectMake(_result.image.origin.x+_result.image.size.width+2, ceilf(([self normalHeight]-_text_size.height)/2), _text_size.width, _text_size.height);
+    CGFloat _width = _result.text.origin.x + _result.text.size.width + 3;
+    _result.view = CGRectMake(0, 0, _width, [self normalHeight]);
+    return _result;
+}
+- (void)refreshWithText:(NSString *)txt Image:(UIImage *)img Layout:(CanDoViewLayout)lyt {
+    self.text = txt;
+    self.layout = lyt;
+    self.frame = lyt.view;
+    self.imageView.image = img;
+    self.imageView.frame = self.layout.image;
+    [self setNeedsDisplay];
+}
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, rect);
+    
+    [self fillBGWithContext:context Rect:rect Color:self.lineColor];
+    [self fillBGWithContext:context Rect:CGRectInset(rect, 1.0, 1.0) Color:self.bgColor];
+    [self drawTextWithContext:context Rect:self.layout.text];
+}
+
+@end
+
+@implementation SCouponUnionDoView
+
+@end
+

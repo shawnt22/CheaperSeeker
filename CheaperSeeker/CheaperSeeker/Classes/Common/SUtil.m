@@ -130,7 +130,7 @@
 @end
 
 
-@implementation SUtil (CouponType)
+@implementation SUtil (CouponData)
 + (BOOL)hasCouponCode:(id)coupon {
     return [Util isEmptyString:[coupon objectForKey:k_coupon_code]] ? NO : YES;
 }
@@ -149,6 +149,26 @@
     }
     return _desc;
 }
+
++ (NSString *)couponCanDoNumString:(id)coupon {
+    return [self numString:coupon Key:k_coupon_cando_number];
+}
++ (NSString *)couponCanntDoNumString:(id)coupon {
+    return [self numString:coupon Key:k_coupon_canntdo_number];
+}
++ (NSString *)couponCommentNumString:(id)coupon {
+    return [self numString:coupon Key:k_coupon_comment_number];
+}
++ (NSString *)numString:(id)coupon Key:(NSString *)key {
+    NSString *_result = @"0";
+    NSNumber *_num = [coupon objectForKey:key];
+    if (_num) {
+        NSInteger _n = [_num integerValue];
+        _result = _n > 999 ? @"999+" : (_n < 1 ? @"0" : [_num stringValue]);
+    }
+    return _result;
+}
+
 @end
 
 
@@ -238,5 +258,11 @@
 
 @end
 
+
+@implementation SUtil (TestData)
++ (NSNumber *)canDoNumber {
+    return [NSNumber numberWithInteger:99];
+}
+@end
 
 

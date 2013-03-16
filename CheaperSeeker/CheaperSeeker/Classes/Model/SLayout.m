@@ -27,45 +27,67 @@
 @end
 @implementation SCouponLayout
 @synthesize icon, title, content, expire, type;
+@synthesize card_bg, card_title, can_do, cannt_do, comment;
 @synthesize icon_open, title_open, content_open, expire_open, type_open, height_open;
+@synthesize card_bg_open, card_title_open, can_do_open, cannt_do_open, comment_open;
 
 - (void)layoutWithCoupon:(id)coupon Style:(SCouponStyle *)style {
-    //  icon
-    self.icon = CGRectMake(kMarginLeft, kMarginTop, 64, 64);
-    self.height = self.icon.origin.y+self.icon.size.height+kMarginTop;
+    //  card
+    self.card_bg = CGRectMake(kMarginLeft, kMarginTop, 66, 66);
+    CGRect _f = CGRectInset(self.card_bg, 1, 1);
+    _f.size.height = 48;
+    self.icon = _f;
+    self.card_title = CGRectMake(self.icon.origin.x, self.icon.origin.y+self.icon.size.height, self.icon.size.width, self.card_bg.size.height-self.icon.size.height);
+    
+    self.height = self.card_bg.origin.y+self.card_bg.size.height+kMarginTop;
     //  title
     NSString *_ttl = [coupon objectForKey:k_coupon_title];
     if (![Util isEmptyString:_ttl]) {
-        CGSize _size = [_ttl sizeWithFont:style.titleFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft, 40) lineBreakMode:style.lineBreakMode];     //  title 默认最多显示2行
-        self.title = CGRectMake(self.icon.origin.x+self.icon.size.width+5, self.icon.origin.y, _size.width, _size.height);
+        CGSize _size = [_ttl sizeWithFont:style.titleFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.card_bg.origin.x-self.card_bg.size.width-5-kMarginLeft, 40) lineBreakMode:style.lineBreakMode];     //  title 默认最多显示2行
+        self.title = CGRectMake(self.card_bg.origin.x+self.card_bg.size.width+5, self.card_bg.origin.y, _size.width, _size.height);
     }
     CGFloat _tmpHeight = self.title.origin.y+self.title.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     //  content
     NSString *_cnt = [coupon objectForKey:k_coupon_excerpt_description];
     if (![Util isEmptyString:_cnt]) {
-        CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft, 30) lineBreakMode:style.lineBreakMode];   //  content 默认最多显示2行
+        CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.card_bg.origin.x-self.card_bg.size.width-5-kMarginLeft, 30) lineBreakMode:style.lineBreakMode];   //  content 默认最多显示2行
         CGFloat _y = self.title.size.height > 0 ? self.title.origin.y+self.title.size.height+5 : self.icon.origin.y;
-        self.content = CGRectMake(self.icon.origin.x+self.icon.size.width+5, _y, _size.width, _size.height);
+        self.content = CGRectMake(self.card_bg.origin.x+self.card_bg.size.width+5, _y, _size.width, _size.height);
     }
     _tmpHeight = self.content.origin.y+self.content.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
+    
     //  type
-    CGFloat _y = self.icon.origin.y;
+    CGFloat _y = self.card_bg.origin.y;
     if (self.content.size.height > 0) {
         _y = self.content.origin.y+self.content.size.height+5;
     } else if (self.title.size.height > 0) {
         _y = self.title.origin.y+self.title.size.height+5;
     }
-    self.type = CGRectMake(self.icon.origin.x+self.icon.size.width+5, _y, 40.0, 15.0);
+    self.type = CGRectMake(self.card_bg.origin.x+self.card_bg.size.width+5, _y, [SCouponTypeView normalWidth], [SCouponTypeView normalHeight]);
     _tmpHeight = self.type.origin.y+self.type.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
+    
+    //  can|cannt do
+    self.can_do = [SCouponCanDoView layoutWithNumber:[SUtil couponCanDoNumString:coupon]];
+    CGRect _can_do_view = CGRectMake(self.type.origin.x+self.type.size.width+2, self.type.origin.y, self.can_do.view.size.width, self.can_do.view.size.height);
+    self.can_do = CanDoViewLayoutUpdateView(self.can_do, _can_do_view);
+    self.cannt_do = [SCouponCanDoView layoutWithNumber:[SUtil couponCanntDoNumString:coupon]];
+    _can_do_view = CGRectMake(self.can_do.view.origin.x+self.can_do.view.size.width+2, self.type.origin.y, self.cannt_do.view.size.width, self.cannt_do.view.size.height);
+    self.cannt_do = CanDoViewLayoutUpdateView(self.cannt_do, _can_do_view);
+    
+    //  comment
+    self.comment = [SCouponCanDoView layoutWithNumber:[SUtil couponCommentNumString:coupon]];
+    CGRect _cmt = CGRectMake(self.cannt_do.view.origin.x+self.cannt_do.view.size.width+2, self.cannt_do.view.origin.y, 0, 0);
+    self.comment = CanDoViewLayoutUpdateView(self.comment, _cmt);
+    
     //  expire
     if ([SUtil needShowExpireDescriptionWithCoupon:coupon]) {
         NSString *_exp = [SUtil couponExpireDescription:coupon];
         if (![Util isEmptyString:_exp]) {
-            CGSize _size = [_exp sizeWithFont:style.expireFont forWidth:([SUtil cellWidth]-self.icon.origin.x-self.icon.size.width-5-kMarginLeft) lineBreakMode:style.lineBreakMode];
-            self.expire = CGRectMake(self.type.origin.x+self.type.size.width+5, self.type.origin.y, _size.width, _size.height);
+            CGSize _size = [_exp sizeWithFont:style.expireFont forWidth:([SUtil cellWidth]-self.cannt_do.view.origin.x-self.cannt_do.view.size.width-3-kMarginLeft) lineBreakMode:style.lineBreakMode];
+            self.expire = CGRectMake(self.cannt_do.view.origin.x+self.cannt_do.view.size.width+3, self.type.origin.y, _size.width, _size.height);
         }
         _tmpHeight = self.expire.origin.y+self.expire.size.height+kMarginTop;
         self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
@@ -91,7 +113,20 @@
     if (self.title_open.size.height > 0) {
         _y = self.title_open.origin.y+self.title_open.size.height+5;
     }
-    self.type_open = CGRectMake(kMarginLeft, _y, 40.0, 15.0);
+    self.type_open = CGRectMake(kMarginLeft, _y, [SCouponTypeView normalWidth], [SCouponTypeView normalHeight]);
+    
+    //  can|cannt do
+    CGRect _can_do_view = CGRectMake(self.type_open.origin.x+self.type_open.size.width+3, self.type_open.origin.y, self.can_do.view.size.width, self.can_do.view.size.height);
+    self.can_do_open = CanDoViewLayoutUpdateView(self.can_do, _can_do_view);
+    
+    _can_do_view = CGRectMake(self.can_do_open.view.size.width+self.can_do_open.view.origin.x+3, self.type_open.origin.y, self.cannt_do.view.size.width, self.cannt_do.view.size.height);
+    self.cannt_do_open = CanDoViewLayoutUpdateView(self.cannt_do, _can_do_view);
+    
+    //  comment
+    self.comment_open = [SCouponCanDoView layoutWithNumber:[SUtil couponCommentNumString:coupon]];
+    CGRect _cmmt_view = CGRectMake(self.cannt_do_open.view.origin.x+self.cannt_do_open.view.size.width+2, self.type_open.origin.y, self.comment_open.view.size.width, self.comment_open.view.size.height);
+    self.comment_open = CanDoViewLayoutUpdateView(self.comment_open, _cmmt_view);
+    
     _tmpHeight = self.type_open.origin.y+self.type_open.size.height+kMarginTop;
     self.height_open = _tmpHeight > self.height_open ? _tmpHeight : self.height_open;
     //  expire
@@ -131,14 +166,6 @@
     //  title
     self.title = CGRectMake(self.banner.origin.x, (self.banner.size.height-24.0), self.banner.size.width, 24.0);
 }
-
-@end
-
-
-
-@implementation SCouponCardLayout
-
-
 
 @end
 

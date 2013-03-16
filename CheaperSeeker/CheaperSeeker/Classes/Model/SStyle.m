@@ -35,9 +35,9 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.titleColor = [UIColor blackColor];
+        self.titleColor = SRGBCOLOR(36, 115, 196);
         self.titleFont = [UIFont systemFontOfSize:18];
-        self.contentColor = [UIColor grayColor];
+        self.contentColor = SRGBCOLOR(68, 67, 94);
         self.contentFont = [UIFont systemFontOfSize:12];
         self.didExpireColor = [UIColor redColor];
         self.unExpireColor = [UIColor orangeColor];
@@ -79,22 +79,25 @@
 @end
 
 
+#import "Sconfiger.h"
 @implementation SCouponCardStyle
-@synthesize keyColor, titleColor, titleFont, canDoColor, canDoFont;
+@synthesize keyColor, coverBGColor, titleColor, titleFont;
 
 - (id)init {
     self = [super init];
     if (self) {
-        
+        self.keyColor = SRGBCOLOR(243, 120, 43);
+        self.coverBGColor = kCustomCellBGFillColor;
+        self.titleFont = [UIFont boldSystemFontOfSize:10];
+        self.titleColor = [UIColor whiteColor];
     }
     return self;
 }
 - (void)dealloc {
     self.keyColor = nil;
+    self.coverBGColor = nil;
     self.titleFont = nil;
     self.titleColor = nil;
-    self.canDoFont = nil;
-    self.canDoColor = nil;
     [super dealloc];
 }
 

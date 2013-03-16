@@ -35,6 +35,9 @@
 #define k_coupon_categories                     @"categories"
 #define k_coupon_image                          @"coupon_image"
 #define k_coupon_typies                         @"types"
+#define k_coupon_cando_number                   @"can_do_num"
+#define k_coupon_canntdo_number                 @"cannt_do_num"
+#define k_coupon_comment_number                 @"cmmt_num"
 #define k_coupon_merchant                       @"merchant"
 
 

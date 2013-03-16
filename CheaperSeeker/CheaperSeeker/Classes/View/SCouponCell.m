@@ -17,6 +17,9 @@
 @property (nonatomic, assign) UILabel *couponContent;
 @property (nonatomic, assign) UILabel *couponExpire;
 @property (nonatomic, assign) SCouponTypeView *couponType;
+@property (nonatomic, assign) SCouponCanDoView *canDo;
+@property (nonatomic, assign) SCouponCanDoView *canntDo;
+@property (nonatomic, assign) SCouponCanDoView *comment;
 @property (nonatomic, assign) UIView *actionsToolBar;
 
 @property (nonatomic, retain) SCouponLayout *couponLayout;
@@ -28,10 +31,11 @@
 - (void)showActionBar;
 - (void)hideActionBar;
 @end
+
 @implementation SCouponCell
 @synthesize coupon, couponLayout, couponStyle;
 @synthesize couponURLPath;
-@synthesize couponCover, couponContent, couponExpire, couponTitle, couponType;
+@synthesize couponCover, couponContent, couponExpire, couponTitle, couponType, canDo, canntDo, comment;
 @synthesize customBackgroundView, customSelectedBackgroundView;
 @synthesize couponsTableView;
 @synthesize actionsToolBar;
@@ -75,6 +79,21 @@
         [self.contentView addSubview:_tpv];
         self.couponType = _tpv;
         [_tpv release];
+        
+        SCouponCanDoView *_cdv = [[SCouponCanDoView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_cdv];
+        self.canDo = _cdv;
+        [_cdv release];
+        
+        SCouponCanDoView *_cndv = [[SCouponCanDoView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_cndv];
+        self.canntDo = _cndv;
+        [_cndv release];
+        
+        SCouponCanDoView *_cmt = [[SCouponCanDoView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_cmt];
+        self.comment = _cmt;
+        [_cmt release];
         
         UIView *_tool = [[UIView alloc] initWithFrame:CGRectMake(0, self.contentView.bounds.size.height-k_coupon_cell_tool_bar_height, self.contentView.bounds.size.width, k_coupon_cell_tool_bar_height)];
         _tool.backgroundColor = SRGBCOLOR(62, 87, 129);
@@ -126,6 +145,9 @@
     self.couponContent.frame = layout.content;
     self.couponExpire.frame = layout.expire;
     self.couponType.frame = layout.type;
+    self.canDo.frame = layout.can_do.view;
+    self.canntDo.frame = layout.cannt_do.view;
+    self.comment.frame = layout.comment.view;
 }
 - (void)reContent {
     self.couponCover.image = nil;
@@ -135,6 +157,9 @@
     self.couponExpire.text = [SUtil couponExpireDescription:self.coupon];
     self.couponType.text = [SUtil descriptionWithCouponType:[SUtil couponType:self.coupon]];
     [self.couponType setNeedsDisplay];
+    [self.canDo refreshWithText:[SUtil couponCanDoNumString:self.coupon] Image:nil Layout:self.couponLayout.can_do];
+    [self.canntDo refreshWithText:[SUtil couponCanntDoNumString:self.coupon] Image:nil Layout:self.couponLayout.cannt_do];
+    [self.comment refreshWithText:[SUtil couponCommentNumString:self.coupon] Image:nil Layout:self.couponLayout.comment];
 }
 - (void)reStyleWith:(SCouponStyle *)style {
     self.couponTitle.font = style.titleFont;
@@ -267,6 +292,9 @@
                              self.couponContent.frame = self.couponLayout.content_open;
                              self.couponExpire.frame = self.couponLayout.expire_open;
                              self.couponType.frame = self.couponLayout.type_open;
+                             self.canDo.frame = self.couponLayout.can_do_open.view;
+                             self.canntDo.frame = self.couponLayout.cannt_do_open.view;
+                             self.comment.frame = self.couponLayout.comment_open.view;
                          }
                          completion:^(BOOL finished){
                              [self finishOpenAnimation:animated];
@@ -277,6 +305,9 @@
         self.couponContent.frame = self.couponLayout.content_open;
         self.couponExpire.frame = self.couponLayout.expire_open;
         self.couponType.frame = self.couponLayout.type_open;
+        self.canDo.frame = self.couponLayout.can_do_open.view;
+        self.canntDo.frame = self.couponLayout.cannt_do_open.view;
+        self.comment.frame = self.couponLayout.comment_open.view;
         [self finishOpenAnimation:animated];
     }
 }
@@ -291,6 +322,9 @@
                              self.couponContent.frame = layout.content;
                              self.couponExpire.frame = layout.expire;
                              self.couponType.frame = layout.type;
+                             self.canDo.frame = layout.can_do.view;
+                             self.canntDo.frame = layout.cannt_do.view;
+                             self.comment.frame = layout.comment.view;
                          }
                          completion:^(BOOL finished){
                              [self finishCloseAnimation:animated];
@@ -301,6 +335,9 @@
         self.couponContent.frame = layout.content;
         self.couponExpire.frame = layout.expire;
         self.couponType.frame = layout.type;
+        self.canDo.frame = layout.can_do.view;
+        self.canntDo.frame = layout.cannt_do.view;
+        self.comment.frame = layout.comment.view;
         [self finishCloseAnimation:animated];
     }
 }

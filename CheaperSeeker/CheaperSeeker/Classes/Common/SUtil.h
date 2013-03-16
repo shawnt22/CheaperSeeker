@@ -41,10 +41,14 @@ typedef enum {
     CouponCode,         //  coupon
 }CouponType;
 
-@interface SUtil (CouponType)
+@interface SUtil (CouponData)
 + (BOOL)hasCouponCode:(id)coupon;
 + (CouponType)couponType:(id)coupon;
 + (NSString *)descriptionWithCouponType:(CouponType)type;
+
++ (NSString *)couponCanDoNumString:(id)coupon;
++ (NSString *)couponCanntDoNumString:(id)coupon;
++ (NSString *)couponCommentNumString:(id)coupon;
 @end
 
 typedef enum {
@@ -59,4 +63,11 @@ typedef enum {
 + (NSString *)couponExpireDescription:(id)coupon;
 + (NSString *)natureDescriptionWithDate:(NSDate *)date;
 
+@end
+
+
+
+
+@interface SUtil (TestData)
++ (NSNumber *)canDoNumber;
 @end
