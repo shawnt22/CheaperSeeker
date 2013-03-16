@@ -49,6 +49,8 @@ typedef enum {
 + (NSString *)couponCanDoNumString:(id)coupon;
 + (NSString *)couponCanntDoNumString:(id)coupon;
 + (NSString *)couponCommentNumString:(id)coupon;
+
++ (NSString *)couponCardTitle:(id)coupon;
 @end
 
 typedef enum {

@@ -22,6 +22,7 @@ NS_INLINE CouponCardLayout CouponCardLayoutMake(CGRect title, CGRect view) {
 }
 
 @interface SCouponCardView : UIView
-+ (CGFloat)cardTitleHeight;
-- (void)refreshWithTitle:(NSString *)title Style:(SCouponCardStyle *)style Layout:(CouponCardLayout)layout;
+- (void)restyle:(SCouponCardStyle *)style;  //  step 1
+- (void)relayout:(CouponCardLayout)layout;  //  step 2
+- (void)recontent:(NSString *)title;        //  step 3
 @end

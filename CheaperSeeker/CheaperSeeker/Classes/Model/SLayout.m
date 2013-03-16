@@ -27,45 +27,47 @@
 @end
 @implementation SCouponLayout
 @synthesize icon, title, content, expire, type;
-@synthesize card_bg, card_title, can_do, cannt_do, comment;
+@synthesize card, can_do, cannt_do, comment;
 @synthesize icon_open, title_open, content_open, expire_open, type_open, height_open;
-@synthesize card_bg_open, card_title_open, can_do_open, cannt_do_open, comment_open;
+@synthesize card_open, can_do_open, cannt_do_open, comment_open;
 
 - (void)layoutWithCoupon:(id)coupon Style:(SCouponStyle *)style {
     //  card
-    self.card_bg = CGRectMake(kMarginLeft, kMarginTop, 66, 66);
-    CGRect _f = CGRectInset(self.card_bg, 1, 1);
-    _f.size.height = 48;
+    CGRect _card_view = CGRectMake(kMarginLeft, kMarginTop, 66, 66);
+    CGRect _f = CGRectInset(_card_view, 1, 1);
+    _f.size.height = 46;
     self.icon = _f;
-    self.card_title = CGRectMake(self.icon.origin.x, self.icon.origin.y+self.icon.size.height, self.icon.size.width, self.card_bg.size.height-self.icon.size.height);
+    CGFloat _card_ttl_h = _card_view.size.height - self.icon.size.height - 1;
+    CGRect _card_title = CGRectMake(0, _card_view.size.height - _card_ttl_h, _card_view.size.width, _card_ttl_h);
+    self.card = CouponCardLayoutMake(_card_title, _card_view);
     
-    self.height = self.card_bg.origin.y+self.card_bg.size.height+kMarginTop;
+    self.height = self.card.view.origin.y+self.card.view.size.height+kMarginTop;
     //  title
     NSString *_ttl = [coupon objectForKey:k_coupon_title];
     if (![Util isEmptyString:_ttl]) {
-        CGSize _size = [_ttl sizeWithFont:style.titleFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.card_bg.origin.x-self.card_bg.size.width-5-kMarginLeft, 40) lineBreakMode:style.lineBreakMode];     //  title 默认最多显示2行
-        self.title = CGRectMake(self.card_bg.origin.x+self.card_bg.size.width+5, self.card_bg.origin.y, _size.width, _size.height);
+        CGSize _size = [_ttl sizeWithFont:style.titleFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.card.view.origin.x-self.card.view.size.width-5-kMarginLeft, 40) lineBreakMode:style.lineBreakMode];     //  title 默认最多显示2行
+        self.title = CGRectMake(self.card.view.origin.x+self.card.view.size.width+5, self.card.view.origin.y, _size.width, _size.height);
     }
     CGFloat _tmpHeight = self.title.origin.y+self.title.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     //  content
     NSString *_cnt = [coupon objectForKey:k_coupon_excerpt_description];
     if (![Util isEmptyString:_cnt]) {
-        CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.card_bg.origin.x-self.card_bg.size.width-5-kMarginLeft, 30) lineBreakMode:style.lineBreakMode];   //  content 默认最多显示2行
+        CGSize _size = [_cnt sizeWithFont:style.contentFont constrainedToSize:CGSizeMake([SUtil cellWidth]-self.card.view.origin.x-self.card.view.size.width-5-kMarginLeft, 30) lineBreakMode:style.lineBreakMode];   //  content 默认最多显示2行
         CGFloat _y = self.title.size.height > 0 ? self.title.origin.y+self.title.size.height+5 : self.icon.origin.y;
-        self.content = CGRectMake(self.card_bg.origin.x+self.card_bg.size.width+5, _y, _size.width, _size.height);
+        self.content = CGRectMake(self.card.view.origin.x+self.card.view.size.width+5, _y, _size.width, _size.height);
     }
     _tmpHeight = self.content.origin.y+self.content.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     
     //  type
-    CGFloat _y = self.card_bg.origin.y;
+    CGFloat _y = self.card.view.origin.y;
     if (self.content.size.height > 0) {
         _y = self.content.origin.y+self.content.size.height+5;
     } else if (self.title.size.height > 0) {
         _y = self.title.origin.y+self.title.size.height+5;
     }
-    self.type = CGRectMake(self.card_bg.origin.x+self.card_bg.size.width+5, _y, [SCouponTypeView normalWidth], [SCouponTypeView normalHeight]);
+    self.type = CGRectMake(self.card.view.origin.x+self.card.view.size.width+5, _y, [SCouponTypeView normalWidth], [SCouponTypeView normalHeight]);
     _tmpHeight = self.type.origin.y+self.type.size.height+kMarginTop;
     self.height = _tmpHeight > self.height ? _tmpHeight : self.height;
     

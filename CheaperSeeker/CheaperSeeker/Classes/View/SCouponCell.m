@@ -8,6 +8,7 @@
 
 #import "SCouponCell.h"
 #import "SCouponTypeView.h"
+#import "SCouponCardView.h"
 #import "SCouponsTableView.h"
 
 @interface SCouponCell()
@@ -20,6 +21,7 @@
 @property (nonatomic, assign) SCouponCanDoView *canDo;
 @property (nonatomic, assign) SCouponCanDoView *canntDo;
 @property (nonatomic, assign) SCouponCanDoView *comment;
+@property (nonatomic, assign) SCouponCardView *cardView;
 @property (nonatomic, assign) UIView *actionsToolBar;
 
 @property (nonatomic, retain) SCouponLayout *couponLayout;
@@ -35,7 +37,7 @@
 @implementation SCouponCell
 @synthesize coupon, couponLayout, couponStyle;
 @synthesize couponURLPath;
-@synthesize couponCover, couponContent, couponExpire, couponTitle, couponType, canDo, canntDo, comment;
+@synthesize couponCover, couponContent, couponExpire, couponTitle, couponType, canDo, canntDo, comment, cardView;
 @synthesize customBackgroundView, customSelectedBackgroundView;
 @synthesize couponsTableView;
 @synthesize actionsToolBar;
@@ -46,6 +48,11 @@
         [SUtil setCustomCellBGView:self];
         
         UIColor *_bgcolor = [UIColor clearColor];
+        
+        SCouponCardView *_cardv = [[SCouponCardView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_cardv];
+        self.cardView = _cardv;
+        [_cardv release];
         
         UIImageView *_imgv = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imgv.backgroundColor = _bgcolor;
@@ -148,6 +155,7 @@
     self.canDo.frame = layout.can_do.view;
     self.canntDo.frame = layout.cannt_do.view;
     self.comment.frame = layout.comment.view;
+    [self.cardView relayout:layout.card];
 }
 - (void)reContent {
     self.couponCover.image = nil;
@@ -160,6 +168,7 @@
     [self.canDo refreshWithText:[SUtil couponCanDoNumString:self.coupon] Image:nil Layout:self.couponLayout.can_do];
     [self.canntDo refreshWithText:[SUtil couponCanntDoNumString:self.coupon] Image:nil Layout:self.couponLayout.cannt_do];
     [self.comment refreshWithText:[SUtil couponCommentNumString:self.coupon] Image:nil Layout:self.couponLayout.comment];
+    [self.cardView recontent:[SUtil couponCardTitle:self.coupon]];
 }
 - (void)reStyleWith:(SCouponStyle *)style {
     self.couponTitle.font = style.titleFont;
@@ -168,6 +177,7 @@
     self.couponContent.textColor = style.contentColor;
     self.couponExpire.font = style.expireFont;
     self.couponExpire.textColor = [SUtil isCouponExpire:self.coupon] ? style.didExpireColor : style.unExpireColor;
+    [self.cardView restyle:style.cardStyle];
 }
 
 #pragma mark SDWebImageManager delegate
@@ -344,8 +354,12 @@
 - (void)finishOpenAnimation:(BOOL)animated {
     [self showActionBar];
 }
-- (void)finishCloseAnimation:(BOOL)animated {}
-- (void)startOpenAnimation:(BOOL)animated {}
+- (void)finishCloseAnimation:(BOOL)animated {
+    self.cardView.hidden = NO;
+}
+- (void)startOpenAnimation:(BOOL)animated {
+    self.cardView.hidden = YES;
+}
 - (void)startCloseAnimation:(BOOL)animated {
     [self hideActionBar];
 }

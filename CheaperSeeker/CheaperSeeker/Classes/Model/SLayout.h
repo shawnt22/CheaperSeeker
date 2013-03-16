@@ -24,8 +24,6 @@
 @property (nonatomic, assign) CGRect expire;
 @property (nonatomic, assign) CGRect type;
 
-@property (nonatomic, assign) CGRect card_title;
-@property (nonatomic, assign) CGRect card_bg;
 @property (nonatomic, assign) CouponCardLayout card;
 @property (nonatomic, assign) CanDoViewLayout can_do;
 @property (nonatomic, assign) CanDoViewLayout cannt_do;
@@ -38,8 +36,6 @@
 @property (nonatomic, assign) CGRect type_open;
 @property (nonatomic, assign) CGFloat height_open;
 
-@property (nonatomic, assign) CGRect card_title_open;
-@property (nonatomic, assign) CGRect card_bg_open;
 @property (nonatomic, assign) CouponCardLayout card_open;
 @property (nonatomic, assign) CanDoViewLayout can_do_open;
 @property (nonatomic, assign) CanDoViewLayout cannt_do_open;

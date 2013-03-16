@@ -311,7 +311,7 @@
     CanDoViewLayout _result;
     CGSize _img_size = CGSizeMake(12, 12);
     CGSize _text_size = [number sizeWithFont:[SCouponCanDoView textFont] constrainedToSize:CGSizeMake([self normalWidth]-_img_size.width-6-2, 15) lineBreakMode:[Util lineBreakMode:SLineBreakByWordWrapping]];
-    _result.image = CGRectMake(3, ceilf(([self normalHeight]-_img_size.height)/2), _img_size.width, _img_size.height);
+    _result.image = CGRectMake(3, ([self normalHeight]-_img_size.height)/2, _img_size.width, _img_size.height);
     _result.text = CGRectMake(_result.image.origin.x+_result.image.size.width+2, ceilf(([self normalHeight]-_text_size.height)/2), _text_size.width, _text_size.height);
     CGFloat _width = _result.text.origin.x + _result.text.size.width + 3;
     _result.view = CGRectMake(0, 0, _width, [self normalHeight]);

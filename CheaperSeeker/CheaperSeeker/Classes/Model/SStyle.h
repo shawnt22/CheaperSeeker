@@ -13,6 +13,7 @@
 
 @end
 
+@class SCouponCardStyle;
 @interface SCouponStyle : SStyle
 @property (nonatomic, retain) UIFont *titleFont;
 @property (nonatomic, retain) UIColor *titleColor;
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) UIFont *expireFont;
 @property (nonatomic, retain) UIColor *didExpireColor;
 @property (nonatomic, retain) UIColor *unExpireColor;
+@property (nonatomic, retain) SCouponCardStyle *cardStyle;
 
 @end
 

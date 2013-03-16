@@ -169,6 +169,10 @@
     return _result;
 }
 
++ (NSString *)couponCardTitle:(id)coupon {
+    return @"$50 OFF";
+}
+
 @end
 
 

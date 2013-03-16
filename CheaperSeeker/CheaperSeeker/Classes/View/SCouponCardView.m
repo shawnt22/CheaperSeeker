@@ -22,7 +22,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -31,12 +31,13 @@
     self.style = nil;
     [super dealloc];
 }
+#define kCouponCardRadius   4.0
 - (void)drawRect:(CGRect)rect {
     CGContextRef _context = UIGraphicsGetCurrentContext();
     CGContextClearRect(_context, rect);
     
-    [SCouponTypeView fillBGWithContext:_context Rect:self.bounds Color:self.style.keyColor Radius:2.0];
-    [SCouponTypeView fillBGWithContext:_context Rect:CGRectInset(self.bounds, 1, 1) Color:self.style.coverBGColor Radius:2.0];
+    [SCouponTypeView fillBGWithContext:_context Rect:self.bounds Color:self.style.keyColor Radius:kCouponCardRadius];
+    [SCouponTypeView fillBGWithContext:_context Rect:CGRectInset(self.bounds, 1, 1) Color:self.style.coverBGColor Radius:kCouponCardRadius];
     
     [self drawTitleBGWith:_context];
     [self drawTitleWith:_context];
@@ -48,8 +49,9 @@
     CGContextMoveToPoint(context, self.layout.title.origin.x, self.layout.title.origin.y);
     CGContextAddLineToPoint(context, self.layout.title.origin.x+self.layout.title.size.width, self.layout.title.origin.y);
     CGContextAddLineToPoint(context, self.layout.title.origin.x+self.layout.title.size.width, self.layout.title.origin.y+self.layout.title.size.height/2);
-    CGContextAddArcToPoint(context, self.layout.title.origin.x+self.layout.title.size.width, self.layout.title.origin.y+self.layout.title.size.height, self.layout.title.origin.x+self.layout.title.size.width/2, self.layout.title.origin.y+self.layout.title.size.height, 2);
-    CGContextAddArcToPoint(context, self.layout.title.origin.x, self.layout.title.origin.y+self.layout.title.size.height/2, self.layout.title.origin.x, self.layout.title.size.height/2+self.layout.title.origin.y, 2);
+    CGContextAddArcToPoint(context, self.layout.title.origin.x+self.layout.title.size.width, self.layout.title.origin.y+self.layout.title.size.height, self.layout.title.origin.x+self.layout.title.size.width/2, self.layout.title.origin.y+self.layout.title.size.height, kCouponCardRadius);
+    CGContextAddArcToPoint(context, self.layout.title.origin.x, self.layout.title.origin.y+self.layout.title.size.height, self.layout.title.origin.x, self.layout.title.size.height/2+self.layout.title.origin.y, kCouponCardRadius);
+//    CGContextAddLineToPoint(context, self.layout.title.origin.x, self.layout.title.origin.y);
     CGContextClosePath(context);
     
     CGContextFillPath(context);
@@ -61,17 +63,17 @@
 }
 
 #pragma mark refresh
-+ (CGFloat)cardTitleHeight {
-    return 25.0;
-}
-- (void)refreshWithTitle:(NSString *)ttl Style:(SCouponCardStyle *)sty Layout:(CouponCardLayout)lay {
-    self.style = sty;
-    self.title = ttl;
+- (void)relayout:(CouponCardLayout)lay {
     self.layout = lay;
-    
     self.frame = lay.view;
+}
+- (void)recontent:(NSString *)ttl {
+    self.title = ttl;
     
     [self setNeedsDisplay];
+}
+- (void)restyle:(SCouponCardStyle *)sty {
+    self.style = sty;
 }
 
 @end

@@ -31,6 +31,7 @@
 @implementation SCouponStyle
 @synthesize titleColor, titleFont, contentColor, contentFont, expireFont;
 @synthesize didExpireColor, unExpireColor;
+@synthesize cardStyle;
 
 - (id)init {
     self = [super init];
@@ -42,6 +43,10 @@
         self.didExpireColor = [UIColor redColor];
         self.unExpireColor = [UIColor orangeColor];
         self.expireFont = [UIFont systemFontOfSize:12];
+        
+        SCouponCardStyle *_cds = [[SCouponCardStyle alloc] init];
+        self.cardStyle = _cds;
+        [_cds release];
     }
     return self;
 }
@@ -53,6 +58,7 @@
     self.contentFont = nil;
     self.contentColor = nil;
     self.expireFont = nil;
+    self.cardStyle = nil;
     [super dealloc];
 }
 
@@ -87,8 +93,9 @@
     self = [super init];
     if (self) {
         self.keyColor = SRGBCOLOR(243, 120, 43);
-        self.coverBGColor = kCustomCellBGFillColor;
-        self.titleFont = [UIFont boldSystemFontOfSize:10];
+//        self.keyColor = SRGBCOLOR(96, 166, 241);
+        self.coverBGColor = [UIColor whiteColor];
+        self.titleFont = [UIFont boldSystemFontOfSize:12];
         self.titleColor = [UIColor whiteColor];
     }
     return self;
